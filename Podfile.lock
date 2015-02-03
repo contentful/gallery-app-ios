@@ -1,0 +1,67 @@
+PODS:
+  - AFNetworking (2.5.0):
+    - AFNetworking/NSURLConnection (= 2.5.0)
+    - AFNetworking/NSURLSession (= 2.5.0)
+    - AFNetworking/Reachability (= 2.5.0)
+    - AFNetworking/Security (= 2.5.0)
+    - AFNetworking/Serialization (= 2.5.0)
+    - AFNetworking/UIKit (= 2.5.0)
+  - AFNetworking/NSURLConnection (2.5.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.5.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.5.0)
+  - AFNetworking/Security (2.5.0)
+  - AFNetworking/Serialization (2.5.0)
+  - AFNetworking/UIKit (2.5.0):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - Bypass (1.0.1)
+  - CGLMail (0.1.1)
+  - ContentfulDeliveryAPI (1.4.8):
+    - AFNetworking
+    - ISO8601DateFormatter
+  - ContentfulDialogs (0.2.0):
+    - Bypass
+    - CGLMail
+    - ContentfulDeliveryAPI (~> 1.4.7)
+    - DDPageControl
+    - TSMiniWebBrowser@dblock
+  - ContentfulPersistence (0.1.0):
+    - ContentfulDeliveryAPI (~> 1.4.7)
+  - ContentfulStyle (HEAD based on 0.2.0):
+    - EDColor
+    - LatoFont
+  - DDPageControl (0.1)
+  - EDColor (0.4.0)
+  - FBSnapshotTestCase (1.5)
+  - ISO8601DateFormatter (0.7)
+  - LatoFont (1.0.0)
+  - TSMiniWebBrowser@dblock (1.1)
+
+DEPENDENCIES:
+  - ContentfulDialogs
+  - ContentfulPersistence
+  - ContentfulStyle (HEAD)
+  - FBSnapshotTestCase
+
+SPEC CHECKSUMS:
+  AFNetworking: 0f54cb5d16ce38c1b76948faffb8d5fb705021c7
+  Bypass: 225bc63ebb09e5674c1fc460b1708e775f68f52f
+  CGLMail: ba03e1a69db3c27bad925fe1270cd99fada5ed69
+  ContentfulDeliveryAPI: 4652d1fb65a08fdfbf01d5e3c399da01409bda00
+  ContentfulDialogs: e4a668f43ee864be7275033f8f27e92eeac25261
+  ContentfulPersistence: 9c7117962b4cf9a069756639d3275ecf7cee0364
+  ContentfulStyle: 0f41944b1efd8bba2a8f0c1ac0cf3910b1105949
+  DDPageControl: 86d07bda58e325a427fb0d7c8fb650add2ff35c2
+  EDColor: bcdb8600b7a456f4408ce1d7e7fc001588919254
+  FBSnapshotTestCase: e2914fbaabccea1dcc773d6a16b1c24540642488
+  ISO8601DateFormatter: 59731cd880cf87e71b4fa95f0d6b713dcbc4cbce
+  LatoFont: 325a86578945d04cce8039deaf163229c63e2258
+  TSMiniWebBrowser@dblock: 4e73ee955fcf2e9f5d98f7a17460454ac059bc37
+
+COCOAPODS: 0.36.0.beta.1
