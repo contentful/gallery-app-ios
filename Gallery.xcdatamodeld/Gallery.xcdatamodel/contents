@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14C106a" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Asset" representedClassName="Gallery.Asset" syncable="YES">
+        <attribute name="height" optional="YES" attributeType="Float" syncable="YES"/>
+        <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="internetMediaType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="width" optional="YES" attributeType="Float" syncable="YES"/>
+        <relationship name="coverImage_79h5TZwqOWy0ygOKGs2Wky_Inverse" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PhotoGallery" inverseName="coverImage" inverseEntity="PhotoGallery" syncable="YES"/>
+        <relationship name="images_79h5TZwqOWy0ygOKGs2Wky_Inverse" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PhotoGallery" inverseName="images" inverseEntity="PhotoGallery" syncable="YES"/>
+        <relationship name="photo_1xYw5JsIecuGE68mmGMg20_Inverse" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Image" inverseName="photo" inverseEntity="Image" syncable="YES"/>
+        <relationship name="profilePhoto_38nK0gXXIccQ2IEosyAg6C_Inverse" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Author" inverseName="profilePhoto" inverseEntity="Author" syncable="YES"/>
+    </entity>
+    <entity name="Author" representedClassName="Gallery.Author" syncable="YES">
+        <attribute name="biography" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="twitterHandle" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="authorInverse" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PhotoGallery" inverseName="author" inverseEntity="PhotoGallery" syncable="YES"/>
+        <relationship name="createdEntries" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Image" inverseName="createdEntriesInverse" inverseEntity="Image" syncable="YES"/>
+        <relationship name="profilePhoto" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Asset" inverseName="profilePhoto_38nK0gXXIccQ2IEosyAg6C_Inverse" inverseEntity="Asset" syncable="YES"/>
+    </entity>
+    <entity name="Image" representedClassName="Gallery.Image" syncable="YES">
+        <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageCaption" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageCredits" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="createdEntriesInverse" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Author" inverseName="createdEntries" inverseEntity="Author" syncable="YES"/>
+        <relationship name="photo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Asset" inverseName="photo_1xYw5JsIecuGE68mmGMg20_Inverse" inverseEntity="Asset" syncable="YES"/>
+    </entity>
+    <entity name="PhotoGallery" representedClassName="Gallery.PhotoGallery" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="galleryDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="location" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="slug" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="author" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Author" inverseName="authorInverse" inverseEntity="Author" syncable="YES"/>
+        <relationship name="coverImage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Asset" inverseName="coverImage_79h5TZwqOWy0ygOKGs2Wky_Inverse" inverseEntity="Asset" syncable="YES"/>
+        <relationship name="images" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Asset" inverseName="images_79h5TZwqOWy0ygOKGs2Wky_Inverse" inverseEntity="Asset" syncable="YES"/>
+    </entity>
+    <entity name="SyncInfo" representedClassName="Gallery.SyncInfo" syncable="YES">
+        <attribute name="lastSyncTimestamp" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="syncToken" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Asset" positionX="0" positionY="0" width="128" height="180"/>
+        <element name="Author" positionX="0" positionY="0" width="128" height="150"/>
+        <element name="Image" positionX="0" positionY="0" width="128" height="135"/>
+        <element name="PhotoGallery" positionX="0" positionY="0" width="128" height="178"/>
+        <element name="SyncInfo" positionX="0" positionY="0" width="128" height="75"/>
+    </elements>
+</model>

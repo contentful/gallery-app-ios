@@ -1,7 +1,7 @@
 .PHONY: all setup storyboard_ids
 
 all:
-	xcodebuild -workspace 'Blog.xcworkspace' -scheme 'Blog'|xcpretty
+	xcodebuild -workspace 'Gallery.xcworkspace' -scheme 'Gallery'|xcpretty
 
 setup:
 	bundle install
