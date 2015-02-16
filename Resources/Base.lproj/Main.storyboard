@@ -26,10 +26,38 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Galleries" id="tGw-A5-s7G"/>
+                    <connections>
+                        <segue destination="iLA-Bs-ggM" kind="show" identifier="ShowImagesSegue" id="vgV-J6-XyQ"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FBX-5T-s2X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1176" y="488"/>
+        </scene>
+        <!--Images View Controller-->
+        <scene sceneID="wId-9X-uG4">
+            <objects>
+                <collectionViewController id="iLA-Bs-ggM" customClass="ImagesViewController" customModule="Gallery" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="2fj-GJ-R2B">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="RL5-Ki-mJ0">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells/>
+                        <connections>
+                            <outlet property="dataSource" destination="iLA-Bs-ggM" id="K4P-ue-jeJ"/>
+                            <outlet property="delegate" destination="iLA-Bs-ggM" id="wvj-9C-Fzj"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Uu1-vF-TT8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1176" y="1221"/>
         </scene>
             <point key="canvasLocation" x="364" y="488"/>
         </scene>

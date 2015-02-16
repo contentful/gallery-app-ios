@@ -19,6 +19,22 @@ class GalleriesViewController: UICollectionViewController {
         kvoController.unobserveAll()
     }
 
+    func imagesForGallery(gallery: PhotoGallery) -> [Image] {
+        return (gallery.images.array as [Asset]).map({ (asset: Asset) -> Image in
+            let predicate = String(format:"photo.identifier == '%@'", asset.identifier)
+            return self.dataManager?.manager.fetchEntriesOfContentTypeWithIdentifier(ContentfulDataManager.ImageContentTypeId, matchingPredicate: predicate).first as Image
+        })
+    }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == SegueIdentifier.ShowImagesSegue.rawValue {
+            let imagesVC = segue.destinationViewController as ImagesViewController
+            imagesVC.client = dataManager?.client
+            imagesVC.images = imagesForGallery(sender as PhotoGallery)
+            imagesVC.title = (sender as PhotoGallery).title
+        }
+    }
+
     func refresh() {
         dataManager?.performSynchronization({ (error) -> Void in
             if error != nil && error.code != NSURLErrorNotConnectedToInternet {
@@ -32,6 +48,8 @@ class GalleriesViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
 
         dataManager = ContentfulDataManager()
 
@@ -72,5 +90,13 @@ class GalleriesViewController: UICollectionViewController {
 
     override func viewWillAppear(animated: Bool) {
         refresh()
+    }
+
+    // MARK: UICollectionViewDelegate
+
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        if let gallery = self.dataSource?.objectAtIndexPath(indexPath) as? PhotoGallery {
+            performSegueWithIdentifier(SegueIdentifier.ShowImagesSegue.rawValue, sender: gallery)
+        }
     }
 }
