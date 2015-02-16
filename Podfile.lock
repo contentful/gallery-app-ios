@@ -40,7 +40,9 @@ PODS:
   - EDColor (0.4.0)
   - FBSnapshotTestCase (1.5)
   - ISO8601DateFormatter (0.7)
+  - KVOController (1.0.3)
   - LatoFont (1.0.0)
+  - SOZOChromoplast (0.0.1)
   - TSMiniWebBrowser@dblock (1.1)
 
 DEPENDENCIES:
@@ -48,6 +50,8 @@ DEPENDENCIES:
   - ContentfulPersistence
   - ContentfulStyle (HEAD)
   - FBSnapshotTestCase
+  - KVOController
+  - SOZOChromoplast
 
 SPEC CHECKSUMS:
   AFNetworking: 0f54cb5d16ce38c1b76948faffb8d5fb705021c7
@@ -61,7 +65,9 @@ SPEC CHECKSUMS:
   EDColor: bcdb8600b7a456f4408ce1d7e7fc001588919254
   FBSnapshotTestCase: e2914fbaabccea1dcc773d6a16b1c24540642488
   ISO8601DateFormatter: 59731cd880cf87e71b4fa95f0d6b713dcbc4cbce
+  KVOController: b1139ef1fc373b6757e4b69493fedd7b56eb1272
   LatoFont: 325a86578945d04cce8039deaf163229c63e2258
+  SOZOChromoplast: 54e8f6e63e5c0483ee09cf12cb8a857a5f71486c
   TSMiniWebBrowser@dblock: 4e73ee955fcf2e9f5d98f7a17460454ac059bc37
 
 COCOAPODS: 0.36.0.beta.1

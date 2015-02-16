@@ -13,3 +13,5 @@
 #import <ContentfulPersistence/CoreDataManager.h>
 #import <ContentfulStyle/UIColor+Contentful.h>
 #import <ContentfulStyle/UIFont+Contentful.h>
+#import <KVOController/FBKVOController.h>
+#import <SOZOChromoplast/SOZOChromoplast.h>

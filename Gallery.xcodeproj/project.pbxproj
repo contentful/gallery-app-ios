@@ -10,7 +10,7 @@
 		75BDD1B1295DE91336155D72 /* libPods-Gallery.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4B4199ECA29092A7DA734DE /* libPods-Gallery.a */; };
 		87292A3755A9F885DC9DF437 /* libPods-GalleryTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A3B9196CE53932F9A6124064 /* libPods-GalleryTests.a */; };
 		A127574D1A81091400A0CA79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A127574C1A81091400A0CA79 /* AppDelegate.swift */; };
-		A127574F1A81091400A0CA79 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A127574E1A81091400A0CA79 /* ViewController.swift */; };
+		A127574F1A81091400A0CA79 /* GalleriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A127574E1A81091400A0CA79 /* GalleriesViewController.swift */; };
 		A12757521A81091400A0CA79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A12757501A81091400A0CA79 /* Main.storyboard */; };
 		A12757541A81091400A0CA79 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A12757531A81091400A0CA79 /* Images.xcassets */; };
 		A12757571A81091400A0CA79 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A12757551A81091400A0CA79 /* LaunchScreen.xib */; };
@@ -41,7 +41,7 @@
 		A12757471A81091400A0CA79 /* Gallery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gallery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A127574B1A81091400A0CA79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A127574C1A81091400A0CA79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A127574E1A81091400A0CA79 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A127574E1A81091400A0CA79 /* GalleriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleriesViewController.swift; sourceTree = "<group>"; };
 		A12757511A81091400A0CA79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A12757531A81091400A0CA79 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A12757561A81091400A0CA79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -111,7 +111,7 @@
 				A1D156DC1A822BF000250215 /* Model */,
 				A127574C1A81091400A0CA79 /* AppDelegate.swift */,
 				A1D156DA1A822BC200250215 /* ContentfulDataManager.swift */,
-				A127574E1A81091400A0CA79 /* ViewController.swift */,
+				A127574E1A81091400A0CA79 /* GalleriesViewController.swift */,
 			);
 			path = Code;
 			sourceTree = "<group>";
@@ -347,7 +347,7 @@
 			files = (
 				A13B63EC1A82518E00EF5EED /* Hack.c in Sources */,
 				A13B63E41A822EB700EF5EED /* Image.swift in Sources */,
-				A127574F1A81091400A0CA79 /* ViewController.swift in Sources */,
+				A127574F1A81091400A0CA79 /* GalleriesViewController.swift in Sources */,
 				A13B63E61A822EB700EF5EED /* SyncInfo.swift in Sources */,
 				A13B63E81A822EB700EF5EED /* Author.swift in Sources */,
 				A1D156DB1A822BC200250215 /* ContentfulDataManager.swift in Sources */,

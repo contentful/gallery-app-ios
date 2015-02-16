@@ -19,6 +19,8 @@ target 'Gallery' do
 pod 'ContentfulDialogs'
 pod 'ContentfulPersistence'
 pod 'ContentfulStyle', :head
+pod 'KVOController'
+pod 'SOZOChromoplast'
 
 end
 
