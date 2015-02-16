@@ -42,19 +42,20 @@ class GalleriesViewController: UICollectionViewController {
         dataSource?.cellConfigurator = { (cell, indexPath) -> Void in
             if let imageCell = cell as? ImageCell {
                 if let gallery = self.dataSource?.objectAtIndexPath(indexPath) as? PhotoGallery {
-                    imageCell.imageView.offlineCaching_cda = true
-                    imageCell.imageView.cda_setImageWithPersistedAsset(gallery.coverImage, client: self.dataManager?.client, size: collectionView.frame.size, placeholderImage: nil)
-                    imageCell.titleLabel.text = gallery.title
-
+                    self.kvoController.unobserve(imageCell.imageView)
                     self.kvoController.observe(imageCell.imageView, keyPath: "image", options: .New,
                         block: { (observer, object, change) -> Void in
                             let chromoplast = SOZOChromoplast(image: imageCell.imageView.image)
-                            imageCell.imageView.backgroundColor = chromoplast.dominantColor
+                            imageCell.backgroundColor = chromoplast.dominantColor
 
                             imageCell.titleLabel.shadowColor = chromoplast.colors.first as? UIColor
                             imageCell.titleLabel.shadowOffset = CGSize(width: 1.0, height: 1.0)
                             imageCell.titleLabel.textColor = chromoplast.colors.last as UIColor
                     })
+
+                    imageCell.imageView.offlineCaching_cda = true
+                    imageCell.imageView.cda_setImageWithPersistedAsset(gallery.coverImage, client: self.dataManager?.client, size: imageCell.frame.size.screenSize(), placeholderImage: nil)
+                    imageCell.titleLabel.text = gallery.title
                 }
             }
         }

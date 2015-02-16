@@ -8,6 +8,13 @@
 
 import UIKit
 
+extension CGSize {
+    func screenSize() -> CGSize {
+        let scale = UIScreen.mainScreen().nativeScale
+        return CGSize(width: width * scale, height: height * scale)
+    }
+}
+
 class ImageCell : UICollectionViewCell {
     let imageView: UIImageView
     let titleLabel: UILabel
