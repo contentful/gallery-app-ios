@@ -59,6 +59,113 @@
             </objects>
             <point key="canvasLocation" x="1176" y="1221"/>
         </scene>
+        <!--Post List Metadata View Controller-->
+        <scene sceneID="lW7-6e-ViN">
+            <objects>
+                <viewController storyboardIdentifier="AuthorViewControllerId" id="UKV-hW-gVq" customClass="PostListMetadataViewController" customModule="Gallery" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="U0E-UR-nEo"/>
+                        <viewControllerLayoutGuide type="bottom" id="0eh-Ce-da0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ESQ-Py-LdU">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 posts by Jack" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9f1-OB-wGb">
+                                <rect key="frame" x="16" y="571" width="131" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="42" id="AAD-CM-2iq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="AAD-CM-2iq"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lOa-uo-Tux">
+                                <rect key="frame" x="8" y="0.0" width="600" height="585"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TT5-hp-vfa">
+                                        <rect key="frame" x="20" y="20" width="100" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="0UG-co-VY3"/>
+                                            <constraint firstAttribute="height" constant="100" id="rfh-eC-5DU"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jack Johnson" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I06-uk-9fG">
+                                        <rect key="frame" x="140" y="20" width="104" height="20"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D5a-99-5EM">
+                                        <rect key="frame" x="140" y="60" width="440" height="83"/>
+                                        <string key="text">Mashable's Technology Reporter, covering Silicon Valley businesses, people and trends. JP was a Fortune Magazine staff writer for 5 years previously, covering the intersection of business and technology.
+</string>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.047058823530000002" green="0.12549019610000001" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="D5a-99-5EM" secondAttribute="width" constant="160" id="03s-Md-HZk"/>
+                                    <constraint firstItem="I06-uk-9fG" firstAttribute="top" secondItem="TT5-hp-vfa" secondAttribute="top" id="2YD-xb-5v1"/>
+                                    <constraint firstItem="TT5-hp-vfa" firstAttribute="leading" secondItem="lOa-uo-Tux" secondAttribute="leading" constant="20" id="C8p-DZ-Jm1"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" secondItem="D5a-99-5EM" secondAttribute="height" constant="80" id="FJk-vA-hAL"/>
+                                    <constraint firstItem="I06-uk-9fG" firstAttribute="leading" secondItem="D5a-99-5EM" secondAttribute="leading" id="KYy-Y2-Swr"/>
+                                    <constraint firstItem="D5a-99-5EM" firstAttribute="top" secondItem="I06-uk-9fG" secondAttribute="bottom" constant="20" id="SMs-pE-R38"/>
+                                    <constraint firstItem="I06-uk-9fG" firstAttribute="leading" secondItem="TT5-hp-vfa" secondAttribute="trailing" constant="20" id="afR-X2-Mki"/>
+                                    <constraint firstItem="TT5-hp-vfa" firstAttribute="top" secondItem="lOa-uo-Tux" secondAttribute="top" constant="20" id="jxz-pm-1s3"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="FJk-vA-hAL"/>
+                                    </mask>
+                                </variation>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="lOa-uo-Tux" firstAttribute="height" secondItem="ESQ-Py-LdU" secondAttribute="height" constant="-15" id="9pM-av-iJY"/>
+                            <constraint firstItem="lOa-uo-Tux" firstAttribute="width" secondItem="ESQ-Py-LdU" secondAttribute="width" id="Hve-eD-lbA"/>
+                            <constraint firstItem="lOa-uo-Tux" firstAttribute="top" secondItem="U0E-UR-nEo" secondAttribute="bottom" constant="-20" id="ggV-Hv-x4g"/>
+                            <constraint firstItem="9f1-OB-wGb" firstAttribute="leading" secondItem="ESQ-Py-LdU" secondAttribute="leadingMargin" id="nk8-Mw-8Lo"/>
+                            <constraint firstItem="lOa-uo-Tux" firstAttribute="leading" secondItem="ESQ-Py-LdU" secondAttribute="leadingMargin" constant="-8" id="uov-x4-H4s"/>
+                            <constraint firstItem="0eh-Ce-da0" firstAttribute="top" secondItem="9f1-OB-wGb" secondAttribute="bottom" constant="8" symbolic="YES" id="yih-Mg-F82"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backgroundView" destination="lOa-uo-Tux" id="FsK-uO-8kt"/>
+                        <outlet property="bodyLabel" destination="D5a-99-5EM" id="CfK-JH-DH2"/>
+                        <outlet property="imageView" destination="TT5-hp-vfa" id="vN6-A1-yRM"/>
+                        <outlet property="numberOfPostLabel" destination="9f1-OB-wGb" id="rBP-Co-PHC"/>
+                        <outlet property="titleLabel" destination="I06-uk-9fG" id="MyV-V7-i8u"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xlz-Lf-Z5t" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1901" y="488"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="W5s-z5-gFw">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TbK-qo-aXW" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dNY-Ul-9Cz">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="2N8-WK-hkX" kind="relationship" relationship="rootViewController" id="GLv-mu-cLv"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NXa-7U-7Pe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
             <point key="canvasLocation" x="364" y="488"/>
         </scene>
     </scenes>

@@ -21,6 +21,7 @@ func toArray<T, U where U == T.Generator.Element>(sequence: EnumerateSequence<T>
 
 class ImagesViewController: UICollectionViewController {
     weak var client: CDAClient? = nil
+    var metadataViewController: PostListMetadataViewController!
     
     var images: [Image] = [Image]() {
         willSet {
@@ -40,6 +41,12 @@ class ImagesViewController: UICollectionViewController {
         super.viewDidLoad()
 
         collectionView?.registerClass(ImageCell.self, forCellWithReuseIdentifier: NSStringFromClass(ImagesViewController.self))
+        collectionView?.registerClass(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: NSStringFromClass(ImagesViewController.self))
+
+        metadataViewController = storyboard?.instantiateViewControllerWithIdentifier(ViewControllerStoryboardIdentifier.AuthorViewControllerId.rawValue) as PostListMetadataViewController
+        metadataViewController.client = client
+        metadataViewController.view.autoresizingMask = .None
+        metadataViewController.view.frame.size.height = 160.0
     }
 
     // MARK: UICollectionViewDataSource
@@ -54,6 +61,16 @@ class ImagesViewController: UICollectionViewController {
         cell.imageView.cda_setImageWithPersistedAsset(image.photo, client: client, size: CGSizeZero, placeholderImage: nil)
 
         return cell
+    }
+
+    override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        if kind == UICollectionElementKindSectionHeader {
+            let view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: NSStringFromClass(ImagesViewController.self), forIndexPath: indexPath) as UICollectionReusableView
+            view.addSubview(metadataViewController.view)
+            return view
+        }
+
+        return UICollectionReusableView()
     }
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

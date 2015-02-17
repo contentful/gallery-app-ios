@@ -17,7 +17,7 @@ class PhotoGallery: NSManagedObject, CDAPersistedEntry {
     @NSManaged var location: AnyObject
     @NSManaged var slug: String
     @NSManaged var title: String
-    @NSManaged var author: Author
+    @NSManaged var author: Author?
     @NSManaged var coverImage: Asset
     @NSManaged var images: NSOrderedSet
 

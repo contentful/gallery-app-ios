@@ -28,10 +28,17 @@ class GalleriesViewController: UICollectionViewController {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == SegueIdentifier.ShowImagesSegue.rawValue {
+            let gallery = sender as PhotoGallery
+
             let imagesVC = segue.destinationViewController as ImagesViewController
             imagesVC.client = dataManager?.client
-            imagesVC.images = imagesForGallery(sender as PhotoGallery)
-            imagesVC.title = (sender as PhotoGallery).title
+            imagesVC.images = imagesForGallery(gallery)
+            imagesVC.title = gallery.title
+
+            if let author = gallery.author {
+                imagesVC.metadataViewController.metadata = PostListMetadata(body: author.biography, photo: author.profilePhoto, title: author.name)
+                imagesVC.metadataViewController.numberOfPosts = imagesVC.images.count
+            }
         }
     }
 
