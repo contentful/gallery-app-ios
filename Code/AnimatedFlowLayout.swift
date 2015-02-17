@@ -18,14 +18,6 @@ class AnimatedFlowLayout: UICollectionViewFlowLayout {
         indexPathsToAnimate.removeAll()
     }
 
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-
-        itemSize = CGSize(width: 100.0, height: 100.0)
-        minimumInteritemSpacing = 0.0
-        minimumLineSpacing = 0.0
-    }
-
     override func initialLayoutAttributesForAppearingItemAtIndexPath(itemIndexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
         let attr = layoutAttributesForItemAtIndexPath(itemIndexPath)
 
@@ -45,5 +37,17 @@ class AnimatedFlowLayout: UICollectionViewFlowLayout {
         indexPathsToAnimate += updateItems.map({ (element) -> NSIndexPath in
             return (element as UICollectionViewUpdateItem).indexPathAfterUpdate
         })
+    }
+
+    override func prepareLayout() {
+        if let collectionView = collectionView {
+            let width = Int(collectionView.frame.size.width / 3)
+
+            itemSize = CGSize(width: width, height: width)
+            minimumInteritemSpacing = 0.0
+            minimumLineSpacing = 0.0
+        }
+
+        super.prepareLayout()
     }
 }

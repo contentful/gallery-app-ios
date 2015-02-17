@@ -33,14 +33,18 @@ class ImageCell : UICollectionViewCell {
 
         super.init(frame: frame)
 
-        imageView.frame = self.bounds
         self.addSubview(imageView)
-
-        titleLabel.frame = CGRectInset(self.bounds, 30.0, 30.0)
         self.addSubview(titleLabel)
     }
 
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    override func layoutSubviews() {
+        imageView.frame = self.bounds
+        titleLabel.frame = CGRectInset(self.bounds, 30.0, 30.0)
+
+        super.layoutSubviews()
     }
 }

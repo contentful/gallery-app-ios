@@ -36,6 +36,12 @@ class ImagesViewController: UICollectionViewController {
         }
     }
 
+    lazy var kvoController: FBKVOController = FBKVOController(observer: self)
+
+    deinit {
+        kvoController.unobserveAll()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -49,8 +55,15 @@ class ImagesViewController: UICollectionViewController {
 
         let image = images[indexPath.item]
 
+        self.kvoController.unobserve(cell.imageView)
+        self.kvoController.observe(cell.imageView, keyPath: "image", options: .New,
+            block: { (observer, object, change) -> Void in
+                let chromoplast = SOZOChromoplast(image: cell.imageView.image)
+                cell.backgroundColor = chromoplast.firstHighlight
+        })
+
         cell.imageView.offlineCaching_cda = true
-        cell.imageView.cda_setImageWithPersistedAsset(image.photo, client: client, size: cell.frame.size.screenSize(), placeholderImage: nil)
+        cell.imageView.cda_setImageWithPersistedAsset(image.photo, client: client, size: CGSizeZero, placeholderImage: nil)
 
         return cell
     }
