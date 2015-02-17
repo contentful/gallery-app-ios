@@ -40,12 +40,6 @@ class ImagesViewController: UICollectionViewController {
         super.viewDidLoad()
 
         collectionView?.registerClass(ImageCell.self, forCellWithReuseIdentifier: NSStringFromClass(ImagesViewController.self))
-
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 100.0, height: 100.0)
-        layout.minimumInteritemSpacing = 0.0
-        layout.minimumLineSpacing = 0.0
-        collectionView?.collectionViewLayout = layout
     }
 
     // MARK: UICollectionViewDataSource
