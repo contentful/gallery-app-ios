@@ -94,7 +94,6 @@ class GalleriesViewController: UICollectionViewController {
         collectionView.registerClass(ImageCell.self, forCellWithReuseIdentifier: NSStringFromClass(GalleriesViewController.self))
 
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: view.frame.size.width, height: 200.0)
         layout.minimumInteritemSpacing = 0.0
         layout.minimumLineSpacing = 0.0
         collectionView.collectionViewLayout = layout
@@ -102,6 +101,14 @@ class GalleriesViewController: UICollectionViewController {
 
     override func viewWillAppear(animated: Bool) {
         refresh()
+    }
+
+    override func viewWillLayoutSubviews() {
+        if let collectionView = self.collectionView {
+            (collectionView.collectionViewLayout as UICollectionViewFlowLayout).itemSize = CGSize(width: collectionView.frame.size.width, height: 200.0)
+        }
+
+        super.viewWillLayoutSubviews()
     }
 
     // MARK: UICollectionViewDelegate
