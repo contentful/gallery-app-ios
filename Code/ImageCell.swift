@@ -16,10 +16,15 @@ extension CGSize {
 }
 
 class ImageCell : UICollectionViewCell {
+    let dateLabel: UILabel
     let imageView: UIImageView
     let titleLabel: UILabel
 
     override init(frame: CGRect) {
+        dateLabel = UILabel(frame: CGRect(x: 0.0, y: 0.0, width: 200.0, height: 40.0))
+        dateLabel.font = UIFont.tabTitleFont()
+        dateLabel.textAlignment = .Right
+
         imageView = UIImageView(frame: frame)
         imageView.alpha = 0.9
         imageView.autoresizingMask = .FlexibleWidth | .FlexibleHeight
@@ -35,6 +40,7 @@ class ImageCell : UICollectionViewCell {
 
         self.addSubview(imageView)
         self.addSubview(titleLabel)
+        self.addSubview(dateLabel)
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -42,6 +48,9 @@ class ImageCell : UICollectionViewCell {
     }
 
     override func layoutSubviews() {
+        dateLabel.frame.origin.x = frame.size.width - dateLabel.frame.size.width - 10.0
+        dateLabel.frame.origin.y = frame.size.height - dateLabel.frame.size.height
+
         imageView.frame = self.bounds
         titleLabel.frame = CGRectInset(self.bounds, 30.0, 30.0)
 

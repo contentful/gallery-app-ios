@@ -66,11 +66,16 @@ class GalleriesViewController: UICollectionViewController {
                             let chromoplast = SOZOChromoplast(image: imageCell.imageView.image)
                             imageCell.backgroundColor = chromoplast.dominantColor
 
+                            imageCell.dateLabel.shadowColor = chromoplast.colors.first as? UIColor
+                            imageCell.dateLabel.shadowOffset = CGSize(width: 1.0, height: 1.0)
+                            imageCell.dateLabel.textColor = chromoplast.colors.last as UIColor
+
                             imageCell.titleLabel.shadowColor = chromoplast.colors.first as? UIColor
                             imageCell.titleLabel.shadowOffset = CGSize(width: 1.0, height: 1.0)
                             imageCell.titleLabel.textColor = chromoplast.colors.last as UIColor
                     })
 
+                    imageCell.dateLabel.text = NSDateFormatter.localizedStringFromDate(gallery.date, dateStyle: .ShortStyle, timeStyle: .NoStyle)
                     imageCell.imageView.offlineCaching_cda = true
                     imageCell.imageView.cda_setImageWithPersistedAsset(gallery.coverImage, client: self.dataManager?.client, size: imageCell.frame.size.screenSize(), placeholderImage: nil)
                     imageCell.titleLabel.text = gallery.title
