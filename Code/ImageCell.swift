@@ -38,9 +38,9 @@ class ImageCell : UICollectionViewCell {
 
         super.init(frame: frame)
 
-        self.addSubview(imageView)
-        self.addSubview(titleLabel)
-        self.addSubview(dateLabel)
+        addSubview(imageView)
+        addSubview(titleLabel)
+        addSubview(dateLabel)
     }
 
     required init(coder aDecoder: NSCoder) {

@@ -20,7 +20,7 @@ func toArray<T, U where U == T.Generator.Element>(sequence: EnumerateSequence<T>
 }
 
 class ImagesViewController: UICollectionViewController {
-    weak var client: CDAClient? = nil
+    weak var client: CDAClient?
     var metadataViewController: PostListMetadataViewController!
     
     var images: [Image] = [Image]() {

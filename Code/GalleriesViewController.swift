@@ -9,9 +9,9 @@
 import UIKit
 
 class GalleriesViewController: UICollectionViewController {
-    var dataManager: ContentfulDataManager? = nil
-    var dataSource: CoreDataFetchDataSource? = nil
-    var predicate: String? = nil
+    var dataManager: ContentfulDataManager?
+    var dataSource: CoreDataFetchDataSource?
+    var predicate: String?
 
     lazy var kvoController: FBKVOController = FBKVOController(observer: self)
 
@@ -107,7 +107,7 @@ class GalleriesViewController: UICollectionViewController {
     // MARK: UICollectionViewDelegate
 
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        if let gallery = self.dataSource?.objectAtIndexPath(indexPath) as? PhotoGallery {
+        if let gallery = dataSource?.objectAtIndexPath(indexPath) as? PhotoGallery {
             performSegueWithIdentifier(SegueIdentifier.ShowImagesSegue.rawValue, sender: gallery)
         }
     }

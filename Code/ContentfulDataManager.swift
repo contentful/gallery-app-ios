@@ -18,7 +18,7 @@ class ContentfulDataManager: NSObject {
     var notificationToken: NSObjectProtocol? = nil
 
     deinit {
-        if let token = self.notificationToken {
+        if let token = notificationToken {
             NSNotificationCenter.defaultCenter().removeObserver(token)
         }
     }
