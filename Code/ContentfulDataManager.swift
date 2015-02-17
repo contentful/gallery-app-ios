@@ -31,7 +31,10 @@ class ContentfulDataManager: NSObject {
     }
 
     override init() {
-        let client = CDAClient(spaceKey: NSUserDefaults.standardUserDefaults().stringForKey(AppDelegate.SpaceKey), accessToken: NSUserDefaults.standardUserDefaults().stringForKey(AppDelegate.AccessToken))
+        let configuration = CDAConfiguration.defaultConfiguration()
+        configuration.userAgent = "Contentful Gallery App/1.0";
+
+        let client = CDAClient(spaceKey: NSUserDefaults.standardUserDefaults().stringForKey(AppDelegate.SpaceKey), accessToken: NSUserDefaults.standardUserDefaults().stringForKey(AppDelegate.AccessToken), configuration:configuration)
         manager = CoreDataManager(client: client, dataModelName: "Gallery")
 
         manager.classForAssets = Asset.self
