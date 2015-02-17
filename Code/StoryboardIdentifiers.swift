@@ -2,6 +2,7 @@
 
 public enum SegueIdentifier : String {
     case ShowImagesSegue = "ShowImagesSegue"
+    case SingleImageSegue = "SingleImageSegue"
 }
 
 public enum ViewControllerStoryboardIdentifier : String {

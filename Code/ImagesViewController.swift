@@ -37,6 +37,23 @@ class ImagesViewController: UICollectionViewController {
         }
     }
 
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        super.prepareForSegue(segue, sender: sender)
+
+        if segue.identifier == SegueIdentifier.SingleImageSegue.rawValue {
+            let imagesVC = segue.destinationViewController as ImagesViewController
+            imagesVC.client = client
+            imagesVC.images = images
+
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                if let collectionView = imagesVC.collectionView {
+                    let index = sender as Int
+                    collectionView.setContentOffset(CGPoint(x: index * Int(collectionView.frame.size.width), y: 0), animated: false)
+                }
+            })
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -65,6 +82,10 @@ class ImagesViewController: UICollectionViewController {
         cell.imageView.cda_setImageWithPersistedAsset(image.photo, client: client, size: CGSize(width: 400.0, height: 400.0).screenSize(), placeholderImage: nil)
 
         return cell
+    }
+
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        performSegueWithIdentifier(SegueIdentifier.SingleImageSegue.rawValue, sender: indexPath.item)
     }
 
     override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
