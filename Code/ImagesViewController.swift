@@ -40,6 +40,10 @@ class ImagesViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        addInfoButton()
+
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
+
         collectionView?.registerClass(ImageCell.self, forCellWithReuseIdentifier: NSStringFromClass(ImagesViewController.self))
         collectionView?.registerClass(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: NSStringFromClass(ImagesViewController.self))
 

@@ -56,6 +56,8 @@ class GalleriesViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        addInfoButton()
+
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
 
         dataManager = ContentfulDataManager()
