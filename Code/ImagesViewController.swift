@@ -62,7 +62,7 @@ class ImagesViewController: UICollectionViewController {
 
         cell.backgroundColor = UIColor.darkGrayColor()
         cell.imageView.offlineCaching_cda = true
-        cell.imageView.cda_setImageWithPersistedAsset(image.photo, client: client, size: CGSizeZero, placeholderImage: nil)
+        cell.imageView.cda_setImageWithPersistedAsset(image.photo, client: client, size: CGSize(width: 400.0, height: 400.0).screenSize(), placeholderImage: nil)
 
         return cell
     }
