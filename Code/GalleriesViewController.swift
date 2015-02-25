@@ -19,16 +19,13 @@ class GalleriesViewController: UICollectionViewController {
         kvoController.unobserveAll()
     }
 
-    func imagesForGallery(gallery: PhotoGallery) -> [Image] {
-        return (gallery.images.array as [Asset]).map({ (asset: Asset) -> Image in
-            let predicate = String(format:"photo.identifier == '%@'", asset.identifier)
-            return self.dataManager?.manager.fetchEntriesOfContentTypeWithIdentifier(ContentfulDataManager.ImageContentTypeId, matchingPredicate: predicate).first as Image
-        })
+    func imagesForGallery(gallery: Photo_Gallery) -> [Image] {
+        return gallery.images.array as [Image]
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == SegueIdentifier.ShowImagesSegue.rawValue {
-            let gallery = sender as PhotoGallery
+            let gallery = sender as Photo_Gallery
 
             let imagesVC = segue.destinationViewController as ImagesViewController
             imagesVC.client = dataManager?.client
@@ -68,7 +65,7 @@ class GalleriesViewController: UICollectionViewController {
 
         dataSource?.cellConfigurator = { (cell, indexPath) -> Void in
             if let imageCell = cell as? ImageCell {
-                if let gallery = self.dataSource?.objectAtIndexPath(indexPath) as? PhotoGallery {
+                if let gallery = self.dataSource?.objectAtIndexPath(indexPath) as? Photo_Gallery {
                     self.kvoController.unobserve(imageCell.imageView)
                     self.kvoController.observe(imageCell.imageView, keyPath: "image", options: .New,
                         block: { (observer, object, change) -> Void in
@@ -116,7 +113,7 @@ class GalleriesViewController: UICollectionViewController {
     // MARK: UICollectionViewDelegate
 
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        if let gallery = dataSource?.objectAtIndexPath(indexPath) as? PhotoGallery {
+        if let gallery = dataSource?.objectAtIndexPath(indexPath) as? Photo_Gallery {
             performSegueWithIdentifier(SegueIdentifier.ShowImagesSegue.rawValue, sender: gallery)
         }
     }

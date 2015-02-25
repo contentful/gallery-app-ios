@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-class PhotoGallery: NSManagedObject, CDAPersistedEntry {
+class Photo_Gallery: NSManagedObject, CDAPersistedEntry {
 
     @NSManaged var date: NSDate
     @NSManaged var galleryDescription: String

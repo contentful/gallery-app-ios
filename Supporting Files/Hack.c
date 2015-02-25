@@ -8,7 +8,7 @@
 
 /* Well, yeah... This will break horribly at some point, but hopefully,
  http://www.openradar.me/radar?id=6421938515738624 will be fixed before that. */
-void _TFC7Gallery12PhotoGalleryg10identifierSS() { }
+void _TFC7Gallery13Photo_Galleryg10identifierSS() { }
 void _TFC7Gallery5Assetg10identifierSS() { }
 void _TFC7Gallery5Assetg17internetMediaTypeSS() { }
 void _TFC7Gallery5Assetg3urlSS() { }

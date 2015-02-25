@@ -10,7 +10,7 @@ import CoreData
 
 class ContentfulDataManager: NSObject {
     class var AuthorContentTypeId: String { return "38nK0gXXIccQ2IEosyAg6C" }
-    class var GalleryContentTypeId: String { return "79h5TZwqOWy0ygOKGs2Wky" }
+    class var GalleryContentTypeId: String { return "7leLzv8hW06amGmke86y8G" }
     class var ImageContentTypeId: String { return "1xYw5JsIecuGE68mmGMg20" }
 
     var client: CDAClient { return manager.client }
@@ -41,7 +41,7 @@ class ContentfulDataManager: NSObject {
         manager.classForSpaces = SyncInfo.self
 
         manager.setClass(Author.self, forEntriesOfContentTypeWithIdentifier: ContentfulDataManager.AuthorContentTypeId)
-        manager.setClass(PhotoGallery.self, forEntriesOfContentTypeWithIdentifier: ContentfulDataManager.GalleryContentTypeId)
+        manager.setClass(Photo_Gallery.self, forEntriesOfContentTypeWithIdentifier: ContentfulDataManager.GalleryContentTypeId)
         manager.setClass(Image.self, forEntriesOfContentTypeWithIdentifier: ContentfulDataManager.ImageContentTypeId)
 
         super.init()
