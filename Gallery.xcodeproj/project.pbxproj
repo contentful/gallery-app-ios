@@ -10,7 +10,6 @@
 		75BDD1B1295DE91336155D72 /* libPods-Gallery.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4B4199ECA29092A7DA734DE /* libPods-Gallery.a */; };
 		87292A3755A9F885DC9DF437 /* libPods-GalleryTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A3B9196CE53932F9A6124064 /* libPods-GalleryTests.a */; };
 		A127574D1A81091400A0CA79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A127574C1A81091400A0CA79 /* AppDelegate.swift */; };
-		A127574F1A81091400A0CA79 /* GalleriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A127574E1A81091400A0CA79 /* GalleriesViewController.swift */; };
 		A12757521A81091400A0CA79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A12757501A81091400A0CA79 /* Main.storyboard */; };
 		A12757541A81091400A0CA79 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A12757531A81091400A0CA79 /* Images.xcassets */; };
 		A12757571A81091400A0CA79 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A12757551A81091400A0CA79 /* LaunchScreen.xib */; };
@@ -29,6 +28,8 @@
 		A1C3323A1A925A3F008EC0B7 /* AnimatedFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C332391A925A3F008EC0B7 /* AnimatedFlowLayout.swift */; };
 		A1C3323C1A937096008EC0B7 /* UIViewController-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C3323B1A937096008EC0B7 /* UIViewController-Extensions.swift */; };
 		A1C3323E1A937B59008EC0B7 /* SingleImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C3323D1A937B59008EC0B7 /* SingleImageViewController.swift */; };
+		A1C6E2FB1A9F53E0009845B7 /* GalleryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C6E2FA1A9F53E0009845B7 /* GalleryListViewController.swift */; };
+		A1C6E2FD1A9F692D009845B7 /* ImagesByGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C6E2FC1A9F692D009845B7 /* ImagesByGalleryViewController.swift */; };
 		A1D156DB1A822BC200250215 /* ContentfulDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D156DA1A822BC200250215 /* ContentfulDataManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -48,7 +49,6 @@
 		A12757471A81091400A0CA79 /* Gallery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gallery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A127574B1A81091400A0CA79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A127574C1A81091400A0CA79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A127574E1A81091400A0CA79 /* GalleriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleriesViewController.swift; sourceTree = "<group>"; };
 		A12757511A81091400A0CA79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A12757531A81091400A0CA79 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A12757561A81091400A0CA79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -70,6 +70,8 @@
 		A1C332391A925A3F008EC0B7 /* AnimatedFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedFlowLayout.swift; sourceTree = "<group>"; };
 		A1C3323B1A937096008EC0B7 /* UIViewController-Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController-Extensions.swift"; sourceTree = "<group>"; };
 		A1C3323D1A937B59008EC0B7 /* SingleImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleImageViewController.swift; sourceTree = "<group>"; };
+		A1C6E2FA1A9F53E0009845B7 /* GalleryListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryListViewController.swift; sourceTree = "<group>"; };
+		A1C6E2FC1A9F692D009845B7 /* ImagesByGalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagesByGalleryViewController.swift; sourceTree = "<group>"; };
 		A1D156DA1A822BC200250215 /* ContentfulDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentfulDataManager.swift; sourceTree = "<group>"; };
 		A3B9196CE53932F9A6124064 /* libPods-GalleryTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GalleryTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4B4199ECA29092A7DA734DE /* libPods-Gallery.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Gallery.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,8 +129,9 @@
 				A1C332391A925A3F008EC0B7 /* AnimatedFlowLayout.swift */,
 				A127574C1A81091400A0CA79 /* AppDelegate.swift */,
 				A1D156DA1A822BC200250215 /* ContentfulDataManager.swift */,
-				A127574E1A81091400A0CA79 /* GalleriesViewController.swift */,
+				A1C6E2FA1A9F53E0009845B7 /* GalleryListViewController.swift */,
 				A1C332341A924553008EC0B7 /* ImageCell.swift */,
+				A1C6E2FC1A9F692D009845B7 /* ImagesByGalleryViewController.swift */,
 				A1C332321A924145008EC0B7 /* ImagesViewController.swift */,
 				A1C332301A923224008EC0B7 /* PostListMetadataViewController.swift */,
 				A1C3323D1A937B59008EC0B7 /* SingleImageViewController.swift */,
@@ -375,16 +378,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				A13B63EC1A82518E00EF5EED /* Hack.c in Sources */,
+				A1C6E2FB1A9F53E0009845B7 /* GalleryListViewController.swift in Sources */,
 				A1C3323A1A925A3F008EC0B7 /* AnimatedFlowLayout.swift in Sources */,
 				A1C3323C1A937096008EC0B7 /* UIViewController-Extensions.swift in Sources */,
 				A1C332381A924F40008EC0B7 /* StoryboardIdentifiers.swift in Sources */,
 				A13B63E41A822EB700EF5EED /* Image.swift in Sources */,
-				A127574F1A81091400A0CA79 /* GalleriesViewController.swift in Sources */,
 				A13B63E61A822EB700EF5EED /* SyncInfo.swift in Sources */,
 				A1C3323E1A937B59008EC0B7 /* SingleImageViewController.swift in Sources */,
 				A13B63E81A822EB700EF5EED /* Author.swift in Sources */,
 				A1C332311A923224008EC0B7 /* PostListMetadataViewController.swift in Sources */,
 				A1C332331A924145008EC0B7 /* ImagesViewController.swift in Sources */,
+				A1C6E2FD1A9F692D009845B7 /* ImagesByGalleryViewController.swift in Sources */,
 				A1D156DB1A822BC200250215 /* ContentfulDataManager.swift in Sources */,
 				A13B63E01A822EB700EF5EED /* Asset.swift in Sources */,
 				A127574D1A81091400A0CA79 /* AppDelegate.swift in Sources */,

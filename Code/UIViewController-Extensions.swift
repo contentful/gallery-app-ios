@@ -18,7 +18,7 @@ extension UIViewController {
     func infoTapped() {
         let aboutUs = UINavigationController(rootViewController: CDAAboutUsViewController())
         aboutUs.topViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop, target:aboutUs, action: "dismissAnimated")
-        self.presentViewController(aboutUs, animated: true, completion: nil)
+        presentViewController(aboutUs, animated: true, completion: nil)
     }
 
     func dismissAnimated() {

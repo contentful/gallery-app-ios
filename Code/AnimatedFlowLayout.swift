@@ -11,6 +11,18 @@ import UIKit
 class AnimatedFlowLayout: UICollectionViewFlowLayout {
     let π = CGFloat(M_PI)
     var indexPathsToAnimate = [NSIndexPath]()
+    var showsHeader: Bool = false {
+        didSet {
+            if showsHeader {
+                if let collectionView = collectionView {
+                    headerReferenceSize = CGSize(width: collectionView.frame.size.width, height: 160.0)
+                    return
+                }
+            }
+
+            headerReferenceSize = CGSizeZero
+        }
+    }
 
     override func finalizeCollectionViewUpdates() {
         super.finalizeCollectionViewUpdates()
@@ -43,7 +55,6 @@ class AnimatedFlowLayout: UICollectionViewFlowLayout {
         if let collectionView = collectionView {
             let width = Int((collectionView.frame.size.width - 3.0) / 3)
 
-            headerReferenceSize = CGSize(width: collectionView.frame.size.width, height: 160.0)
             itemSize = CGSize(width: width, height: width)
             minimumInteritemSpacing = 1.0
             minimumLineSpacing = 1.0

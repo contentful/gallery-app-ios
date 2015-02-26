@@ -30,6 +30,11 @@ class ImagesViewController: UICollectionViewController {
         }
 
         didSet {
+            if collectionView?.numberOfItemsInSection(0) > 0 {
+                collectionView?.reloadData()
+                return
+            }
+
             let indexPaths = toArray(enumerate(images)).map { (index, image) -> NSIndexPath in
                 return NSIndexPath(forItem: index, inSection: 0)
             }
@@ -77,7 +82,9 @@ class ImagesViewController: UICollectionViewController {
 
         let image = images[indexPath.item]
 
-        cell.backgroundColor = UIColor.darkGrayColor()
+        cell.imageView.clipsToBounds = true
+        cell.imageView.contentMode = .ScaleAspectFill
+        cell.imageView.image = nil
         cell.imageView.offlineCaching_cda = true
         cell.imageView.cda_setImageWithPersistedAsset(image.photo, client: client, size: CGSize(width: 400.0, height: 400.0).screenSize(), placeholderImage: nil)
 

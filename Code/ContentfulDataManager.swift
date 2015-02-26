@@ -23,6 +23,14 @@ class ContentfulDataManager: NSObject {
         }
     }
 
+    func fetchGalleries(predicate: String? = nil) -> [Photo_Gallery] {
+        return manager.fetchEntriesOfContentTypeWithIdentifier(ContentfulDataManager.GalleryContentTypeId, matchingPredicate: predicate) as [Photo_Gallery]
+    }
+
+    func fetchImages(predicate: String? = nil) -> [Image] {
+        return manager.fetchEntriesOfContentTypeWithIdentifier(ContentfulDataManager.ImageContentTypeId, matchingPredicate: nil) as [Image]
+    }
+
     func fetchedResultsControllerForContentType(identifier: String, predicate: String?, sortDescriptors: [NSSortDescriptor]) -> NSFetchedResultsController {
         let fetchRequest = manager.fetchRequestForEntriesOfContentTypeWithIdentifier(identifier, matchingPredicate: predicate)
         fetchRequest.sortDescriptors = sortDescriptors

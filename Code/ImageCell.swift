@@ -51,8 +51,8 @@ class ImageCell : UICollectionViewCell {
         dateLabel.frame.origin.x = frame.size.width - dateLabel.frame.size.width - 10.0
         dateLabel.frame.origin.y = frame.size.height - dateLabel.frame.size.height
 
-        imageView.frame = self.bounds
-        titleLabel.frame = CGRectInset(self.bounds, 30.0, 30.0)
+        imageView.frame = bounds
+        titleLabel.frame = CGRectInset(bounds, 30.0, 30.0)
 
         super.layoutSubviews()
     }
