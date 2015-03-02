@@ -22,7 +22,7 @@ PODS:
     - AFNetworking/NSURLSession
   - Bypass (1.0.1)
   - CGLMail (0.1.1)
-  - ContentfulDeliveryAPI (1.4.9):
+  - ContentfulDeliveryAPI (HEAD based on 1.4.9):
     - AFNetworking
     - ISO8601DateFormatter
   - ContentfulDialogs (0.2.0):
@@ -46,6 +46,7 @@ PODS:
   - TSMiniWebBrowser@dblock (1.1)
 
 DEPENDENCIES:
+  - ContentfulDeliveryAPI (HEAD)
   - ContentfulDialogs
   - ContentfulPersistence
   - ContentfulStyle (HEAD)
