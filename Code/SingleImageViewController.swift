@@ -60,7 +60,7 @@ class SingleImageViewController: ImagesViewController {
         let index = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
 
         if index > 0 && index < images.count {
-            let image = images[index]
+            let image = images[0].1[index]
 
             title = image.title
         }

@@ -18,6 +18,7 @@ extension CGSize {
 class ImageCell : UICollectionViewCell {
     let dateLabel: UILabel
     let imageView: UIImageView
+    let shadowView: UIView
     let titleLabel: UILabel
 
     override init(frame: CGRect) {
@@ -28,7 +29,15 @@ class ImageCell : UICollectionViewCell {
         imageView = UIImageView(frame: frame)
         imageView.alpha = 0.9
         imageView.autoresizingMask = .FlexibleWidth | .FlexibleHeight
-        imageView.contentMode = .ScaleAspectFit
+        imageView.clipsToBounds = true
+        imageView.contentMode = .ScaleAspectFill
+        imageView.layer.cornerRadius = 2.0
+
+        shadowView = UIView(frame: frame)
+        shadowView.backgroundColor = UIColor.whiteColor()
+        shadowView.layer.shadowColor = UIColor.blackColor().CGColor
+        shadowView.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
+        shadowView.layer.shadowOpacity = 0.5
 
         titleLabel = UILabel(frame: frame)
         titleLabel.autoresizingMask = .FlexibleWidth
@@ -38,6 +47,7 @@ class ImageCell : UICollectionViewCell {
 
         super.init(frame: frame)
 
+        addSubview(shadowView)
         addSubview(imageView)
         addSubview(titleLabel)
         addSubview(dateLabel)
@@ -51,7 +61,8 @@ class ImageCell : UICollectionViewCell {
         dateLabel.frame.origin.x = frame.size.width - dateLabel.frame.size.width - 10.0
         dateLabel.frame.origin.y = frame.size.height - dateLabel.frame.size.height
 
-        imageView.frame = bounds
+        imageView.frame = CGRectInset(bounds, 5.0, 5.0)
+        shadowView.frame = CGRectInset(bounds, 5.0, 5.0)
         titleLabel.frame = CGRectInset(bounds, 30.0, 30.0)
 
         super.layoutSubviews()

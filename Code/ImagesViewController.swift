@@ -21,12 +21,14 @@ func toArray<T, U where U == T.Generator.Element>(sequence: EnumerateSequence<T>
 
 class ImagesViewController: UICollectionViewController {
     weak var client: CDAClient?
-    var metadataViewController: PostListMetadataViewController!
-    
-    var images: [Image] = [Image]() {
+
+    private var fakeSections = 0
+    var images: [(Photo_Gallery, [Image])] = [(Photo_Gallery, [Image])]() {
         willSet {
-            // Needed to establish that the collection view initially contains no items
-            let unused = collectionView?.numberOfItemsInSection(0)
+            if collectionView?.numberOfSections() == 0 {
+                fakeSections = newValue.count
+                collectionView?.insertSections(NSIndexSet(indexesInRange: NSMakeRange(0, fakeSections)))
+            }
         }
 
         didSet {
@@ -35,9 +37,12 @@ class ImagesViewController: UICollectionViewController {
                 return
             }
 
-            let indexPaths = toArray(enumerate(images)).map { (index, image) -> NSIndexPath in
-                return NSIndexPath(forItem: index, inSection: 0)
-            }
+            let indexPaths = toArray(enumerate(images)).map { (section, tuple) -> [NSIndexPath] in
+                let images = toArray(enumerate(tuple.1))
+                return images.map { (index, image) -> NSIndexPath in
+                    return NSIndexPath(forItem: index, inSection: section)
+                }
+            }.reduce([], +)
             collectionView?.insertItemsAtIndexPaths(indexPaths)
         }
     }
@@ -67,12 +72,7 @@ class ImagesViewController: UICollectionViewController {
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
 
         collectionView?.registerClass(ImageCell.self, forCellWithReuseIdentifier: NSStringFromClass(ImagesViewController.self))
-        collectionView?.registerClass(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: NSStringFromClass(ImagesViewController.self))
-
-        metadataViewController = storyboard?.instantiateViewControllerWithIdentifier(ViewControllerStoryboardIdentifier.AuthorViewControllerId.rawValue) as PostListMetadataViewController
-        metadataViewController.client = client
-        metadataViewController.view.autoresizingMask = .None
-        metadataViewController.view.frame.size.height = 160.0
+        collectionView?.registerClass(GalleryHeaderView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: NSStringFromClass(ImagesViewController.self))
     }
 
     // MARK: UICollectionViewDataSource
@@ -80,10 +80,8 @@ class ImagesViewController: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(NSStringFromClass(ImagesViewController.self), forIndexPath: indexPath) as ImageCell
 
-        let image = images[indexPath.item]
+        let image = images[indexPath.section].1[indexPath.item]
 
-        cell.imageView.clipsToBounds = true
-        cell.imageView.contentMode = .ScaleAspectFill
         cell.imageView.image = nil
         cell.imageView.offlineCaching_cda = true
         cell.imageView.cda_setImageWithPersistedAsset(image.photo, client: client, size: CGSize(width: 400.0, height: 400.0).screenSize(), placeholderImage: nil)
@@ -106,6 +104,10 @@ class ImagesViewController: UICollectionViewController {
     }
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images.count
+        return images.count > 0 ? images[section].1.count : 0
+    }
+
+    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return images.count > 0 ? images.count : fakeSections
     }
 }

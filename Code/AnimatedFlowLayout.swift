@@ -53,7 +53,7 @@ class AnimatedFlowLayout: UICollectionViewFlowLayout {
 
     override func prepareLayout() {
         if let collectionView = collectionView {
-            let width = Int((collectionView.frame.size.width - 3.0) / 3)
+            let width = Int((collectionView.frame.size.width - 2.0) / 2)
 
             itemSize = CGSize(width: width, height: width)
             minimumInteritemSpacing = 1.0
