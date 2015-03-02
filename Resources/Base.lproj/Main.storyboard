@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
-        <!--Images By Gallery View Controller-->
+        <!--Galleries-->
         <scene sceneID="wId-9X-uG4">
             <objects>
                 <collectionViewController id="iLA-Bs-ggM" customClass="ImagesByGalleryViewController" customModule="Gallery" customModuleProvider="target" sceneMemberID="viewController">
@@ -24,7 +24,7 @@
                             <outlet property="delegate" destination="iLA-Bs-ggM" id="wvj-9C-Fzj"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="UC4-ZF-0V0"/>
+                    <navigationItem key="navigationItem" title="Galleries" id="UC4-ZF-0V0"/>
                     <connections>
                         <segue destination="ROP-fM-XOg" kind="show" identifier="SingleImageSegue" id="lhy-nG-aST"/>
                     </connections>

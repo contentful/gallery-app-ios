@@ -38,14 +38,6 @@ class ImagesByGalleryViewController: ImagesViewController {
         })
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        if let layout = collectionView?.collectionViewLayout as? AnimatedFlowLayout {
-            layout.showsHeader = true
-        }
-    }
-
     override func viewWillAppear(animated: Bool) {
         refresh()
     }

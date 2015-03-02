@@ -22,28 +22,13 @@ func toArray<T, U where U == T.Generator.Element>(sequence: EnumerateSequence<T>
 class ImagesViewController: UICollectionViewController {
     weak var client: CDAClient?
 
-    private var fakeSections = 0
     var images: [(Photo_Gallery, [Image])] = [(Photo_Gallery, [Image])]() {
-        willSet {
-            if collectionView?.numberOfSections() == 0 {
-                fakeSections = newValue.count
-                collectionView?.insertSections(NSIndexSet(indexesInRange: NSMakeRange(0, fakeSections)))
-            }
-        }
-
         didSet {
-            if collectionView?.numberOfItemsInSection(0) > 0 {
-                collectionView?.reloadData()
-                return
+            if let layout = collectionView?.collectionViewLayout as? AnimatedFlowLayout {
+                layout.showsHeader = true
             }
 
-            let indexPaths = toArray(enumerate(images)).map { (section, tuple) -> [NSIndexPath] in
-                let images = toArray(enumerate(tuple.1))
-                return images.map { (index, image) -> NSIndexPath in
-                    return NSIndexPath(forItem: index, inSection: section)
-                }
-            }.reduce([], +)
-            collectionView?.insertItemsAtIndexPaths(indexPaths)
+            collectionView?.reloadData()
         }
     }
 
@@ -95,8 +80,13 @@ class ImagesViewController: UICollectionViewController {
 
     override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         if kind == UICollectionElementKindSectionHeader {
-            let view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: NSStringFromClass(ImagesViewController.self), forIndexPath: indexPath) as UICollectionReusableView
-            view.addSubview(metadataViewController.view)
+            let gallery = images[indexPath.section].0
+            let view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: NSStringFromClass(ImagesViewController.self), forIndexPath: indexPath) as GalleryHeaderView
+
+            view.backgroundImageView.offlineCaching_cda = true
+            view.backgroundImageView.cda_setImageWithPersistedAsset(gallery.coverImage, client: client, size: view.backgroundImageView.frame.size.screenSize(), placeholderImage: nil)
+            view.textLabel.text = gallery.title
+
             return view
         }
 
@@ -104,10 +94,10 @@ class ImagesViewController: UICollectionViewController {
     }
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images.count > 0 ? images[section].1.count : 0
+        return images[section].1.count
     }
 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return images.count > 0 ? images.count : fakeSections
+        return images.count
     }
 }
