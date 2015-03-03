@@ -9,7 +9,12 @@
 import UIKit
 
 class SingleImageViewController: ImagesViewController {
-    var currentIndex = 0
+    var lastIndexPath = NSIndexPath(forItem: 0, inSection: 0)
+
+    func currentIndexPath() -> NSIndexPath {
+        let indexPath = collectionView!.indexPathForItemAtPoint(CGPoint(x: collectionView!.contentOffset.x + 5.0, y: 100.0))
+        return indexPath ?? NSIndexPath(forItem: 0, inSection: 0)
+    }
 
     override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
         super.didRotateFromInterfaceOrientation(fromInterfaceOrientation)
@@ -22,7 +27,7 @@ class SingleImageViewController: ImagesViewController {
             layout.itemSize = size
 
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                collectionView.setContentOffset(CGPoint(x: self.currentIndex * Int(collectionView.frame.size.width), y: Int(collectionView.contentOffset.y)), animated: false)
+                collectionView.scrollToItemAtIndexPath(self.lastIndexPath, atScrollPosition: .Left, animated: false)
             })
         }
     }
@@ -46,7 +51,7 @@ class SingleImageViewController: ImagesViewController {
     override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
         super.willRotateToInterfaceOrientation(toInterfaceOrientation, duration: duration)
 
-        currentIndex = Int(collectionView!.contentOffset.x / collectionView!.frame.size.width)
+        lastIndexPath = currentIndexPath()
     }
 
     // MARK: UICollectionViewDelegate
@@ -57,12 +62,8 @@ class SingleImageViewController: ImagesViewController {
     // MARK: UIScrollViewDelegate
 
     override func scrollViewDidScroll(scrollView: UIScrollView) {
-        let index = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
+        let image = images[currentIndexPath().section].1[currentIndexPath().item]
 
-        if index >= 0 && index < images[0].1.count {
-            let image = images[0].1[index]
-
-            title = image.title
-        }
+        title = image.title
     }
 }

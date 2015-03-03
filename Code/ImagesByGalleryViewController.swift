@@ -18,13 +18,7 @@ class ImagesByGalleryViewController: ImagesViewController {
             let imagesVC = segue.destinationViewController as ImagesViewController
             imagesVC.client = client
             imagesVC.images = images
-
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                if let collectionView = imagesVC.collectionView {
-                    let index = sender as Int
-                    collectionView.setContentOffset(CGPoint(x: index * Int(collectionView.frame.size.width), y: 0), animated: false)
-                }
-            })
+            imagesVC.initialIndexPath = sender as? NSIndexPath
         }
     }
 
@@ -50,7 +44,6 @@ class ImagesByGalleryViewController: ImagesViewController {
     // MARK: UICollectionViewDelegate
 
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let offset = (0..<indexPath.section).map { collectionView.numberOfItemsInSection($0) }.reduce(0, +) + indexPath.item
-        performSegueWithIdentifier(SegueIdentifier.SingleImageSegue.rawValue, sender: offset)
+        performSegueWithIdentifier(SegueIdentifier.SingleImageSegue.rawValue, sender: indexPath)
     }
 }

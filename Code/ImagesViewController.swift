@@ -21,6 +21,7 @@ func toArray<T, U where U == T.Generator.Element>(sequence: EnumerateSequence<T>
 
 class ImagesViewController: UICollectionViewController {
     weak var client: CDAClient?
+    var initialIndexPath: NSIndexPath?
 
     var images: [(Photo_Gallery, [Image])] = [(Photo_Gallery, [Image])]() {
         didSet {
@@ -29,6 +30,15 @@ class ImagesViewController: UICollectionViewController {
             }
 
             collectionView?.reloadData()
+        }
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        if let initialIndexPath = initialIndexPath {
+            collectionView?.scrollToItemAtIndexPath(initialIndexPath, atScrollPosition: .Left, animated: false)
+            self.initialIndexPath = nil
         }
     }
 
