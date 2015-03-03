@@ -24,6 +24,11 @@ class AnimatedFlowLayout: UICollectionViewFlowLayout {
         }
     }
 
+    func calculateItemSizeForBounds(bounds: CGRect) {
+        let width = Int((bounds.width - 2.0) / 2)
+        itemSize = CGSize(width: width, height: width)
+    }
+
     override func finalizeCollectionViewUpdates() {
         super.finalizeCollectionViewUpdates()
 
@@ -43,6 +48,15 @@ class AnimatedFlowLayout: UICollectionViewFlowLayout {
         return attr
     }
 
+    override func shouldInvalidateLayoutForBoundsChange(newBounds: CGRect) -> Bool {
+        if (newBounds != collectionView?.bounds) {
+            calculateItemSizeForBounds(newBounds)
+            return true
+        }
+
+        return false
+    }
+
     override func prepareForCollectionViewUpdates(updateItems: [AnyObject]!) {
         super.prepareForCollectionViewUpdates(updateItems)
 
@@ -53,9 +67,8 @@ class AnimatedFlowLayout: UICollectionViewFlowLayout {
 
     override func prepareLayout() {
         if let collectionView = collectionView {
-            let width = Int((collectionView.frame.size.width - 2.0) / 2)
+            calculateItemSizeForBounds(collectionView.bounds)
 
-            itemSize = CGSize(width: width, height: width)
             minimumInteritemSpacing = 1.0
             minimumLineSpacing = 1.0
         }
