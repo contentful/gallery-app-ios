@@ -18,7 +18,6 @@ extension CGSize {
 class ImageCell : UICollectionViewCell {
     let imageView: UIImageView
     let shadowView: UIView
-    let titleLabel: UILabel
 
     override init(frame: CGRect) {
         imageView = UIImageView(frame: frame)
@@ -34,17 +33,10 @@ class ImageCell : UICollectionViewCell {
         shadowView.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
         shadowView.layer.shadowOpacity = 0.5
 
-        titleLabel = UILabel(frame: frame)
-        titleLabel.autoresizingMask = .FlexibleWidth
-        titleLabel.font = UIFont.boldTitleFont()
-        titleLabel.numberOfLines = 3
-        titleLabel.textAlignment = .Center
-
         super.init(frame: frame)
 
         addSubview(shadowView)
         addSubview(imageView)
-        addSubview(titleLabel)
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -54,7 +46,6 @@ class ImageCell : UICollectionViewCell {
     override func layoutSubviews() {
         imageView.frame = CGRectInset(bounds, 5.0, 5.0)
         shadowView.frame = CGRectInset(bounds, 5.0, 5.0)
-        titleLabel.frame = CGRectInset(bounds, 30.0, 30.0)
 
         super.layoutSubviews()
     }
