@@ -12,14 +12,19 @@ class ImagesByGalleryViewController: ImagesViewController {
     lazy var dataManager = ContentfulDataManager()
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == SegueIdentifier.SingleImageSegue.rawValue {
-            let gallery = sender as Photo_Gallery
-            let images = gallery.images.array as [Image]
+        super.prepareForSegue(segue, sender: sender)
 
+        if segue.identifier == SegueIdentifier.SingleImageSegue.rawValue {
             let imagesVC = segue.destinationViewController as ImagesViewController
-            imagesVC.client = dataManager.client
-            imagesVC.images = [(gallery, images)]
-            imagesVC.title = gallery.title
+            imagesVC.client = client
+            imagesVC.images = images
+
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                if let collectionView = imagesVC.collectionView {
+                    let index = sender as Int
+                    collectionView.setContentOffset(CGPoint(x: index * Int(collectionView.frame.size.width), y: 0), animated: false)
+                }
+            })
         }
     }
 
@@ -32,9 +37,9 @@ class ImagesByGalleryViewController: ImagesViewController {
                 alert.show()
             }
 
-            self.images = self.dataManager.fetchGalleries().map { (gallery) in
+            self.images = sorted(self.dataManager.fetchGalleries().map { (gallery) in
                 return (gallery, gallery.images.array as [Image])
-            }
+            }) { $0.0.title < $1.0.title }
         })
     }
 
@@ -45,7 +50,7 @@ class ImagesByGalleryViewController: ImagesViewController {
     // MARK: UICollectionViewDelegate
 
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let gallery = images[indexPath.section].0
-        performSegueWithIdentifier(SegueIdentifier.SingleImageSegue.rawValue, sender: gallery)
+        let offset = (0..<indexPath.section).map { collectionView.numberOfItemsInSection($0) }.reduce(0, +) + indexPath.item
+        performSegueWithIdentifier(SegueIdentifier.SingleImageSegue.rawValue, sender: offset)
     }
 }

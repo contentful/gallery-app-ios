@@ -11,14 +11,14 @@ import CoreData
 
 class Photo_Gallery: NSManagedObject, CDAPersistedEntry {
 
-    @NSManaged var date: NSDate
-    @NSManaged var galleryDescription: String
+    @NSManaged var date: NSDate?
+    @NSManaged var galleryDescription: String?
     @NSManaged var identifier: String
-    @NSManaged var location: AnyObject
-    @NSManaged var slug: String
+    @NSManaged var location: AnyObject?
+    @NSManaged var slug: String?
     @NSManaged var title: String
     @NSManaged var author: Author?
-    @NSManaged var coverImage: Asset
+    @NSManaged var coverImage: Asset?
     @NSManaged var images: NSOrderedSet
 
 }

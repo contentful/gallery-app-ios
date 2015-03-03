@@ -59,7 +59,7 @@ class SingleImageViewController: ImagesViewController {
     override func scrollViewDidScroll(scrollView: UIScrollView) {
         let index = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
 
-        if index > 0 && index < images.count {
+        if index >= 0 && index < images[0].1.count {
             let image = images[0].1[index]
 
             title = image.title
