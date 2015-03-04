@@ -60,9 +60,9 @@ class ImageDetailsViewController: UIViewController, UIScrollViewDelegate {
     override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
         super.didRotateFromInterfaceOrientation(fromInterfaceOrientation)
 
-        UIView.animateWithDuration(0.1, animations: {
+        UIView.animateWithDuration(0.1) {
             self.computeFrames()
-        })
+        }
     }
 
     override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
@@ -89,18 +89,18 @@ class ImageDetailsViewController: UIViewController, UIScrollViewDelegate {
             return
         }
 
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             let chromoplast = SOZOChromoplast(image: self.imageView.image)
 
-            dispatch_async(dispatch_get_main_queue(), {
+            dispatch_async(dispatch_get_main_queue()) {
                 self.view.backgroundColor = chromoplast.dominantColor
                 self.imageView.backgroundColor = chromoplast.dominantColor
                 self.captionLabel.textColor = chromoplast.firstHighlight
                 self.creditsLabel.textColor = chromoplast.secondHighlight
 
                 self.updateNavigationBar(false)
-            })
-        })
+            }
+        }
     }
 
     func updateNavigationBar(force: Bool) {

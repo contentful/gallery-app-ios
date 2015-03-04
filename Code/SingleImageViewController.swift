@@ -70,12 +70,11 @@ class SingleImageViewController: UIPageViewController, UIPageViewControllerDataS
         super.viewWillAppear(animated)
 
         if let imageVC = viewControllerWithIndex(initialIndex) {
-            setViewControllers([imageVC], direction: .Forward, animated: false,
-                completion: { (finished) in
+            setViewControllers([imageVC], direction: .Forward, animated: false) { (finished) in
                     if finished {
                         self.updateCurrentIndex(self.initialIndex)
                     }
-            })
+            }
         }
     }
 

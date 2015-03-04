@@ -54,7 +54,7 @@ class ContentfulDataManager: NSObject {
 
         super.init()
 
-        notificationToken = NSNotificationCenter.defaultCenter().addObserverForName(AppDelegate.SpaceChangedNotification, object: nil, queue: NSOperationQueue.mainQueue(), usingBlock: { [unowned self] (note: NSNotification?) -> Void in
+        notificationToken = NSNotificationCenter.defaultCenter().addObserverForName(AppDelegate.SpaceChangedNotification, object: nil, queue: NSOperationQueue.mainQueue()) { [unowned self] (note: NSNotification?) -> Void in
             if let note = note {
                 self.manager.deleteAll()
 
@@ -65,14 +65,14 @@ class ContentfulDataManager: NSObject {
                 let keyWindow = UIApplication.sharedApplication().keyWindow!
                 keyWindow.rootViewController = keyWindow.rootViewController?.storyboard?.instantiateInitialViewController() as? UIViewController
             }
-        })
+        }
     }
 
     func performSynchronization(completion: (NSError!) -> Void) {
         manager.performSynchronizationWithSuccess({ () -> Void in
             completion(nil)
-            }, failure: { (response, error) -> Void in
-                completion(error)
-        })
+        }) { (response, error) -> Void in
+            completion(error)
+        }
     }
 }

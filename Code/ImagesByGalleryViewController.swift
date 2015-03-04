@@ -37,7 +37,7 @@ class ImagesByGalleryViewController: UICollectionViewController, ZoomTransitionP
     }
 
     func refresh() {
-        dataManager.performSynchronization({ (error) -> Void in
+        dataManager.performSynchronization() { (error) -> Void in
             if error != nil && error.code != NSURLErrorNotConnectedToInternet {
                 let alert = UIAlertView(title: NSLocalizedString("Error", comment: ""), message: error.localizedDescription, delegate: nil, cancelButtonTitle: NSLocalizedString("OK", comment: ""))
                 alert.show()
@@ -46,7 +46,7 @@ class ImagesByGalleryViewController: UICollectionViewController, ZoomTransitionP
             self.images = sorted(self.dataManager.fetchGalleries().map { (gallery) in
                 return (gallery, gallery.images.array as [Image])
             }) { $0.0.title < $1.0.title }
-        })
+        }
     }
 
     override func viewDidLoad() {
