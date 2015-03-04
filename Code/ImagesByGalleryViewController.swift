@@ -63,6 +63,15 @@ class ImagesByGalleryViewController: UICollectionViewController, ZoomTransitionP
     }
 
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if let navBar = navigationController?.navigationBar {
+            navBar.barStyle = .Default
+            navBar.barTintColor = nil
+            navBar.tintColor = UIView().tintColor
+            navBar.titleTextAttributes = [ NSForegroundColorAttributeName: UIColor.blackColor() ]
+        }
+
         refresh()
     }
 
