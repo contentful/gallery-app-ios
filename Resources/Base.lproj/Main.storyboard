@@ -26,7 +26,7 @@
                     </collectionView>
                     <navigationItem key="navigationItem" title="Galleries" id="UC4-ZF-0V0"/>
                     <connections>
-                        <segue destination="ROP-fM-XOg" kind="show" identifier="SingleImageSegue" id="lhy-nG-aST"/>
+                        <segue destination="SbB-zR-ZeC" kind="show" identifier="SingleImageSegue" id="V2C-uc-DWM"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uu1-vF-TT8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -34,29 +34,12 @@
             <point key="canvasLocation" x="1132" y="488"/>
         </scene>
         <!--Single Image View Controller-->
-        <scene sceneID="Wan-6k-bHf">
+        <scene sceneID="4al-ls-dgU">
             <objects>
-                <collectionViewController id="ROP-fM-XOg" customClass="SingleImageViewController" customModule="Gallery" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="mCc-DK-nMz">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="uae-W2-kaP">
-                            <size key="itemSize" width="50" height="50"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells/>
-                        <connections>
-                            <outlet property="dataSource" destination="ROP-fM-XOg" id="RDs-HZ-kzM"/>
-                            <outlet property="delegate" destination="ROP-fM-XOg" id="gES-7G-nmf"/>
-                        </connections>
-                    </collectionView>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CXS-UR-d0c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="SbB-zR-ZeC" customClass="SingleImageViewController" customModule="Gallery" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d7R-Wf-t5w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1909" y="488"/>
+            <point key="canvasLocation" x="1896" y="488"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="W5s-z5-gFw">

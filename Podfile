@@ -22,6 +22,7 @@ pod 'ContentfulPersistence'
 pod 'ContentfulStyle', :head
 pod 'KVOController'
 pod 'SOZOChromoplast'
+pod 'ZoomInteractiveTransition'
 
 end
 

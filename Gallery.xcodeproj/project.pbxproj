@@ -21,13 +21,13 @@
 		A13B63E61A822EB700EF5EED /* SyncInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13B63E51A822EB700EF5EED /* SyncInfo.swift */; };
 		A13B63E81A822EB700EF5EED /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13B63E71A822EB700EF5EED /* Author.swift */; };
 		A13B63EC1A82518E00EF5EED /* Hack.c in Sources */ = {isa = PBXBuildFile; fileRef = A13B63EA1A82518E00EF5EED /* Hack.c */; };
-		A1C332331A924145008EC0B7 /* ImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C332321A924145008EC0B7 /* ImagesViewController.swift */; };
 		A1C332351A924553008EC0B7 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C332341A924553008EC0B7 /* ImageCell.swift */; };
 		A1C332381A924F40008EC0B7 /* StoryboardIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C332371A924F40008EC0B7 /* StoryboardIdentifiers.swift */; };
 		A1C3323A1A925A3F008EC0B7 /* AnimatedFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C332391A925A3F008EC0B7 /* AnimatedFlowLayout.swift */; };
 		A1C3323C1A937096008EC0B7 /* UIViewController-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C3323B1A937096008EC0B7 /* UIViewController-Extensions.swift */; };
 		A1C3323E1A937B59008EC0B7 /* SingleImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C3323D1A937B59008EC0B7 /* SingleImageViewController.swift */; };
 		A1C6E2FD1A9F692D009845B7 /* ImagesByGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C6E2FC1A9F692D009845B7 /* ImagesByGalleryViewController.swift */; };
+		A1CEEE421AA608B3000AA8E6 /* ImageDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CEEE411AA608B3000AA8E6 /* ImageDetailsViewController.swift */; };
 		A1D156DB1A822BC200250215 /* ContentfulDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D156DA1A822BC200250215 /* ContentfulDataManager.swift */; };
 		A1E3C56D1AA48E1E0069C998 /* GalleryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E3C56C1AA48E1E0069C998 /* GalleryHeaderView.swift */; };
 		B44774D213C95FD27DB549E4 /* libPods-GalleryTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E058D32047AEE32F8FBF07BA /* libPods-GalleryTests.a */; };
@@ -64,13 +64,13 @@
 		A13B63E71A822EB700EF5EED /* Author.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
 		A13B63E91A824F4100EF5EED /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		A13B63EA1A82518E00EF5EED /* Hack.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Hack.c; sourceTree = "<group>"; };
-		A1C332321A924145008EC0B7 /* ImagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagesViewController.swift; sourceTree = "<group>"; };
 		A1C332341A924553008EC0B7 /* ImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		A1C332371A924F40008EC0B7 /* StoryboardIdentifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardIdentifiers.swift; sourceTree = "<group>"; };
 		A1C332391A925A3F008EC0B7 /* AnimatedFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedFlowLayout.swift; sourceTree = "<group>"; };
 		A1C3323B1A937096008EC0B7 /* UIViewController-Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController-Extensions.swift"; sourceTree = "<group>"; };
 		A1C3323D1A937B59008EC0B7 /* SingleImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleImageViewController.swift; sourceTree = "<group>"; };
 		A1C6E2FC1A9F692D009845B7 /* ImagesByGalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagesByGalleryViewController.swift; sourceTree = "<group>"; };
+		A1CEEE411AA608B3000AA8E6 /* ImageDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDetailsViewController.swift; sourceTree = "<group>"; };
 		A1D156DA1A822BC200250215 /* ContentfulDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentfulDataManager.swift; sourceTree = "<group>"; };
 		A1E3C56C1AA48E1E0069C998 /* GalleryHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryHeaderView.swift; sourceTree = "<group>"; };
 		CACCA76A0835E2B8E9890860 /* Pods-Gallery.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gallery.release.xcconfig"; path = "Pods/Target Support Files/Pods-Gallery/Pods-Gallery.release.xcconfig"; sourceTree = "<group>"; };
@@ -104,11 +104,11 @@
 			children = (
 				A12757491A81091400A0CA79 /* Code */,
 				E08FD65C2A633B0A2F2ADF3B /* Frameworks */,
+				F4E8BBD5DC288B6621BB74F9 /* Pods */,
 				A12757481A81091400A0CA79 /* Products */,
 				A127576C1A81096800A0CA79 /* Resources */,
 				A127574A1A81091400A0CA79 /* Supporting Files */,
 				A127575F1A81091400A0CA79 /* Tests */,
-				F4E8BBD5DC288B6621BB74F9 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -131,8 +131,8 @@
 				A1D156DA1A822BC200250215 /* ContentfulDataManager.swift */,
 				A1E3C56C1AA48E1E0069C998 /* GalleryHeaderView.swift */,
 				A1C332341A924553008EC0B7 /* ImageCell.swift */,
+				A1CEEE411AA608B3000AA8E6 /* ImageDetailsViewController.swift */,
 				A1C6E2FC1A9F692D009845B7 /* ImagesByGalleryViewController.swift */,
-				A1C332321A924145008EC0B7 /* ImagesViewController.swift */,
 				A1C3323D1A937B59008EC0B7 /* SingleImageViewController.swift */,
 				A1C3323B1A937096008EC0B7 /* UIViewController-Extensions.swift */,
 			);
@@ -385,7 +385,6 @@
 				A13B63E61A822EB700EF5EED /* SyncInfo.swift in Sources */,
 				A1C3323E1A937B59008EC0B7 /* SingleImageViewController.swift in Sources */,
 				A13B63E81A822EB700EF5EED /* Author.swift in Sources */,
-				A1C332331A924145008EC0B7 /* ImagesViewController.swift in Sources */,
 				A1C6E2FD1A9F692D009845B7 /* ImagesByGalleryViewController.swift in Sources */,
 				A1D156DB1A822BC200250215 /* ContentfulDataManager.swift in Sources */,
 				A13B63E01A822EB700EF5EED /* Asset.swift in Sources */,
@@ -393,6 +392,7 @@
 				A13B63E21A822EB700EF5EED /* PhotoGallery.swift in Sources */,
 				A13B63DE1A822E8F00EF5EED /* Gallery.xcdatamodeld in Sources */,
 				A1C332351A924553008EC0B7 /* ImageCell.swift in Sources */,
+				A1CEEE421AA608B3000AA8E6 /* ImageDetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

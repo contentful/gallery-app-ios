@@ -15,3 +15,5 @@
 #import <ContentfulStyle/UIFont+Contentful.h>
 #import <KVOController/FBKVOController.h>
 #import <SOZOChromoplast/SOZOChromoplast.h>
+#import <ZoomInteractiveTransition/UIView+Snapshotting.h>
+#import <ZoomInteractiveTransition/ZoomInteractiveTransition.h>

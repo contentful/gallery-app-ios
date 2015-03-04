@@ -44,6 +44,7 @@ PODS:
   - LatoFont (1.0.0)
   - SOZOChromoplast (0.0.1)
   - TSMiniWebBrowser@dblock (1.1)
+  - ZoomInteractiveTransition (0.2.1)
 
 DEPENDENCIES:
   - ContentfulDeliveryAPI (HEAD)
@@ -53,6 +54,7 @@ DEPENDENCIES:
   - FBSnapshotTestCase
   - KVOController
   - SOZOChromoplast
+  - ZoomInteractiveTransition
 
 SPEC CHECKSUMS:
   AFNetworking: 8bee59492a6ff15d69130efa4d0dc67e0094a52a
@@ -70,5 +72,6 @@ SPEC CHECKSUMS:
   LatoFont: 325a86578945d04cce8039deaf163229c63e2258
   SOZOChromoplast: 54e8f6e63e5c0483ee09cf12cb8a857a5f71486c
   TSMiniWebBrowser@dblock: 4e73ee955fcf2e9f5d98f7a17460454ac059bc37
+  ZoomInteractiveTransition: 373ad3772d7f7fddc412ff14dae1117cc813e083
 
 COCOAPODS: 0.36.0.beta.1
