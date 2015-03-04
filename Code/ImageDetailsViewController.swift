@@ -147,6 +147,10 @@ class ImageDetailsViewController: UIViewController, UIScrollViewDelegate {
         scrollView.maximumZoomScale = 2.0
         scrollView.addSubview(imageView)
 
+        let recognizer = UITapGestureRecognizer(target: self, action: "doubleTapped")
+        recognizer.numberOfTapsRequired = 2
+        scrollView.addGestureRecognizer(recognizer)
+
         view.addSubview(metaInformationContainer)
         view.addSubview(scrollView)
     }
@@ -157,6 +161,14 @@ class ImageDetailsViewController: UIViewController, UIScrollViewDelegate {
         computeFrames()
         defaultZoom()
         updateNavigationBar(true)
+    }
+
+    // MARK: Actions
+
+    func doubleTapped() {
+        UIView.animateWithDuration(0.1) {
+            self.defaultZoom()
+        }
     }
 
     // MARK: UIScrollViewDelegate
