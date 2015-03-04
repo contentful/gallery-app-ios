@@ -22,7 +22,8 @@ pod 'ContentfulPersistence'
 pod 'ContentfulStyle', :head
 pod 'KVOController'
 pod 'SOZOChromoplast'
-pod 'ZoomInteractiveTransition'
+pod 'ZoomInteractiveTransition', :git => 'git@github.com:neonichu/ZoomInteractiveTransition.git',
+	:branch => 'reset-alpha-after-animation'
 
 end
 

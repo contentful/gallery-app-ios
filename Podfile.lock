@@ -25,7 +25,7 @@ PODS:
   - ContentfulDeliveryAPI (HEAD based on 1.4.9):
     - AFNetworking
     - ISO8601DateFormatter
-  - ContentfulDialogs (0.2.0):
+  - ContentfulDialogs (0.3.0):
     - Bypass
     - CGLMail
     - ContentfulDeliveryAPI (~> 1.4.7)
@@ -37,12 +37,12 @@ PODS:
     - EDColor
     - LatoFont
   - DDPageControl (0.1)
-  - EDColor (0.4.0)
+  - EDColor (1.0.0)
   - FBSnapshotTestCase (1.5)
   - ISO8601DateFormatter (0.7)
   - KVOController (1.0.3)
   - LatoFont (1.0.0)
-  - SOZOChromoplast (0.0.1)
+  - SOZOChromoplast (0.0.2)
   - TSMiniWebBrowser@dblock (1.1)
   - ZoomInteractiveTransition (0.2.1)
 
@@ -54,24 +54,34 @@ DEPENDENCIES:
   - FBSnapshotTestCase
   - KVOController
   - SOZOChromoplast
-  - ZoomInteractiveTransition
+  - ZoomInteractiveTransition (from `git@github.com:neonichu/ZoomInteractiveTransition.git`, branch `reset-alpha-after-animation`)
+
+EXTERNAL SOURCES:
+  ZoomInteractiveTransition:
+    :branch: reset-alpha-after-animation
+    :git: git@github.com:neonichu/ZoomInteractiveTransition.git
+
+CHECKOUT OPTIONS:
+  ZoomInteractiveTransition:
+    :commit: cfed4930781c9632aa44970f712ee63157460f7b
+    :git: git@github.com:neonichu/ZoomInteractiveTransition.git
 
 SPEC CHECKSUMS:
   AFNetworking: 8bee59492a6ff15d69130efa4d0dc67e0094a52a
   Bypass: 225bc63ebb09e5674c1fc460b1708e775f68f52f
   CGLMail: ba03e1a69db3c27bad925fe1270cd99fada5ed69
   ContentfulDeliveryAPI: 25b438355f4ea9bebde31189e50c4a2dd0d90921
-  ContentfulDialogs: e4a668f43ee864be7275033f8f27e92eeac25261
+  ContentfulDialogs: 103ceb9f0163fdbd661aae4197fc33ce88ee96a7
   ContentfulPersistence: 9c7117962b4cf9a069756639d3275ecf7cee0364
   ContentfulStyle: 0f41944b1efd8bba2a8f0c1ac0cf3910b1105949
   DDPageControl: 86d07bda58e325a427fb0d7c8fb650add2ff35c2
-  EDColor: bcdb8600b7a456f4408ce1d7e7fc001588919254
+  EDColor: 1638bf113678826a05855cff095fcec1d887dbb6
   FBSnapshotTestCase: e2914fbaabccea1dcc773d6a16b1c24540642488
   ISO8601DateFormatter: 59731cd880cf87e71b4fa95f0d6b713dcbc4cbce
   KVOController: b1139ef1fc373b6757e4b69493fedd7b56eb1272
   LatoFont: 325a86578945d04cce8039deaf163229c63e2258
-  SOZOChromoplast: 54e8f6e63e5c0483ee09cf12cb8a857a5f71486c
+  SOZOChromoplast: 69a8a4b8f261680fe7a1a2562c2ec845237e1c6e
   TSMiniWebBrowser@dblock: 4e73ee955fcf2e9f5d98f7a17460454ac059bc37
-  ZoomInteractiveTransition: 373ad3772d7f7fddc412ff14dae1117cc813e083
+  ZoomInteractiveTransition: ea0e8a96103ed49ef9fc7c290367a9df1cd31cb7
 
 COCOAPODS: 0.36.0.beta.1
