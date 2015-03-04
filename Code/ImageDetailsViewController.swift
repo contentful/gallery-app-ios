@@ -90,7 +90,14 @@ class ImageDetailsViewController: UIViewController, UIScrollViewDelegate {
         }
 
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-            let chromoplast = SOZOChromoplast(image: self.imageView.image)
+            let size = CGSize(width: 100.0, height: 100.0)
+
+            UIGraphicsBeginImageContextWithOptions(size, true, 0.0)
+            self.imageView.image?.drawInRect(CGRect(origin: CGPointZero, size: size))
+            let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+
+            let chromoplast = SOZOChromoplast(image: scaledImage)
 
             dispatch_async(dispatch_get_main_queue()) {
                 self.view.backgroundColor = chromoplast.dominantColor
