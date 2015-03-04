@@ -29,6 +29,7 @@
 		A1C6E2FD1A9F692D009845B7 /* ImagesByGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C6E2FC1A9F692D009845B7 /* ImagesByGalleryViewController.swift */; };
 		A1CEEE421AA608B3000AA8E6 /* ImageDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CEEE411AA608B3000AA8E6 /* ImageDetailsViewController.swift */; };
 		A1D156DB1A822BC200250215 /* ContentfulDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D156DA1A822BC200250215 /* ContentfulDataManager.swift */; };
+		A1D4A92C1AA71CB5006250D1 /* Pods-Gallery-acknowledgements.markdown in Resources */ = {isa = PBXBuildFile; fileRef = A1D4A92B1AA71CB5006250D1 /* Pods-Gallery-acknowledgements.markdown */; };
 		A1E3C56D1AA48E1E0069C998 /* GalleryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E3C56C1AA48E1E0069C998 /* GalleryHeaderView.swift */; };
 		B44774D213C95FD27DB549E4 /* libPods-GalleryTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E058D32047AEE32F8FBF07BA /* libPods-GalleryTests.a */; };
 /* End PBXBuildFile section */
@@ -72,6 +73,7 @@
 		A1C6E2FC1A9F692D009845B7 /* ImagesByGalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagesByGalleryViewController.swift; sourceTree = "<group>"; };
 		A1CEEE411AA608B3000AA8E6 /* ImageDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDetailsViewController.swift; sourceTree = "<group>"; };
 		A1D156DA1A822BC200250215 /* ContentfulDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentfulDataManager.swift; sourceTree = "<group>"; };
+		A1D4A92B1AA71CB5006250D1 /* Pods-Gallery-acknowledgements.markdown */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "Pods-Gallery-acknowledgements.markdown"; path = "Pods/Target Support Files/Pods-Gallery/Pods-Gallery-acknowledgements.markdown"; sourceTree = "<group>"; };
 		A1E3C56C1AA48E1E0069C998 /* GalleryHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryHeaderView.swift; sourceTree = "<group>"; };
 		CACCA76A0835E2B8E9890860 /* Pods-Gallery.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gallery.release.xcconfig"; path = "Pods/Target Support Files/Pods-Gallery/Pods-Gallery.release.xcconfig"; sourceTree = "<group>"; };
 		E058D32047AEE32F8FBF07BA /* libPods-GalleryTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GalleryTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -201,6 +203,7 @@
 		F4E8BBD5DC288B6621BB74F9 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				A1D4A92B1AA71CB5006250D1 /* Pods-Gallery-acknowledgements.markdown */,
 				075FC3B68F187ECFF4027E4D /* Pods-Gallery.debug.xcconfig */,
 				CACCA76A0835E2B8E9890860 /* Pods-Gallery.release.xcconfig */,
 				0002B1E278CFD3A4E62A2914 /* Pods-GalleryTests.debug.xcconfig */,
@@ -293,6 +296,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1D4A92C1AA71CB5006250D1 /* Pods-Gallery-acknowledgements.markdown in Resources */,
 				A12757521A81091400A0CA79 /* Main.storyboard in Resources */,
 				A12757571A81091400A0CA79 /* LaunchScreen.xib in Resources */,
 				A12757541A81091400A0CA79 /* Images.xcassets in Resources */,
