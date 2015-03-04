@@ -89,6 +89,8 @@ class ImageDetailsViewController: UIViewController, UIScrollViewDelegate {
             return
         }
 
+        defaultZoom()
+
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             let size = CGSize(width: 100.0, height: 100.0)
 
