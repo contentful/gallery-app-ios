@@ -129,6 +129,10 @@ class ImagesByGalleryViewController: UICollectionViewController, ZoomTransitionP
     func viewForZoomTransition(isSource: Bool) -> UIView! {
         if let selectedIndexPath = selectedIndexPath {
             if let collectionView = collectionView {
+                if selectedIndexPath.item == -1 {
+                    return collectionView
+                }
+
                 if let cell = collectionView.cellForItemAtIndexPath(selectedIndexPath) as? ImageCell {
                     return cell.imageView
                 }

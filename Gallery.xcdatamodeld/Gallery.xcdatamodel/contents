@@ -30,6 +30,7 @@
     </entity>
     <entity name="Photo_Gallery" representedClassName="Gallery.Photo_Gallery" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="galleryDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="location" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="slug" optional="YES" attributeType="String" syncable="YES"/>
@@ -47,7 +48,7 @@
         <element name="Asset" positionX="0" positionY="0" width="128" height="165"/>
         <element name="Author" positionX="0" positionY="0" width="128" height="148"/>
         <element name="Image" positionX="0" positionY="0" width="128" height="148"/>
-        <element name="Photo_Gallery" positionX="0" positionY="0" width="128" height="180"/>
+        <element name="Photo_Gallery" positionX="0" positionY="0" width="128" height="195"/>
         <element name="SyncInfo" positionX="0" positionY="0" width="128" height="75"/>
     </elements>
 </model>

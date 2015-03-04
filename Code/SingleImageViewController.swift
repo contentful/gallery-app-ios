@@ -25,34 +25,43 @@ class SingleImageViewController: UIPageViewController, UIPageViewControllerDataS
     weak var singleImageDelegate: SingleImageViewControllerDelegate?
 
     func updateCurrentIndex(index: Int) {
-        if index < 0 || index >= images.count {
+        if index < 0 || index > images.count {
             return
         }
 
-        let image = images[index]
-        title = image.title
+        if (index == 0) {
+            title = gallery?.title
+        } else {
+            let image = images[index - 1]
+            title = image.title
+        }
 
         if let delegate = singleImageDelegate {
-            delegate.updateCurrentIndex(index)
+            delegate.updateCurrentIndex(index - 1)
         }
     }
 
     func viewControllerWithIndex(index: Int) -> UIViewController? {
-        if index < 0 || index >= images.count {
+        if index < 0 || index > images.count {
             return nil
         }
 
-        let image = images[index]
+        let asset = index == 0 ? gallery?.coverImage : images[index - 1].photo
         let vc = ImageDetailsViewController()
         vc.pageViewController = self
         vc.view.tag = index
 
-        vc.captionLabel.text = image.imageCaption
-        vc.creditsLabel.text = image.imageCredits
+        if (index == 0) {
+            vc.captionLabel.text = gallery?.title
+            vc.creditsLabel.text = gallery?.galleryDescription
+        } else {
+            vc.captionLabel.text = images[index - 1].imageCaption
+            vc.creditsLabel.text = images[index - 1].imageCredits
+        }
 
         vc.imageView.image = nil
         vc.imageView.offlineCaching_cda = true
-        vc.imageView.cda_setImageWithPersistedAsset(image.photo, client: client, size: UIScreen.mainScreen().bounds.size.screenSize(), placeholderImage: nil)
+        vc.imageView.cda_setImageWithPersistedAsset(asset, client: client, size: UIScreen.mainScreen().bounds.size.screenSize(), placeholderImage: nil)
 
         (view.subviews.first as? UIView)?.gestureRecognizers?.map { (recognizer) -> Void in vc.scrollView.panGestureRecognizer.requireGestureRecognizerToFail(recognizer as UIGestureRecognizer) }
 
@@ -69,10 +78,10 @@ class SingleImageViewController: UIPageViewController, UIPageViewControllerDataS
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
-        if let imageVC = viewControllerWithIndex(initialIndex) {
+        if let imageVC = viewControllerWithIndex(initialIndex + 1) {
             setViewControllers([imageVC], direction: .Forward, animated: false) { (finished) in
                     if finished {
-                        self.updateCurrentIndex(self.initialIndex)
+                        self.updateCurrentIndex(self.initialIndex + 1)
                     }
             }
         }
