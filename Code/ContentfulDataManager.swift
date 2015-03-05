@@ -52,7 +52,7 @@ class ContentfulDataManager: NSObject {
         manager.setClass(Photo_Gallery.self, forEntriesOfContentTypeWithIdentifier: ContentfulDataManager.GalleryContentTypeId)
         manager.setClass(Image.self, forEntriesOfContentTypeWithIdentifier: ContentfulDataManager.ImageContentTypeId)
 
-        manager.setMapping([ "fields.author": "author", "fields.coverImage": "coverImage", "fields.date": "date", "fields.images": "images", "fields.location": "location", "fields.slug": "slug", "fields.tags": "tags", "fields.title": "title", "fields.description": "galleryDescription" ], forEntriesOfContentTypeWithIdentifier: ContentfulDataManager.GalleryContentTypeId)
+        manager.setMapping([ "fields.author": "author", "fields.coverImage": "coverImage", "fields.date": "date", "fields.images": "images", "fields.slug": "slug", "fields.tags": "tags", "fields.title": "title", "fields.description": "galleryDescription" ], forEntriesOfContentTypeWithIdentifier: ContentfulDataManager.GalleryContentTypeId)
 
         super.init()
 
