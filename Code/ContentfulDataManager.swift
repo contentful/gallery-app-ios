@@ -70,11 +70,11 @@ class ContentfulDataManager: NSObject {
         }
     }
 
-    func performSynchronization(completion: (NSError!) -> Void) {
+    func performSynchronization(completion: (Bool, NSError!) -> Void) {
         manager.performSynchronizationWithSuccess({ () -> Void in
-            completion(nil)
+            completion(self.manager.hasChanged(), nil)
         }) { (response, error) -> Void in
-            completion(error)
+            completion(false, error)
         }
     }
 }

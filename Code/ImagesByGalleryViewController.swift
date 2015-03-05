@@ -37,10 +37,14 @@ class ImagesByGalleryViewController: UICollectionViewController, ZoomTransitionP
     }
 
     func refresh() {
-        dataManager.performSynchronization() { (error) -> Void in
+        dataManager.performSynchronization() { (hasChanged, error) -> Void in
             if error != nil && error.code != NSURLErrorNotConnectedToInternet {
                 let alert = UIAlertView(title: NSLocalizedString("Error", comment: ""), message: error.localizedDescription, delegate: nil, cancelButtonTitle: NSLocalizedString("OK", comment: ""))
                 alert.show()
+            }
+
+            if self.images.count > 0 && !hasChanged {
+                return
             }
 
             self.images = sorted(self.dataManager.fetchGalleries().map { (gallery) in
@@ -143,11 +147,13 @@ class ImagesByGalleryViewController: UICollectionViewController, ZoomTransitionP
                 }
 
                 if let cell = collectionView.cellForItemAtIndexPath(selectedIndexPath) as? ImageCell {
-                    return cell.imageView
+                    collectionView.scrollToItemAtIndexPath(selectedIndexPath, atScrollPosition: .CenteredVertically, animated: false)
+                    return isSource ? cell.imageView : cell
                 }
 
                 if let cell = collectionView.dataSource?.collectionView(collectionView, cellForItemAtIndexPath: selectedIndexPath) as? ImageCell {
-                    return cell.imageView
+                    collectionView.scrollToItemAtIndexPath(selectedIndexPath, atScrollPosition: .CenteredVertically, animated: false)
+                    return isSource ? cell.imageView : cell
                 }
             }
         }

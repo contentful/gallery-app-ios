@@ -112,7 +112,13 @@ class SingleImageViewController: UIPageViewController, UIPageViewControllerDataS
 
     func viewForZoomTransition(isSource: Bool) -> UIView! {
         if viewControllers.count > 0 {
-            return (viewControllers[0] as ImageDetailsViewController).scrollView
+            let imageView = (viewControllers[0] as ImageDetailsViewController).imageView
+
+            if (isSource) {
+                imageView.backgroundColor = UIColor.clearColor()
+            }
+
+            return imageView
         }
 
         return view
