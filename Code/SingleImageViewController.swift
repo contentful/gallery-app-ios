@@ -51,13 +51,18 @@ class SingleImageViewController: UIPageViewController, UIPageViewControllerDataS
         vc.pageViewController = self
         vc.view.tag = index
 
+        var title = NSLocalizedString("Untitled", comment: "")
+        var description = ""
+
         if (index == 0) {
-            vc.captionLabel.text = gallery?.title
-            vc.creditsLabel.text = gallery?.galleryDescription
+            title = gallery?.title ?? title
+            description = gallery?.galleryDescription ?? description
         } else {
-            vc.captionLabel.text = images[index - 1].imageCaption
-            vc.creditsLabel.text = images[index - 1].imageCredits
+            title = images[index - 1].imageCaption ?? title
+            description = images[index - 1].imageCredits ?? description
         }
+
+        vc.updateText(String(format: "# %@\n\n%@", title, description))
 
         vc.imageView.image = nil
         vc.imageView.offlineCaching_cda = true

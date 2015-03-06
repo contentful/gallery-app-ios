@@ -11,11 +11,10 @@ import UIKit
 let metaInformationHeight = CGFloat(100.0)
 
 class ImageDetailsViewController: UIViewController, UIScrollViewDelegate {
-    let captionLabel = UILabel(frame: CGRectZero)
-    let creditsLabel = UILabel(frame: CGRectZero)
+    var chromoplast: SOZOChromoplast?
     let imageView = UIImageView(frame: CGRectZero)
     var kvoController: FBKVOController?
-    let metaInformationContainer = UIView(frame: CGRectZero)
+    let metaInformationView = UITextView(frame: CGRectZero)
     weak var pageViewController: UIPageViewController?
     let scrollView = UIScrollView(frame: CGRectZero)
 
@@ -37,15 +36,14 @@ class ImageDetailsViewController: UIViewController, UIScrollViewDelegate {
     func computeFrames() {
         if UIInterfaceOrientationIsPortrait(self.interfaceOrientation) {
             scrollView.frame.size.height = view.frame.size.height - metaInformationHeight
-            metaInformationContainer.frame.size.height = metaInformationHeight
+            metaInformationView.frame.size.height = metaInformationHeight
         } else {
             scrollView.frame.size.height = view.frame.size.height
-            metaInformationContainer.frame.origin.y = view.frame.maxY
-            metaInformationContainer.frame.size.height = metaInformationHeight
+            metaInformationView.frame.origin.y = view.frame.maxY
+            metaInformationView.frame.size.height = metaInformationHeight
         }
 
-        creditsLabel.frame.size.height = metaInformationContainer.frame.size.height - captionLabel.frame.size.height
-        metaInformationContainer.frame.origin.y = scrollView.frame.maxY
+        metaInformationView.frame.origin.y = scrollView.frame.maxY
     }
 
     func defaultZoom() {
@@ -84,8 +82,6 @@ class ImageDetailsViewController: UIViewController, UIScrollViewDelegate {
         if image == nil {
             view.backgroundColor = UIColor.whiteColor()
             imageView.backgroundColor = UIColor.whiteColor()
-            captionLabel.textColor = UIColor.blackColor()
-            creditsLabel.textColor = UIColor.blackColor()
             return
         }
 
@@ -99,13 +95,21 @@ class ImageDetailsViewController: UIViewController, UIScrollViewDelegate {
             let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
 
-            let chromoplast = SOZOChromoplast(image: scaledImage)
+            self.chromoplast = SOZOChromoplast(image: scaledImage)
 
             dispatch_async(dispatch_get_main_queue()) {
-                self.view.backgroundColor = chromoplast.dominantColor
-                self.imageView.backgroundColor = chromoplast.dominantColor
-                self.captionLabel.textColor = chromoplast.firstHighlight
-                self.creditsLabel.textColor = chromoplast.secondHighlight
+                self.view.backgroundColor = self.chromoplast!.dominantColor
+                self.imageView.backgroundColor = self.chromoplast!.dominantColor
+
+                let mutableText = self.metaInformationView.attributedText.mutableCopy() as NSMutableAttributedString
+
+                let firstLine = mutableText.string.rangeOfString("\n")!
+                let range = NSMakeRange(0, distance(mutableText.string.startIndex, firstLine.startIndex))
+
+                mutableText.addAttribute(NSForegroundColorAttributeName, value: self.chromoplast!.firstHighlight!, range: range)
+                mutableText.addAttribute(NSForegroundColorAttributeName, value: self.chromoplast!.secondHighlight!, range: NSMakeRange(range.length, distance(firstLine.endIndex, mutableText.string.endIndex)))
+
+                self.metaInformationView.attributedText = mutableText
 
                 self.updateNavigationBar(false)
             }
@@ -121,35 +125,47 @@ class ImageDetailsViewController: UIViewController, UIScrollViewDelegate {
             if let navBar = viewController.navigationController?.navigationBar {
                 navBar.barStyle = statusBarStyleForBackgroundColor(view.backgroundColor!)
                 navBar.barTintColor = view.backgroundColor
-                navBar.tintColor = captionLabel.textColor
-                navBar.titleTextAttributes = [ NSForegroundColorAttributeName: captionLabel.textColor ]
+
+                if let chromoplast = chromoplast {
+                    navBar.tintColor = chromoplast.firstHighlight
+                    navBar.titleTextAttributes = [ NSForegroundColorAttributeName: chromoplast.firstHighlight ]
+                }
             }
         }
+    }
+
+    func updateText(text: String) {
+        let document = BPParser().parse(text)
+        let converter = BPAttributedStringConverter()
+
+        let defaultFontSize = UIFont.bodyTextFont().pointSize
+        let headerFontSize = UIFont.boldTitleFont().pointSize
+
+        converter.displaySettings.defaultFont = UIFont.bodyTextFont()
+        converter.displaySettings.boldFont = UIFont.latoBoldFontOfSize(defaultFontSize)
+        converter.displaySettings.italicFont = UIFont.latoItalicFontOfSize(defaultFontSize)
+        converter.displaySettings.h1Font = UIFont.boldTitleFont().fontWithSize(headerFontSize * 1.4)
+        converter.displaySettings.h2Font = UIFont.boldTitleFont().fontWithSize(headerFontSize * 1.2)
+        converter.displaySettings.h3Font = UIFont.boldTitleFont()
+
+        metaInformationView.attributedText = converter.convertDocument(document)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        [captionLabel, creditsLabel, metaInformationContainer, imageView, scrollView].map { (view) -> () in
+        [metaInformationView, imageView, scrollView].map { (view) -> () in
             view.autoresizingMask = .FlexibleWidth
             view.frame.size.width = self.view.frame.size.width
         }
 
-        captionLabel.frame = CGRectInset(captionLabel.frame, 20.0, 0.0)
-        captionLabel.frame.size.height = 30.0
-        captionLabel.font = UIFont.boldTitleFont().fontWithSize(24.0)
-
-        creditsLabel.font = UIFont.bodyTextFont()
-        creditsLabel.frame = CGRectInset(creditsLabel.frame, 20.0, 0.0)
-        creditsLabel.frame.origin.y = captionLabel.frame.maxY
-        creditsLabel.numberOfLines = 2
+        metaInformationView.backgroundColor = UIColor.clearColor()
+        metaInformationView.editable = false
+        metaInformationView.textContainerInset = UIEdgeInsets(top: 0.0, left: 20.0, bottom: 0.0, right: 20.0)
 
         imageView.autoresizingMask = .FlexibleWidth | .FlexibleHeight
         imageView.clipsToBounds = true
         imageView.contentMode = .ScaleAspectFit
-
-        metaInformationContainer.addSubview(captionLabel)
-        metaInformationContainer.addSubview(creditsLabel)
 
         scrollView.autoresizingMask = .FlexibleWidth | .FlexibleHeight
         scrollView.delegate = self
@@ -160,7 +176,7 @@ class ImageDetailsViewController: UIViewController, UIScrollViewDelegate {
         recognizer.numberOfTapsRequired = 2
         scrollView.addGestureRecognizer(recognizer)
 
-        view.addSubview(metaInformationContainer)
+        view.addSubview(metaInformationView)
         view.addSubview(scrollView)
     }
 

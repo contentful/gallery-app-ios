@@ -47,6 +47,7 @@ PODS:
   - ZoomInteractiveTransition (0.2.1)
 
 DEPENDENCIES:
+  - Bypass
   - ContentfulDeliveryAPI (HEAD)
   - ContentfulDialogs
   - ContentfulPersistence
