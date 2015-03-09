@@ -21,6 +21,7 @@
 		A13B63E61A822EB700EF5EED /* SyncInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13B63E51A822EB700EF5EED /* SyncInfo.swift */; };
 		A13B63E81A822EB700EF5EED /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13B63E71A822EB700EF5EED /* Author.swift */; };
 		A13B63EC1A82518E00EF5EED /* Hack.c in Sources */ = {isa = PBXBuildFile; fileRef = A13B63EA1A82518E00EF5EED /* Hack.c */; };
+		A18A5BCA1AA9E8DE00486BF0 /* gallery-app-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A18A5BC91AA9E8DE00486BF0 /* gallery-app-icon.png */; };
 		A1C332351A924553008EC0B7 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C332341A924553008EC0B7 /* ImageCell.swift */; };
 		A1C332381A924F40008EC0B7 /* StoryboardIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C332371A924F40008EC0B7 /* StoryboardIdentifiers.swift */; };
 		A1C3323A1A925A3F008EC0B7 /* AnimatedFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C332391A925A3F008EC0B7 /* AnimatedFlowLayout.swift */; };
@@ -65,6 +66,7 @@
 		A13B63E71A822EB700EF5EED /* Author.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
 		A13B63E91A824F4100EF5EED /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		A13B63EA1A82518E00EF5EED /* Hack.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Hack.c; sourceTree = "<group>"; };
+		A18A5BC91AA9E8DE00486BF0 /* gallery-app-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gallery-app-icon.png"; sourceTree = "<group>"; };
 		A1C332341A924553008EC0B7 /* ImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		A1C332371A924F40008EC0B7 /* StoryboardIdentifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardIdentifiers.swift; sourceTree = "<group>"; };
 		A1C332391A925A3F008EC0B7 /* AnimatedFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedFlowLayout.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 		A127576C1A81096800A0CA79 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A18A5BC91AA9E8DE00486BF0 /* gallery-app-icon.png */,
 				A13B63DC1A822E8F00EF5EED /* Gallery.xcdatamodeld */,
 				A12757531A81091400A0CA79 /* Images.xcassets */,
 				A12757551A81091400A0CA79 /* LaunchScreen.xib */,
@@ -299,6 +302,7 @@
 				A1D4A92C1AA71CB5006250D1 /* Pods-Gallery-acknowledgements.markdown in Resources */,
 				A12757521A81091400A0CA79 /* Main.storyboard in Resources */,
 				A12757571A81091400A0CA79 /* LaunchScreen.xib in Resources */,
+				A18A5BCA1AA9E8DE00486BF0 /* gallery-app-icon.png in Resources */,
 				A12757541A81091400A0CA79 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
