@@ -34,7 +34,7 @@ class GalleryHeaderView: UICollectionReusableView {
         textLabel.textColor = UIColor.whiteColor()
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
@@ -43,7 +43,7 @@ class GalleryHeaderView: UICollectionReusableView {
 
         backgroundImageView.frame.size = frame.size
         textLabel.frame.size = frame.size
-        (subviews.first as? UIView)?.frame.size = frame.size
+        subviews.first?.frame.size = frame.size
     }
 }
 

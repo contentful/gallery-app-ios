@@ -22,14 +22,18 @@ class ImageDetailsViewController: UIViewController, UIScrollViewDelegate {
         kvoController?.unobserve(imageView)
     }
 
-    override init() {
+    convenience init() {
+        self.init(nibName: nil, bundle: nil)
+    }
+
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nil, bundle: nil)
 
         kvoController = FBKVOController(observer: self)
         kvoController?.observe(imageView, keyPath: "image", options: .New, context: nil)
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
@@ -63,7 +67,7 @@ class ImageDetailsViewController: UIViewController, UIScrollViewDelegate {
         }
     }
 
-    override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         updateImage(imageView.image)
     }
 
@@ -101,13 +105,13 @@ class ImageDetailsViewController: UIViewController, UIScrollViewDelegate {
                 self.view.backgroundColor = self.chromoplast!.dominantColor
                 self.imageView.backgroundColor = self.chromoplast!.dominantColor
 
-                let mutableText = self.metaInformationView.attributedText.mutableCopy() as NSMutableAttributedString
+                let mutableText = self.metaInformationView.attributedText.mutableCopy() as! NSMutableAttributedString
 
                 let firstLine = mutableText.string.rangeOfString("\n")!
-                let range = NSMakeRange(0, distance(mutableText.string.startIndex, firstLine.startIndex))
+                let range = NSMakeRange(0, (mutableText.string.startIndex).distanceTo(firstLine.startIndex))
 
                 mutableText.addAttribute(NSForegroundColorAttributeName, value: self.chromoplast!.firstHighlight!, range: range)
-                mutableText.addAttribute(NSForegroundColorAttributeName, value: self.chromoplast!.secondHighlight!, range: NSMakeRange(range.length, distance(firstLine.endIndex, mutableText.string.endIndex)))
+                mutableText.addAttribute(NSForegroundColorAttributeName, value: self.chromoplast!.secondHighlight!, range: NSMakeRange(range.length, (firstLine.endIndex).distanceTo(mutableText.string.endIndex)))
 
                 self.metaInformationView.attributedText = mutableText
 
@@ -117,8 +121,8 @@ class ImageDetailsViewController: UIViewController, UIScrollViewDelegate {
     }
 
     func updateNavigationBar(force: Bool) {
-        if let viewController = self.pageViewController {
-            if !force && viewController.viewControllers[0] !== self {
+        if let viewController = self.pageViewController, firstVC = viewController.viewControllers?.first {
+            if !force && firstVC !== self {
                 return
             }
 
@@ -154,7 +158,7 @@ class ImageDetailsViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        [metaInformationView, imageView, scrollView].map { (view) -> () in
+        let _ = [metaInformationView, imageView, scrollView].map { (view) -> () in
             view.autoresizingMask = .FlexibleWidth
             view.frame.size.width = self.view.frame.size.width
         }
@@ -163,11 +167,11 @@ class ImageDetailsViewController: UIViewController, UIScrollViewDelegate {
         metaInformationView.editable = false
         metaInformationView.textContainerInset = UIEdgeInsets(top: 0.0, left: 20.0, bottom: 0.0, right: 20.0)
 
-        imageView.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+        imageView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         imageView.clipsToBounds = true
         imageView.contentMode = .ScaleAspectFit
 
-        scrollView.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+        scrollView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         scrollView.delegate = self
         scrollView.maximumZoomScale = 2.0
         scrollView.addSubview(imageView)

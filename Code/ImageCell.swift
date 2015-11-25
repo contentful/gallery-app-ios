@@ -22,7 +22,7 @@ class ImageCell : UICollectionViewCell {
     override init(frame: CGRect) {
         imageView = UIImageView(frame: frame)
         imageView.alpha = 0.9
-        imageView.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+        imageView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         imageView.clipsToBounds = true
         imageView.contentMode = .ScaleAspectFill
         imageView.layer.cornerRadius = 2.0
@@ -39,7 +39,7 @@ class ImageCell : UICollectionViewCell {
         addSubview(imageView)
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 

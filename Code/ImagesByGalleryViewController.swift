@@ -27,8 +27,8 @@ class ImagesByGalleryViewController: UICollectionViewController, ZoomTransitionP
         super.prepareForSegue(segue, sender: sender)
 
         if segue.identifier == SegueIdentifier.SingleImageSegue.rawValue {
-            let indexPath = sender as NSIndexPath
-            let vc = segue.destinationViewController as SingleImageViewController
+            let indexPath = sender as! NSIndexPath
+            let vc = segue.destinationViewController as! SingleImageViewController
             vc.client = dataManager.client
             vc.gallery = images[indexPath.section].0
             vc.initialIndex = indexPath.item
@@ -47,9 +47,9 @@ class ImagesByGalleryViewController: UICollectionViewController, ZoomTransitionP
                 return
             }
 
-            self.images = sorted(self.dataManager.fetchGalleries().map { (gallery) in
-                return (gallery, gallery.images.array as [Image])
-            }) { $0.0.title < $1.0.title }
+            self.images = self.dataManager.fetchGalleries().map { (gallery) in
+                return (gallery, gallery.images.array as! [Image])
+            }.sort() { $0.0.title < $1.0.title }
         }
     }
 
@@ -92,13 +92,15 @@ class ImagesByGalleryViewController: UICollectionViewController, ZoomTransitionP
     // MARK: UICollectionViewDataSource
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(NSStringFromClass(self.dynamicType), forIndexPath: indexPath) as ImageCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(NSStringFromClass(self.dynamicType), forIndexPath: indexPath) as! ImageCell
 
         let image = images[indexPath.section].1[indexPath.item]
 
-        cell.imageView.image = nil
-        cell.imageView.offlineCaching_cda = true
-        cell.imageView.cda_setImageWithPersistedAsset(image.photo, client: dataManager.client, size: UIScreen.mainScreen().bounds.size.screenSize(), placeholderImage: nil)
+        if let asset = image.photo {
+            cell.imageView.image = nil
+            cell.imageView.offlineCaching_cda = true
+            cell.imageView.cda_setImageWithPersistedAsset(asset, client: dataManager.client, size: UIScreen.mainScreen().bounds.size.screenSize(), placeholderImage: nil)
+        }
 
         return cell
     }
@@ -110,10 +112,13 @@ class ImagesByGalleryViewController: UICollectionViewController, ZoomTransitionP
     override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         if kind == UICollectionElementKindSectionHeader {
             let gallery = images[indexPath.section].0
-            let view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: NSStringFromClass(self.dynamicType), forIndexPath: indexPath) as GalleryHeaderView
+            let view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: NSStringFromClass(self.dynamicType), forIndexPath: indexPath) as! GalleryHeaderView
 
-            view.backgroundImageView.offlineCaching_cda = true
-            view.backgroundImageView.cda_setImageWithPersistedAsset(gallery.coverImage, client: dataManager.client, size: view.backgroundImageView.frame.size.screenSize(), placeholderImage: nil)
+            if let asset = gallery.coverImage {
+                view.backgroundImageView.offlineCaching_cda = true
+                view.backgroundImageView.cda_setImageWithPersistedAsset(asset, client: dataManager.client, size: view.backgroundImageView.frame.size.screenSize(), placeholderImage: nil)
+            }
+
             view.textLabel.text = gallery.title
 
             return view

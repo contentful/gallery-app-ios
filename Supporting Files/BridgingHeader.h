@@ -7,7 +7,7 @@
 //
 
 #import <Bypass/Bypass.h>
-#import <CocoaPods-Keys/GalleryKeys.h>
+#import <Keys/GalleryKeys.h>
 #import <ContentfulDeliveryAPI/ContentfulDeliveryAPI.h>
 #import <ContentfulDialogs/CDAAboutUsViewController.h>
 #import <ContentfulPersistence/CoreDataFetchDataSource.h>

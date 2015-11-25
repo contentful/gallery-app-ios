@@ -1,29 +1,29 @@
 PODS:
-  - AFNetworking (2.5.3):
-    - AFNetworking/NSURLConnection (= 2.5.3)
-    - AFNetworking/NSURLSession (= 2.5.3)
-    - AFNetworking/Reachability (= 2.5.3)
-    - AFNetworking/Security (= 2.5.3)
-    - AFNetworking/Serialization (= 2.5.3)
-    - AFNetworking/UIKit (= 2.5.3)
-  - AFNetworking/NSURLConnection (2.5.3):
+  - AFNetworking (2.5.4):
+    - AFNetworking/NSURLConnection (= 2.5.4)
+    - AFNetworking/NSURLSession (= 2.5.4)
+    - AFNetworking/Reachability (= 2.5.4)
+    - AFNetworking/Security (= 2.5.4)
+    - AFNetworking/Serialization (= 2.5.4)
+    - AFNetworking/UIKit (= 2.5.4)
+  - AFNetworking/NSURLConnection (2.5.4):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.5.3):
+  - AFNetworking/NSURLSession (2.5.4):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.5.3)
-  - AFNetworking/Security (2.5.3)
-  - AFNetworking/Serialization (2.5.3)
-  - AFNetworking/UIKit (2.5.3):
+  - AFNetworking/Reachability (2.5.4)
+  - AFNetworking/Security (2.5.4)
+  - AFNetworking/Serialization (2.5.4)
+  - AFNetworking/UIKit (2.5.4):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - Bypass (1.0.1)
   - CGLMail (0.1.1)
-  - ContentfulDeliveryAPI (HEAD based on 1.7.2):
-    - AFNetworking (>= 2.5.3)
+  - ContentfulDeliveryAPI (1.9.2):
+    - AFNetworking (~> 2.5.3)
     - ISO8601DateFormatter
   - ContentfulDialogs (0.3.0):
     - Bypass
@@ -31,33 +31,38 @@ PODS:
     - ContentfulDeliveryAPI (>= 1.4.7)
     - DDPageControl
     - TSMiniWebBrowser@dblock
-  - ContentfulPersistence (0.1.0):
-    - ContentfulDeliveryAPI (>= 1.4.7)
+  - ContentfulPersistence (0.3.2):
+    - ContentfulDeliveryAPI (~> 1.9.1)
   - ContentfulStyle (HEAD based on 0.2.0):
     - EDColor
     - LatoFont
   - DDPageControl (0.1)
   - EDColor (1.0.0)
-  - FBSnapshotTestCase (1.5)
+  - FBSnapshotTestCase (1.8.1)
   - ISO8601DateFormatter (0.7)
+  - Keys (1.0.0)
   - KVOController (1.0.3)
   - LatoFont (1.0.0)
-  - SOZOChromoplast (0.0.2)
+  - SOZOChromoplast (0.0.3)
   - TSMiniWebBrowser@dblock (1.1)
   - ZoomInteractiveTransition (0.2.1)
 
 DEPENDENCIES:
-  - Bypass
-  - ContentfulDeliveryAPI (HEAD)
+  - Bypass (~> 1.0.0)
+  - ContentfulDeliveryAPI (~> 1.9.0)
   - ContentfulDialogs
-  - ContentfulPersistence
+  - ContentfulPersistence (>= 0.3.2)
   - ContentfulStyle (HEAD)
-  - FBSnapshotTestCase
-  - KVOController
-  - SOZOChromoplast
-  - ZoomInteractiveTransition (from `git@github.com:neonichu/ZoomInteractiveTransition.git`, branch `reset-alpha-after-animation`)
+  - FBSnapshotTestCase (~> 1.5)
+  - Keys (from `Pods/CocoaPodsKeys`)
+  - KVOController (~> 1.0.0)
+  - SOZOChromoplast (~> 0.0.2)
+  - ZoomInteractiveTransition (from `git@github.com:neonichu/ZoomInteractiveTransition.git`,
+    branch `reset-alpha-after-animation`)
 
 EXTERNAL SOURCES:
+  Keys:
+    :path: Pods/CocoaPodsKeys
   ZoomInteractiveTransition:
     :branch: reset-alpha-after-animation
     :git: git@github.com:neonichu/ZoomInteractiveTransition.git
@@ -68,21 +73,22 @@ CHECKOUT OPTIONS:
     :git: git@github.com:neonichu/ZoomInteractiveTransition.git
 
 SPEC CHECKSUMS:
-  AFNetworking: e1d86c2a96bb5d2e7408da36149806706ee122fe
+  AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
   Bypass: 72a80e30ea645fb190eaecdc7d67a1904b76b7dc
   CGLMail: 91fbbf8a1c0283bb804798dce471f840b0f58488
-  ContentfulDeliveryAPI: 2f365b6148460ff186d21e73aef1cebad9a12fd4
+  ContentfulDeliveryAPI: ed7a6c7e06a9ed4206714ab483749fe245765369
   ContentfulDialogs: 66cd16becce26939cf9db091d48a377df1f2246a
-  ContentfulPersistence: 95cce671bb1d36256707025fe1ee5d0e576693ce
+  ContentfulPersistence: fd9ce1235865a968b7c7a57afebf7f235579842d
   ContentfulStyle: 0f41944b1efd8bba2a8f0c1ac0cf3910b1105949
   DDPageControl: 60c7d350477922b1e67fcf927f7e50eddc7dd207
   EDColor: c83f9a61f9f9b3c23d541f1feb561558e29cb088
-  FBSnapshotTestCase: 26f32d8fa9eb30e9f09712ecfb097808bc79b898
+  FBSnapshotTestCase: 3dc3899168747a0319c5278f5b3445c13a6532dd
   ISO8601DateFormatter: ab926648eebe497f4d167c0fd083992f959f1274
+  Keys: 7d2ff6ff42f6903358267ce56e9392f83c31acfe
   KVOController: 9fd8f0343670994e4b6f9f0b31f5a45663f3e1cf
   LatoFont: bcfb0239c339af9aacf4b3061d5268e53e080732
-  SOZOChromoplast: a626464e4f31474dd5191ae55cffbab2a2feae52
+  SOZOChromoplast: 8902f554d852844c2025b26558d3322f8fae668d
   TSMiniWebBrowser@dblock: 6eb565b44cc2e5cd5eee7660ee5c21f8afae415c
-  ZoomInteractiveTransition: ea0e8a96103ed49ef9fc7c290367a9df1cd31cb7
+  ZoomInteractiveTransition: 14f2676693852e40edbb6767a13795aea49f115f
 
-COCOAPODS: 0.36.0.beta.1
+COCOAPODS: 0.39.0

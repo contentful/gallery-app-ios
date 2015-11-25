@@ -1,75 +1,106 @@
-GIT
-  remote: https://github.com/orta/cocoapods-keys.git
-  revision: 15b48d08912cc65342592a3ec823d89b2c99a429
-  ref: 15b48d08912cc65342592a3ec823d89b2c99a429
-  specs:
-    cocoapods-keys (1.0.0)
-      osx_keychain
-
 GEM
   remote: https://rubygems.org/
   specs:
-    RubyInline (3.12.3)
+    RubyInline (3.12.4)
       ZenTest (~> 4.3)
     ZenTest (4.11.0)
-    activesupport (4.2.0)
+    activesupport (4.2.4)
       i18n (~> 0.7)
       json (~> 1.7, >= 1.7.7)
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
-    claide (0.8.0)
-    cocoapods (0.36.0.beta.1)
-      activesupport (>= 3.2.15)
-      claide (~> 0.8.0)
-      cocoapods-core (= 0.36.0.beta.1)
-      cocoapods-downloader (~> 0.8.1)
-      cocoapods-plugins (~> 0.4.0)
-      cocoapods-trunk (~> 0.5.0)
-      cocoapods-try (~> 0.4.3)
+    addressable (2.3.8)
+    claide (0.9.1)
+    cocoapods (0.39.0)
+      activesupport (>= 4.0.2)
+      claide (~> 0.9.1)
+      cocoapods-core (= 0.39.0)
+      cocoapods-downloader (~> 0.9.3)
+      cocoapods-plugins (~> 0.4.2)
+      cocoapods-search (~> 0.1.0)
+      cocoapods-stats (~> 0.6.2)
+      cocoapods-trunk (~> 0.6.4)
+      cocoapods-try (~> 0.5.1)
       colored (~> 1.2)
       escape (~> 0.0.4)
-      molinillo (~> 0.2.0)
-      nap (~> 0.8)
-      open4 (~> 1.3)
-      xcodeproj (~> 0.21.0)
-    cocoapods-core (0.36.0.beta.1)
-      activesupport (>= 3.2.15)
+      molinillo (~> 0.4.0)
+      nap (~> 1.0)
+      xcodeproj (~> 0.28.2)
+    cocoapods-core (0.39.0)
+      activesupport (>= 4.0.2)
       fuzzy_match (~> 2.0.4)
-      nap (~> 0.8.0)
-    cocoapods-downloader (0.8.1)
-    cocoapods-plugins (0.4.0)
+      nap (~> 1.0)
+    cocoapods-downloader (0.9.3)
+    cocoapods-keys (1.5.2)
+      dotenv
+      osx_keychain
+    cocoapods-plugins (0.4.2)
       nap
-    cocoapods-trunk (0.5.0)
-      nap (>= 0.8)
+    cocoapods-search (0.1.0)
+    cocoapods-stats (0.6.2)
+    cocoapods-trunk (0.6.4)
+      nap (>= 0.8, < 2.0)
       netrc (= 0.7.8)
-    cocoapods-try (0.4.3)
+    cocoapods-try (0.5.1)
     colored (1.2)
+    contentful-management (0.7.2)
+      http (~> 0.8)
+      multi_json (~> 1)
+    contentful_bootstrap (1.6.0)
+      contentful-management
+      inifile
+      launchy
+    domain_name (0.5.25)
+      unf (>= 0.0.5, < 1.0.0)
+    dotenv (2.0.2)
     escape (0.0.4)
     fuzzy_match (2.0.4)
+    http (0.9.8)
+      addressable (~> 2.3)
+      http-cookie (~> 1.0)
+      http-form_data (~> 1.0.1)
+      http_parser.rb (~> 0.6.0)
+    http-cookie (1.0.2)
+      domain_name (~> 0.5)
+    http-form_data (1.0.1)
+    http_parser.rb (0.6.0)
     i18n (0.7.0)
-    json (1.8.2)
-    minitest (5.5.1)
-    molinillo (0.2.0)
-    nap (0.8.0)
+    inifile (3.0.0)
+    json (1.8.3)
+    launchy (2.4.3)
+      addressable (~> 2.3)
+    minitest (5.8.2)
+    molinillo (0.4.0)
+    multi_json (1.11.2)
+    nap (1.0.0)
     netrc (0.7.8)
-    open4 (1.3.4)
-    osx_keychain (1.0.0)
+    osx_keychain (1.0.1)
       RubyInline (~> 3)
-    sbconstants (1.1.1)
-    thread_safe (0.3.4)
+    rouge (1.10.1)
+    sbconstants (1.1.2)
+    thread_safe (0.3.5)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
-    xcodeproj (0.21.2)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.1)
+    xcodeproj (0.28.2)
       activesupport (>= 3)
+      claide (~> 0.9.1)
       colored (~> 1.2)
-    xcpretty (0.1.7)
+    xcpretty (0.2.1)
+      rouge (~> 1.8)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  cocoapods (= 0.36.0.beta.1)
-  cocoapods-keys!
+  cocoapods
+  cocoapods-keys
+  contentful_bootstrap
   sbconstants
   xcpretty
+
+BUNDLED WITH
+   1.10.6

@@ -12,25 +12,21 @@ platform :ios, '8.0'
 
 inhibit_all_warnings!
 
-target 'Gallery' do
-
 #use_frameworks!
 
-pod 'Bypass'
-pod 'ContentfulDeliveryAPI', :head
+pod 'Bypass', '~> 1.0.0'
+pod 'ContentfulDeliveryAPI', '~> 1.9.0'
 pod 'ContentfulDialogs'
-pod 'ContentfulPersistence'
+pod 'ContentfulPersistence', '>= 0.3.2'
 pod 'ContentfulStyle', :head
-pod 'KVOController'
-pod 'SOZOChromoplast'
+pod 'KVOController', '~> 1.0.0'
+pod 'SOZOChromoplast', '~> 0.0.2'
 pod 'ZoomInteractiveTransition', :git => 'git@github.com:neonichu/ZoomInteractiveTransition.git',
 	:branch => 'reset-alpha-after-animation'
 
-end
+target 'GalleryTests', :exclusive => true do
 
-target 'GalleryTests' do
-
-pod 'FBSnapshotTestCase'
+pod 'FBSnapshotTestCase', '~> 1.5'
 
 end
 

@@ -17,7 +17,7 @@ class SingleImageViewController: UIPageViewController, UIPageViewControllerDataS
     var gallery: Photo_Gallery?
     var images: [Image] {
         if let gallery = gallery {
-            return gallery.images.array as [Image]
+            return gallery.images.array as! [Image]
         }
         return [Image]()
     }
@@ -64,11 +64,13 @@ class SingleImageViewController: UIPageViewController, UIPageViewControllerDataS
 
         vc.updateText(String(format: "# %@\n\n%@", title, description))
 
-        vc.imageView.image = nil
-        vc.imageView.offlineCaching_cda = true
-        vc.imageView.cda_setImageWithPersistedAsset(asset, client: client, size: UIScreen.mainScreen().bounds.size.screenSize(), placeholderImage: nil)
+        if let asset = asset, client = client {
+            vc.imageView.image = nil
+            vc.imageView.offlineCaching_cda = true
+            vc.imageView.cda_setImageWithPersistedAsset(asset, client: client, size: UIScreen.mainScreen().bounds.size.screenSize(), placeholderImage: nil)
+        }
 
-        (view.subviews.first as? UIView)?.gestureRecognizers?.map { (recognizer) -> Void in vc.scrollView.panGestureRecognizer.requireGestureRecognizerToFail(recognizer as UIGestureRecognizer) }
+        let _ = view.subviews.first?.gestureRecognizers?.map { (recognizer) -> Void in vc.scrollView.panGestureRecognizer.requireGestureRecognizerToFail(recognizer as UIGestureRecognizer) }
 
         return vc
     }
@@ -106,9 +108,9 @@ class SingleImageViewController: UIPageViewController, UIPageViewControllerDataS
 
     // MARK: UIPageViewControllerDelegate
 
-    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [AnyObject], transitionCompleted completed: Bool) {
-        if completed {
-            let currentIndex = (viewControllers[0] as UIViewController).view.tag
+    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        if let firstVC = viewControllers?.first where completed {
+            let currentIndex = firstVC.view.tag
             updateCurrentIndex(currentIndex)
         }
     }
@@ -116,8 +118,8 @@ class SingleImageViewController: UIPageViewController, UIPageViewControllerDataS
     // MARK: ZoomTransitionProtocol
 
     func viewForZoomTransition(isSource: Bool) -> UIView! {
-        if viewControllers.count > 0 {
-            let imageView = (viewControllers[0] as ImageDetailsViewController).imageView
+        if let viewControllers = viewControllers where viewControllers.count > 0 {
+            let imageView = (viewControllers[0] as! ImageDetailsViewController).imageView
 
             if (isSource) {
                 imageView.backgroundColor = UIColor.clearColor()

@@ -24,11 +24,11 @@ class ContentfulDataManager: NSObject {
     }
 
     func fetchGalleries(predicate: String? = nil) -> [Photo_Gallery] {
-        return manager.fetchEntriesOfContentTypeWithIdentifier(ContentfulDataManager.GalleryContentTypeId, matchingPredicate: predicate) as [Photo_Gallery]
+        return manager.fetchEntriesOfContentTypeWithIdentifier(ContentfulDataManager.GalleryContentTypeId, matchingPredicate: predicate) as! [Photo_Gallery]
     }
 
     func fetchImages(predicate: String? = nil) -> [Image] {
-        return manager.fetchEntriesOfContentTypeWithIdentifier(ContentfulDataManager.ImageContentTypeId, matchingPredicate: nil) as [Image]
+        return manager.fetchEntriesOfContentTypeWithIdentifier(ContentfulDataManager.ImageContentTypeId, matchingPredicate: nil) as! [Image]
     }
 
     func fetchedResultsControllerForContentType(identifier: String, predicate: String?, sortDescriptors: [NSSortDescriptor]) -> NSFetchedResultsController {
@@ -42,7 +42,7 @@ class ContentfulDataManager: NSObject {
         let configuration = CDAConfiguration.defaultConfiguration()
         configuration.userAgent = "Contentful Gallery App/1.0";
 
-        let client = CDAClient(spaceKey: NSUserDefaults.standardUserDefaults().stringForKey(AppDelegate.SpaceKey), accessToken: NSUserDefaults.standardUserDefaults().stringForKey(AppDelegate.AccessToken), configuration:configuration)
+        let client = CDAClient(spaceKey: NSUserDefaults.standardUserDefaults().stringForKey(AppDelegate.SpaceKey)!, accessToken: NSUserDefaults.standardUserDefaults().stringForKey(AppDelegate.AccessToken)!, configuration:configuration)
         manager = CoreDataManager(client: client, dataModelName: "Gallery")
 
         manager.classForAssets = Asset.self
@@ -65,7 +65,7 @@ class ContentfulDataManager: NSObject {
                 defaults.setValue(note.userInfo![AppDelegate.AccessToken], forKey: AppDelegate.AccessToken)
 
                 let keyWindow = UIApplication.sharedApplication().keyWindow!
-                keyWindow.rootViewController = keyWindow.rootViewController?.storyboard?.instantiateInitialViewController() as? UIViewController
+                keyWindow.rootViewController = keyWindow.rootViewController?.storyboard?.instantiateInitialViewController()
             }
         }
     }

@@ -38,11 +38,11 @@ class AnimatedFlowLayout: UICollectionViewFlowLayout {
     override func initialLayoutAttributesForAppearingItemAtIndexPath(itemIndexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
         let attr = layoutAttributesForItemAtIndexPath(itemIndexPath)
 
-        if contains(indexPathsToAnimate, itemIndexPath) {
+        if let attr = attr where indexPathsToAnimate.contains(itemIndexPath) {
             attr.transform = CGAffineTransformRotate(CGAffineTransformMakeScale(0.2, 0.2), π)
             attr.center = CGPoint(x: collectionView!.bounds.midX, y: collectionView!.bounds.maxY)
 
-            indexPathsToAnimate.removeAtIndex(find(indexPathsToAnimate, itemIndexPath)!)
+            indexPathsToAnimate.removeAtIndex(indexPathsToAnimate.indexOf(itemIndexPath)!)
         }
 
         return attr
@@ -57,7 +57,7 @@ class AnimatedFlowLayout: UICollectionViewFlowLayout {
         return false
     }
 
-    override func prepareForCollectionViewUpdates(updateItems: [AnyObject]!) {
+    override func prepareForCollectionViewUpdates(updateItems: [UICollectionViewUpdateItem]) {
         super.prepareForCollectionViewUpdates(updateItems)
 
         indexPathsToAnimate += updateItems.map { (element) -> NSIndexPath in
