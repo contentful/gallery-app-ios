@@ -25,10 +25,10 @@ PODS:
   - ContentfulDeliveryAPI (1.9.2):
     - AFNetworking (~> 2.5.3)
     - ISO8601DateFormatter
-  - ContentfulDialogs (0.3.0):
+  - ContentfulDialogs (0.4.0):
     - Bypass
     - CGLMail
-    - ContentfulDeliveryAPI (>= 1.4.7)
+    - ContentfulDeliveryAPI (~> 1.9.0)
     - DDPageControl
     - TSMiniWebBrowser@dblock
   - ContentfulPersistence (0.3.2):
@@ -50,7 +50,7 @@ PODS:
 DEPENDENCIES:
   - Bypass (~> 1.0.0)
   - ContentfulDeliveryAPI (~> 1.9.0)
-  - ContentfulDialogs
+  - ContentfulDialogs (~> 0.4.0)
   - ContentfulPersistence (>= 0.3.2)
   - ContentfulStyle (HEAD)
   - FBSnapshotTestCase (~> 1.5)
@@ -77,7 +77,7 @@ SPEC CHECKSUMS:
   Bypass: 72a80e30ea645fb190eaecdc7d67a1904b76b7dc
   CGLMail: 91fbbf8a1c0283bb804798dce471f840b0f58488
   ContentfulDeliveryAPI: ed7a6c7e06a9ed4206714ab483749fe245765369
-  ContentfulDialogs: 66cd16becce26939cf9db091d48a377df1f2246a
+  ContentfulDialogs: 645eff40c316f2c48546dbc8fbf971c04fded6e2
   ContentfulPersistence: fd9ce1235865a968b7c7a57afebf7f235579842d
   ContentfulStyle: 0f41944b1efd8bba2a8f0c1ac0cf3910b1105949
   DDPageControl: 60c7d350477922b1e67fcf927f7e50eddc7dd207

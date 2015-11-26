@@ -16,7 +16,7 @@ inhibit_all_warnings!
 
 pod 'Bypass', '~> 1.0.0'
 pod 'ContentfulDeliveryAPI', '~> 1.9.0'
-pod 'ContentfulDialogs'
+pod 'ContentfulDialogs', '~> 0.4.0'
 pod 'ContentfulPersistence', '>= 0.3.2'
 pod 'ContentfulStyle', :head
 pod 'KVOController', '~> 1.0.0'
