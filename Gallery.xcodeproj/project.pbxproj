@@ -112,12 +112,12 @@
 			isa = PBXGroup;
 			children = (
 				A12757491A81091400A0CA79 /* Code */,
+				8F805F0387A689FBB1E8F069 /* Frameworks */,
 				F4E8BBD5DC288B6621BB74F9 /* Pods */,
 				A12757481A81091400A0CA79 /* Products */,
 				A127576C1A81096800A0CA79 /* Resources */,
 				A127574A1A81091400A0CA79 /* Supporting Files */,
 				A127575F1A81091400A0CA79 /* Tests */,
-				8F805F0387A689FBB1E8F069 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
