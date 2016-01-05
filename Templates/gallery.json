@@ -1,9 +1,10 @@
 {
-  "content_types": [
+  "version": 3,
+  "contentTypes": [
     {
       "id": "1xYw5JsIecuGE68mmGMg20",
       "name": "Image",
-      "display_field": "title",
+      "displayField": "title",
       "fields": [
         {
           "id": "title",
@@ -14,7 +15,7 @@
           "id": "photo",
           "name": "Photo",
           "type": "Link",
-          "link_type": "Asset"
+          "linkType": "Asset"
         },
         {
           "id": "imageCaption",
@@ -31,7 +32,7 @@
     {
       "id": "38nK0gXXIccQ2IEosyAg6C",
       "name": "Author",
-      "display_field": "name",
+      "displayField": "name",
       "fields": [
         {
           "id": "name",
@@ -47,7 +48,7 @@
           "id": "profilePhoto",
           "name": "Profile photo",
           "type": "Link",
-          "link_type": "Asset"
+          "linkType": "Asset"
         },
         {
           "id": "biography",
@@ -60,7 +61,7 @@
           "type": "Array",
           "items": {
             "type": "Link",
-            "link_type": "Entry"
+            "linkType": "Entry"
           }
         }
       ]
@@ -68,7 +69,7 @@
     {
       "id": "7leLzv8hW06amGmke86y8G",
       "name": "Photo Gallery",
-      "display_field": "title",
+      "displayField": "title",
       "fields": [
         {
           "id": "title",
@@ -84,13 +85,13 @@
           "id": "author",
           "name": "Author",
           "type": "Link",
-          "link_type": "Entry"
+          "linkType": "Entry"
         },
         {
           "id": "coverImage",
           "name": "Cover Image",
           "type": "Link",
-          "link_type": "Asset"
+          "linkType": "Asset"
         },
         {
           "id": "description",
@@ -103,7 +104,7 @@
           "type": "Array",
           "items": {
             "type": "Link",
-            "link_type": "Entry"
+            "linkType": "Entry"
           }
         },
         {
@@ -207,186 +208,238 @@
   "entries": {
     "7leLzv8hW06amGmke86y8G": [
       {
-        "id": "54O5P32wmcY0wiAY0ewA2e",
-        "title": "The World Around Me: The Best of Young Photography",
-        "slug": "the-world-around-me-the-best-of-young-photography",
-        "author": {
-          "link_type": "Entry",
-          "id": "4DyrC6MPp6Ws8UmQEQIGUc"
+        "sys": {
+          "id": "54O5P32wmcY0wiAY0ewA2e"
         },
-        "coverImage": {
-          "link_type": "Asset",
-          "id": "6y0psij2o02YIwGScEo4kS"
-        },
-        "description": "All the images in the gallery taken from “[Unsplash](https://unsplash.com/)” photo project.",
-        "images": [
-          {
-            "link_type": "Entry",
-            "id": "5dT4Tgc7gQCuyGSGiakqYC"
+        "fields": {
+          "title": "The World Around Me: The Best of Young Photography",
+          "slug": "the-world-around-me-the-best-of-young-photography",
+          "author": {
+            "linkType": "Entry",
+            "id": "4DyrC6MPp6Ws8UmQEQIGUc"
           },
-          {
-            "link_type": "Entry",
-            "id": "67rvVwLG3mMsucCsaKgaMi"
+          "coverImage": {
+            "linkType": "Asset",
+            "id": "6y0psij2o02YIwGScEo4kS"
           },
-          {
-            "link_type": "Entry",
-            "id": "2MtVnLk3wIiAgOC6OG6qS4"
-          },
-          {
-            "link_type": "Entry",
-            "id": "3rzf72XFm8aQU4oMOci8WY"
-          },
-          {
-            "link_type": "Entry",
-            "id": "4MA2xHUeLeKaAs2K4Kqiog"
-          },
-          {
-            "link_type": "Entry",
-            "id": "3eL4DUKKdyqGIQm2M6SaCe"
-          },
-          {
-            "link_type": "Entry",
-            "id": "2YhtjbebgscIwO2keYEa4O"
-          }
-        ],
-        "tags": [
-          "city",
-          "lens",
-          "bridge",
-          "bar",
-          "people",
-          "perspective",
-          "macro",
-          "close up",
-          "baloon"
-        ],
-        "date": "2015-01-30"
+          "description": "All the images in the gallery taken from “[Unsplash](https://unsplash.com/)” photo project.",
+          "images": [
+            {
+              "linkType": "Entry",
+              "id": "5dT4Tgc7gQCuyGSGiakqYC"
+            },
+            {
+              "linkType": "Entry",
+              "id": "67rvVwLG3mMsucCsaKgaMi"
+            },
+            {
+              "linkType": "Entry",
+              "id": "2MtVnLk3wIiAgOC6OG6qS4"
+            },
+            {
+              "linkType": "Entry",
+              "id": "3rzf72XFm8aQU4oMOci8WY"
+            },
+            {
+              "linkType": "Entry",
+              "id": "4MA2xHUeLeKaAs2K4Kqiog"
+            },
+            {
+              "linkType": "Entry",
+              "id": "3eL4DUKKdyqGIQm2M6SaCe"
+            },
+            {
+              "linkType": "Entry",
+              "id": "2YhtjbebgscIwO2keYEa4O"
+            }
+          ],
+          "tags": [
+            "city",
+            "lens",
+            "bridge",
+            "bar",
+            "people",
+            "perspective",
+            "macro",
+            "close up",
+            "baloon"
+          ],
+          "date": "2015-01-30"
+        }
       },
       {
-        "id": "3ieluksjY4G8uoiu8sGUuo",
-        "title": "Photos by Danilo",
-        "slug": "photos-by-danilo",
-        "author": {
-          "link_type": "Entry",
-          "id": "5TGeaqWqjeMoieimSWMIO6"
+        "sys": {
+          "id": "3ieluksjY4G8uoiu8sGUuo"
         },
-        "coverImage": {
-          "link_type": "Asset",
-          "id": "4cDNp7QWHuYUaCEIkWC4wQ"
-        },
-        "images": [
-          {
-            "link_type": "Entry",
-            "id": "4zWAVrLzwA8MMY8qOacImq"
+        "fields": {
+          "title": "Photos by Danilo",
+          "slug": "photos-by-danilo",
+          "author": {
+            "linkType": "Entry",
+            "id": "5TGeaqWqjeMoieimSWMIO6"
           },
-          {
-            "link_type": "Entry",
-            "id": "2fbvdUtlByaCW0ceoqC0UM"
-          }
-        ]
+          "coverImage": {
+            "linkType": "Asset",
+            "id": "4cDNp7QWHuYUaCEIkWC4wQ"
+          },
+          "images": [
+            {
+              "linkType": "Entry",
+              "id": "4zWAVrLzwA8MMY8qOacImq"
+            },
+            {
+              "linkType": "Entry",
+              "id": "2fbvdUtlByaCW0ceoqC0UM"
+            }
+          ]
+        }
       }
     ],
     "38nK0gXXIccQ2IEosyAg6C": [
       {
-        "id": "4DyrC6MPp6Ws8UmQEQIGUc",
-        "name": "Janine McKay",
-        "twitterHandle": "@contentful",
-        "profilePhoto": {
-          "link_type": "Asset",
-          "id": "149UafeyfcGSoOmESmmYSA"
+        "sys": {
+          "id": "4DyrC6MPp6Ws8UmQEQIGUc"
         },
-        "biography": "Janine is our communications manager. Coming from the South of Germany via London, she enjoys the newest electronica, Japanese candy and literary discussions about the choices of tragic heroes."
+        "fields": {
+          "name": "Janine McKay",
+          "twitterHandle": "@contentful",
+          "profilePhoto": {
+            "linkType": "Asset",
+            "id": "149UafeyfcGSoOmESmmYSA"
+          },
+          "biography": "Janine is our communications manager. Coming from the South of Germany via London, she enjoys the newest electronica, Japanese candy and literary discussions about the choices of tragic heroes."
+        }
       },
       {
-        "id": "5TGeaqWqjeMoieimSWMIO6",
-        "name": "Danilo Sierra"
+        "sys": {
+          "id": "5TGeaqWqjeMoieimSWMIO6"
+        },
+        "fields": {
+          "name": "Danilo Sierra"
+        }
       }
     ],
     "1xYw5JsIecuGE68mmGMg20": [
       {
-        "id": "2MtVnLk3wIiAgOC6OG6qS4",
-        "title": "The Golden Gate Bridge",
-        "imageCaption": "The bridge, as seen on a cloudy day",
-        "imageCredits": "Chris Brignola // http://www.avelamedia.com/",
-        "photo": {
-          "link_type": "Asset",
-          "id": "2czUZ3VWIc68cyOoyGY4MW"
-        }
-      },
-      {
-        "id": "3rzf72XFm8aQU4oMOci8WY",
-        "title": "Pie in the Sky",
-        "imageCaption": "Taken at Woods Hole",
-        "imageCredits": "Dogancan Ozturan // http://dogancan.org/",
-        "photo": {
-          "link_type": "Asset",
-          "id": "5DGRkcoj9mAgwkgGyKMuwe"
-        }
-      },
-      {
-        "id": "3eL4DUKKdyqGIQm2M6SaCe",
-        "title": "The Flower",
-        "imageCaption": "Right in your backyard",
-        "imageCredits": "John French // http://johnmfrench.tumblr.com/",
-        "photo": {
-          "link_type": "Asset",
-          "id": "26PCF5jzziyeiessOOY0o0"
-        }
-      },
-      {
-        "id": "2YhtjbebgscIwO2keYEa4O",
-        "title": "Air Baloon",
-        "imageCaption": "Up in the air",
-        "imageCredits": "Austin Ban // http://austinban.com/",
-        "photo": {
-          "link_type": "Asset",
-          "id": "1zY02V76cUsM6yWycWqyk6"
-        }
-      },
-      {
-        "id": "67rvVwLG3mMsucCsaKgaMi",
-        "title": "The world on a digital screen",
-        "imageCaption": "From the personal archive",
-        "imageCredits": "Jay Wennington // http://jaywennington.tumblr.com/",
-        "photo": {
-          "link_type": "Asset",
-          "id": "3nCIlsuVKwQysuMcKGuUA4"
-        }
-      },
-      {
-        "id": "4MA2xHUeLeKaAs2K4Kqiog",
-        "title": "City Street",
-        "imageCredits": "Oscar Nillson // http://oscr.se/",
-        "imageCaption": "Taken in San Sebastian",
-        "photo": {
-          "link_type": "Asset",
-          "id": "geptFDHuzQa8oA2Ywmiew"
-        }
-      },
-      {
-        "id": "2fbvdUtlByaCW0ceoqC0UM",
-        "photo": {
-          "link_type": "Asset",
-          "id": "4cDNp7QWHuYUaCEIkWC4wQ"
+        "sys": {
+          "id": "2MtVnLk3wIiAgOC6OG6qS4"
         },
-        "title": "Moscow"
+        "fields": {
+          "title": "The Golden Gate Bridge",
+          "imageCaption": "The bridge, as seen on a cloudy day",
+          "imageCredits": "Chris Brignola // http://www.avelamedia.com/",
+          "photo": {
+            "linkType": "Asset",
+            "id": "2czUZ3VWIc68cyOoyGY4MW"
+          }
+        }
       },
       {
-        "id": "4zWAVrLzwA8MMY8qOacImq",
-        "photo": {
-          "link_type": "Asset",
-          "id": "4hbW28y6884swoYKiq6oSs"
+        "sys": {
+          "id": "3rzf72XFm8aQU4oMOci8WY"
         },
-        "title": "Berlin"
+        "fields": {
+          "title": "Pie in the Sky",
+          "imageCaption": "Taken at Woods Hole",
+          "imageCredits": "Dogancan Ozturan // http://dogancan.org/",
+          "photo": {
+            "linkType": "Asset",
+            "id": "5DGRkcoj9mAgwkgGyKMuwe"
+          }
+        }
       },
       {
-        "id": "5dT4Tgc7gQCuyGSGiakqYC",
-        "title": "It's a Celebration",
-        "imageCaption": "From the personal archive",
-        "imageCredits": "James Tarbotton // http://www.jamestarbotton.com/",
-        "photo": {
-          "link_type": "Asset",
-          "id": "6y0psij2o02YIwGScEo4kS"
+        "sys": {
+          "id": "3eL4DUKKdyqGIQm2M6SaCe"
+        },
+        "fields": {
+          "title": "The Flower",
+          "imageCaption": "Right in your backyard",
+          "imageCredits": "John French // http://johnmfrench.tumblr.com/",
+          "photo": {
+            "linkType": "Asset",
+            "id": "26PCF5jzziyeiessOOY0o0"
+          }
+        }
+      },
+      {
+        "sys": {
+          "id": "2YhtjbebgscIwO2keYEa4O"
+        },
+        "fields": {
+          "title": "Air Baloon",
+          "imageCaption": "Up in the air",
+          "imageCredits": "Austin Ban // http://austinban.com/",
+          "photo": {
+            "linkType": "Asset",
+            "id": "1zY02V76cUsM6yWycWqyk6"
+          }
+        }
+      },
+      {
+        "sys": {
+          "id": "67rvVwLG3mMsucCsaKgaMi"
+        },
+        "fields": {
+          "title": "The world on a digital screen",
+          "imageCaption": "From the personal archive",
+          "imageCredits": "Jay Wennington // http://jaywennington.tumblr.com/",
+          "photo": {
+            "linkType": "Asset",
+            "id": "3nCIlsuVKwQysuMcKGuUA4"
+          }
+        }
+      },
+      {
+        "sys": {
+          "id": "4MA2xHUeLeKaAs2K4Kqiog"
+        },
+        "fields": {
+          "title": "City Street",
+          "imageCredits": "Oscar Nillson // http://oscr.se/",
+          "imageCaption": "Taken in San Sebastian",
+          "photo": {
+            "linkType": "Asset",
+            "id": "geptFDHuzQa8oA2Ywmiew"
+          }
+        }
+      },
+      {
+        "sys": {
+          "id": "2fbvdUtlByaCW0ceoqC0UM"
+        },
+        "fields": {
+          "photo": {
+            "linkType": "Asset",
+            "id": "4cDNp7QWHuYUaCEIkWC4wQ"
+          },
+          "title": "Moscow"
+        }
+      },
+      {
+        "sys": {
+          "id": "4zWAVrLzwA8MMY8qOacImq"
+        },
+        "fields": {
+          "photo": {
+            "linkType": "Asset",
+            "id": "4hbW28y6884swoYKiq6oSs"
+          },
+          "title": "Berlin"
+        }
+      },
+      {
+        "sys": {
+          "id": "5dT4Tgc7gQCuyGSGiakqYC"
+        },
+        "fields": {
+          "title": "It's a Celebration",
+          "imageCaption": "From the personal archive",
+          "imageCredits": "James Tarbotton // http://www.jamestarbotton.com/",
+          "photo": {
+            "linkType": "Asset",
+            "id": "6y0psij2o02YIwGScEo4kS"
+          }
         }
       }
     ]

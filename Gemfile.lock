@@ -4,13 +4,13 @@ GEM
     RubyInline (3.12.4)
       ZenTest (~> 4.3)
     ZenTest (4.11.0)
-    activesupport (4.2.4)
+    activesupport (4.2.5)
       i18n (~> 0.7)
       json (~> 1.7, >= 1.7.7)
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
-    addressable (2.3.8)
+    addressable (2.4.0)
     claide (0.9.1)
     cocoapods (0.39.0)
       activesupport (>= 4.0.2)
@@ -32,7 +32,7 @@ GEM
       fuzzy_match (~> 2.0.4)
       nap (~> 1.0)
     cocoapods-downloader (0.9.3)
-    cocoapods-keys (1.5.2)
+    cocoapods-keys (1.6.0)
       dotenv
       osx_keychain
     cocoapods-plugins (0.4.2)
@@ -44,10 +44,14 @@ GEM
       netrc (= 0.7.8)
     cocoapods-try (0.5.1)
     colored (1.2)
-    contentful-management (0.7.2)
+    contentful (0.8.0)
       http (~> 0.8)
       multi_json (~> 1)
-    contentful_bootstrap (1.6.0)
+    contentful-management (0.7.3)
+      http (~> 0.8)
+      multi_json (~> 1)
+    contentful_bootstrap (3.0.0)
+      contentful (~> 0.7)
       contentful-management
       inifile
       launchy
@@ -70,8 +74,8 @@ GEM
     json (1.8.3)
     launchy (2.4.3)
       addressable (~> 2.3)
-    minitest (5.8.2)
-    molinillo (0.4.0)
+    minitest (5.8.3)
+    molinillo (0.4.1)
     multi_json (1.11.2)
     nap (1.0.0)
     netrc (0.7.8)
@@ -89,7 +93,7 @@ GEM
       activesupport (>= 3)
       claide (~> 0.9.1)
       colored (~> 1.2)
-    xcpretty (0.2.1)
+    xcpretty (0.2.2)
       rouge (~> 1.8)
 
 PLATFORMS
@@ -98,9 +102,9 @@ PLATFORMS
 DEPENDENCIES
   cocoapods
   cocoapods-keys
-  contentful_bootstrap
+  contentful_bootstrap (~> 3.0.0)
   sbconstants
   xcpretty
 
 BUNDLED WITH
-   1.10.6
+   1.11.0
