@@ -60,9 +60,9 @@ class AnimatedFlowLayout: UICollectionViewFlowLayout {
     override func prepareForCollectionViewUpdates(updateItems: [UICollectionViewUpdateItem]) {
         super.prepareForCollectionViewUpdates(updateItems)
 
-        indexPathsToAnimate += updateItems.map { (element) -> NSIndexPath in
+        indexPathsToAnimate += updateItems.map { (element) -> NSIndexPath? in
             return (element as UICollectionViewUpdateItem).indexPathAfterUpdate
-        }
+        }.flatMap { $0 }
     }
 
     override func prepareLayout() {

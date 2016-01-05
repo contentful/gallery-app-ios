@@ -57,7 +57,7 @@ DEPENDENCIES:
   - Keys (from `Pods/CocoaPodsKeys`)
   - KVOController (~> 1.0.0)
   - SOZOChromoplast (~> 0.0.2)
-  - ZoomInteractiveTransition (from `git@github.com:neonichu/ZoomInteractiveTransition.git`,
+  - ZoomInteractiveTransition (from `https://github.com/neonichu/ZoomInteractiveTransition.git`,
     branch `reset-alpha-after-animation`)
 
 EXTERNAL SOURCES:
@@ -65,12 +65,12 @@ EXTERNAL SOURCES:
     :path: Pods/CocoaPodsKeys
   ZoomInteractiveTransition:
     :branch: reset-alpha-after-animation
-    :git: git@github.com:neonichu/ZoomInteractiveTransition.git
+    :git: https://github.com/neonichu/ZoomInteractiveTransition.git
 
 CHECKOUT OPTIONS:
   ZoomInteractiveTransition:
     :commit: cfed4930781c9632aa44970f712ee63157460f7b
-    :git: git@github.com:neonichu/ZoomInteractiveTransition.git
+    :git: https://github.com/neonichu/ZoomInteractiveTransition.git
 
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
