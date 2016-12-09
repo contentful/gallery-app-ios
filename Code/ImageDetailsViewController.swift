@@ -109,7 +109,8 @@ class ImageDetailsViewController: UIViewController, UIScrollViewDelegate {
 
                 let mutableText = self.metaInformationView.attributedText.mutableCopy() as! NSMutableAttributedString
 
-                let firstLine = mutableText.string.rangeOfString("\n")!
+                guard let firstLine = mutableText.string.rangeOfString("\n") else { return }
+
                 let range = NSMakeRange(0, (mutableText.string.startIndex).distanceTo(firstLine.startIndex))
 
                 mutableText.addAttribute(NSForegroundColorAttributeName, value: self.chromoplast!.firstHighlight!, range: range)
