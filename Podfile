@@ -1,3 +1,8 @@
+=begin
+Use cocoapod-keys to load application keys (variables).
+See https://github.com/orta/cocoapods-keys.
+=end
+
 plugin 'cocoapods-keys', {
   :project => 'Gallery',
   :keys => [
@@ -18,15 +23,14 @@ pod 'Bypass', '~> 1.0.0'
 pod 'ContentfulDeliveryAPI', '~> 1.9.0'
 pod 'ContentfulDialogs', '~> 0.4.0'
 pod 'ContentfulPersistence', '>= 0.3.2'
-pod 'ContentfulStyle', :head
+pod 'ContentfulStyle'
 pod 'KVOController', '~> 1.0.0'
 pod 'SOZOChromoplast', '~> 0.0.2'
 pod 'ZoomInteractiveTransition', :git => 'https://github.com/neonichu/ZoomInteractiveTransition.git',
 	:branch => 'reset-alpha-after-animation'
 
-target 'GalleryTests', :exclusive => true do
+target 'GalleryTests' do
 
 pod 'FBSnapshotTestCase', '~> 1.5'
 
 end
-

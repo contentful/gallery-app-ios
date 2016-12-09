@@ -33,7 +33,7 @@ PODS:
     - TSMiniWebBrowser@dblock
   - ContentfulPersistence (0.3.2):
     - ContentfulDeliveryAPI (~> 1.9.1)
-  - ContentfulStyle (HEAD based on 0.2.0):
+  - ContentfulStyle (0.2.0):
     - EDColor
     - LatoFont
   - DDPageControl (0.1)
@@ -52,13 +52,12 @@ DEPENDENCIES:
   - ContentfulDeliveryAPI (~> 1.9.0)
   - ContentfulDialogs (~> 0.4.0)
   - ContentfulPersistence (>= 0.3.2)
-  - ContentfulStyle (HEAD)
+  - ContentfulStyle
   - FBSnapshotTestCase (~> 1.5)
   - Keys (from `Pods/CocoaPodsKeys`)
   - KVOController (~> 1.0.0)
   - SOZOChromoplast (~> 0.0.2)
-  - ZoomInteractiveTransition (from `https://github.com/neonichu/ZoomInteractiveTransition.git`,
-    branch `reset-alpha-after-animation`)
+  - ZoomInteractiveTransition (from `https://github.com/neonichu/ZoomInteractiveTransition.git`, branch `reset-alpha-after-animation`)
 
 EXTERNAL SOURCES:
   Keys:
@@ -84,11 +83,13 @@ SPEC CHECKSUMS:
   EDColor: c83f9a61f9f9b3c23d541f1feb561558e29cb088
   FBSnapshotTestCase: 3dc3899168747a0319c5278f5b3445c13a6532dd
   ISO8601DateFormatter: ab926648eebe497f4d167c0fd083992f959f1274
-  Keys: 7d2ff6ff42f6903358267ce56e9392f83c31acfe
+  Keys: 9c35bf00f612ee1d48556f4a4b9b4551e224e90f
   KVOController: 9fd8f0343670994e4b6f9f0b31f5a45663f3e1cf
   LatoFont: bcfb0239c339af9aacf4b3061d5268e53e080732
   SOZOChromoplast: 8902f554d852844c2025b26558d3322f8fae668d
   TSMiniWebBrowser@dblock: 6eb565b44cc2e5cd5eee7660ee5c21f8afae415c
   ZoomInteractiveTransition: 14f2676693852e40edbb6767a13795aea49f115f
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 62fe32c6390dd9d97928defd3d8a0172561f2740
+
+COCOAPODS: 1.1.1

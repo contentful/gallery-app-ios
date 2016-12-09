@@ -11,6 +11,13 @@ This is an iOS application example for the [Contentful][1] gallery space templat
 - Create a space with the "Gallery" space template on [Contentful][1]
 - Clone this repo and setup [CocoaPods][2] for it:
 
+
+First install (cocoapods-keys)[https://github.com/orta/cocoapods-keys] if is not already installed. (NOTE: If you are not using the default system Ruby, you must make sure that you `chown` your `~/.gems` directory, in order to install gems without the `sudo` keyword.
+
+```
+pod plugins install cocoapods-keys
+```
+
 ```
 $ make setup
 ```
