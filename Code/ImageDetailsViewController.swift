@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import KVOController
+import SOZOChromoplast
 
 let metaInformationHeight = CGFloat(100.0)
 
@@ -139,20 +141,21 @@ class ImageDetailsViewController: UIViewController, UIScrollViewDelegate {
     }
 
     func updateText(text: String) {
-        let document = BPParser().parse(text)
-        let converter = BPAttributedStringConverter()
-
-        let defaultFontSize = UIFont.bodyTextFont().pointSize
-        let headerFontSize = UIFont.boldTitleFont().pointSize
-
-        converter.displaySettings.defaultFont = UIFont.bodyTextFont()
-        converter.displaySettings.boldFont = UIFont.latoBoldFontOfSize(defaultFontSize)
-        converter.displaySettings.italicFont = UIFont.latoItalicFontOfSize(defaultFontSize)
-        converter.displaySettings.h1Font = UIFont.boldTitleFont().fontWithSize(headerFontSize * 1.4)
-        converter.displaySettings.h2Font = UIFont.boldTitleFont().fontWithSize(headerFontSize * 1.2)
-        converter.displaySettings.h3Font = UIFont.boldTitleFont()
-
-        metaInformationView.attributedText = converter.convertDocument(document)
+        // TODO:
+//        let document = BPParser().parse(text)
+//        let converter = BPAttributedStringConverter()
+//
+//        let defaultFontSize = UIFont.bodyTextFont().pointSize
+//        let headerFontSize = UIFont.boldTitleFont().pointSize
+//
+//        converter.displaySettings.defaultFont = UIFont.bodyTextFont()
+//        converter.displaySettings.boldFont = UIFont.latoBoldFontOfSize(defaultFontSize)
+//        converter.displaySettings.italicFont = UIFont.latoItalicFontOfSize(defaultFontSize)
+//        converter.displaySettings.h1Font = UIFont.boldTitleFont().fontWithSize(headerFontSize * 1.4)
+//        converter.displaySettings.h2Font = UIFont.boldTitleFont().fontWithSize(headerFontSize * 1.2)
+//        converter.displaySettings.h3Font = UIFont.boldTitleFont()
+//
+//        metaInformationView.attributedText = converter.convertDocument(document)
     }
 
     override func viewDidLoad() {

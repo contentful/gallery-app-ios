@@ -26,7 +26,7 @@ class GalleryHeaderView: UICollectionReusableView {
         backgroundImageView.contentMode = .ScaleAspectFill
 
         textLabel.backgroundColor = UIColor.clearColor()
-        textLabel.font = UIFont.boldTitleFont()
+//        textLabel.font = UIFont.boldTitleFont()
         textLabel.numberOfLines = 0
         textLabel.shadowColor = UIColor.blackColor()
         textLabel.shadowOffset = CGSize(width: 1.0, height: 1.0)

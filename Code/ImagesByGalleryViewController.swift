@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ZoomInteractiveTransition
 
 class ImagesByGalleryViewController: UICollectionViewController, ZoomTransitionProtocol, SingleImageViewControllerDelegate {
     lazy var dataManager = ContentfulDataManager()

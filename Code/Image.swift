@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import ContentfulDeliveryAPI
 
 class Image: NSManagedObject, CDAPersistedEntry {
 

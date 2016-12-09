@@ -17,20 +17,23 @@ platform :ios, '8.0'
 
 inhibit_all_warnings!
 
-#use_frameworks!
+use_frameworks!
 
-pod 'Bypass', '~> 1.0.0'
-pod 'ContentfulDeliveryAPI', '~> 1.9.0'
-pod 'ContentfulDialogs', '~> 0.4.0'
-pod 'ContentfulPersistence', '>= 0.3.2'
-pod 'ContentfulStyle'
-pod 'KVOController', '~> 1.0.0'
-pod 'SOZOChromoplast', '~> 0.0.2'
-pod 'ZoomInteractiveTransition', :git => 'https://github.com/neonichu/ZoomInteractiveTransition.git',
-	:branch => 'reset-alpha-after-animation'
+target 'Gallery' do
+  pod 'Bypass', '~> 1.0.1'
+  pod 'ContentfulDeliveryAPI'
+  pod 'ContentfulDialogs', :git => 'git@github.com:contentful/contentful-ios-dialogs.git'
+  pod 'ContentfulPersistence', '>= 0.3.2'
+  pod 'ContentfulStyle'
+  pod 'KVOController'
+#pod 'LatoFont'
+  pod 'SOZOChromoplast'
+  pod 'ZoomInteractiveTransition', :git => 'https://github.com/neonichu/ZoomInteractiveTransition.git',
+    :branch => 'reset-alpha-after-animation'
+end
 
 target 'GalleryTests' do
-
-pod 'FBSnapshotTestCase', '~> 1.5'
-
+  pod 'FBSnapshotTestCase', '~> 1.5'
 end
+
+

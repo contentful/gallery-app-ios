@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import ZoomInteractiveTransition
+import ContentfulDeliveryAPI
 
 protocol SingleImageViewControllerDelegate: class {
     func updateCurrentIndex(index: Int)

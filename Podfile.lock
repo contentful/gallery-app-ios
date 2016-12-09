@@ -22,44 +22,54 @@ PODS:
     - AFNetworking/NSURLSession
   - Bypass (1.0.1)
   - CGLMail (0.1.1)
-  - ContentfulDeliveryAPI (1.9.2):
+  - cmark (0.21.0)
+  - CocoaMarkdown (1.0):
+    - cmark (~> 0.21.0)
+    - Ono (~> 1.1.3)
+  - ContentfulDeliveryAPI (1.9.6):
     - AFNetworking (~> 2.5.3)
     - ISO8601DateFormatter
-  - ContentfulDialogs (0.4.0):
-    - Bypass
+  - ContentfulDialogs (1.0.1):
     - CGLMail
+    - CocoaMarkdown
     - ContentfulDeliveryAPI (~> 1.9.0)
     - DDPageControl
     - TSMiniWebBrowser@dblock
-  - ContentfulPersistence (0.3.2):
-    - ContentfulDeliveryAPI (~> 1.9.1)
+  - ContentfulPersistence (0.5.1):
+    - ContentfulDeliveryAPI (~> 1.9.4)
+    - ContentfulPersistence/CoreData (= 0.5.1)
+  - ContentfulPersistence/CoreData (0.5.1):
+    - ContentfulDeliveryAPI (~> 1.9.4)
   - ContentfulStyle (0.2.0):
     - EDColor
     - LatoFont
   - DDPageControl (0.1)
   - EDColor (1.0.0)
   - FBSnapshotTestCase (1.8.1)
-  - ISO8601DateFormatter (0.7)
+  - ISO8601DateFormatter (0.8)
   - Keys (1.0.0)
-  - KVOController (1.0.3)
-  - LatoFont (1.0.0)
+  - KVOController (1.2.0)
+  - LatoFont (2.0.1)
+  - Ono (1.1.3)
   - SOZOChromoplast (0.0.3)
   - TSMiniWebBrowser@dblock (1.1)
   - ZoomInteractiveTransition (0.2.1)
 
 DEPENDENCIES:
-  - Bypass (~> 1.0.0)
-  - ContentfulDeliveryAPI (~> 1.9.0)
-  - ContentfulDialogs (~> 0.4.0)
+  - Bypass (~> 1.0.1)
+  - ContentfulDeliveryAPI
+  - ContentfulDialogs (from `git@github.com:contentful/contentful-ios-dialogs.git`)
   - ContentfulPersistence (>= 0.3.2)
   - ContentfulStyle
   - FBSnapshotTestCase (~> 1.5)
   - Keys (from `Pods/CocoaPodsKeys`)
-  - KVOController (~> 1.0.0)
-  - SOZOChromoplast (~> 0.0.2)
+  - KVOController
+  - SOZOChromoplast
   - ZoomInteractiveTransition (from `https://github.com/neonichu/ZoomInteractiveTransition.git`, branch `reset-alpha-after-animation`)
 
 EXTERNAL SOURCES:
+  ContentfulDialogs:
+    :git: git@github.com:contentful/contentful-ios-dialogs.git
   Keys:
     :path: Pods/CocoaPodsKeys
   ZoomInteractiveTransition:
@@ -67,6 +77,9 @@ EXTERNAL SOURCES:
     :git: https://github.com/neonichu/ZoomInteractiveTransition.git
 
 CHECKOUT OPTIONS:
+  ContentfulDialogs:
+    :commit: 6aa80aa2e06402ada0831203e7b2b73f7c267cb3
+    :git: git@github.com:contentful/contentful-ios-dialogs.git
   ZoomInteractiveTransition:
     :commit: cfed4930781c9632aa44970f712ee63157460f7b
     :git: https://github.com/neonichu/ZoomInteractiveTransition.git
@@ -75,21 +88,24 @@ SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
   Bypass: 72a80e30ea645fb190eaecdc7d67a1904b76b7dc
   CGLMail: 91fbbf8a1c0283bb804798dce471f840b0f58488
-  ContentfulDeliveryAPI: ed7a6c7e06a9ed4206714ab483749fe245765369
-  ContentfulDialogs: 645eff40c316f2c48546dbc8fbf971c04fded6e2
-  ContentfulPersistence: fd9ce1235865a968b7c7a57afebf7f235579842d
+  cmark: '0868ab0d93af82a0f3f4b69a313b5d2089af51c3'
+  CocoaMarkdown: b68810d8c6f3be89799825bbb8fbab9ac5d49775
+  ContentfulDeliveryAPI: 86f1a69dce907032b92e5ec0fbbf3a0dbd49c588
+  ContentfulDialogs: 04ed450d9a22bf3f37dd927693434ed22797d3a5
+  ContentfulPersistence: bebe4bdc9fe066817824b9caa2b19a74a30ba64f
   ContentfulStyle: 0f41944b1efd8bba2a8f0c1ac0cf3910b1105949
   DDPageControl: 60c7d350477922b1e67fcf927f7e50eddc7dd207
   EDColor: c83f9a61f9f9b3c23d541f1feb561558e29cb088
   FBSnapshotTestCase: 3dc3899168747a0319c5278f5b3445c13a6532dd
-  ISO8601DateFormatter: ab926648eebe497f4d167c0fd083992f959f1274
+  ISO8601DateFormatter: 4551b6ce4f83185425f583b0b3feb3c7b59b942c
   Keys: 9c35bf00f612ee1d48556f4a4b9b4551e224e90f
-  KVOController: 9fd8f0343670994e4b6f9f0b31f5a45663f3e1cf
-  LatoFont: bcfb0239c339af9aacf4b3061d5268e53e080732
+  KVOController: d72ace34afea42468329623b3379ab3cd1d286b6
+  LatoFont: 6ee909ba4326bfa3687d1b80ed743ddb91dabf50
+  Ono: 49c7cc7e513718fe6c2a1f87fea80ea9272d0216
   SOZOChromoplast: 8902f554d852844c2025b26558d3322f8fae668d
   TSMiniWebBrowser@dblock: 6eb565b44cc2e5cd5eee7660ee5c21f8afae415c
   ZoomInteractiveTransition: 14f2676693852e40edbb6767a13795aea49f115f
 
-PODFILE CHECKSUM: 62fe32c6390dd9d97928defd3d8a0172561f2740
+PODFILE CHECKSUM: 973d7cd87d8b9db3570f38ef31d8a9ebc2e35757
 
 COCOAPODS: 1.1.1

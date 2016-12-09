@@ -7,6 +7,8 @@
 //
 
 import CoreData
+import ContentfulDeliveryAPI
+import ContentfulPersistence
 
 class ContentfulDataManager: NSObject {
     class var AuthorContentTypeId: String { return "38nK0gXXIccQ2IEosyAg6C" }
