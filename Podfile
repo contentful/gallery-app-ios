@@ -21,9 +21,9 @@ use_frameworks!
 
 target 'Gallery' do
   pod 'Bypass', '~> 1.0.1'
-  pod 'ContentfulDeliveryAPI'
+  pod 'Contentful'
   pod 'ContentfulDialogs', :git => 'git@github.com:contentful/contentful-ios-dialogs.git'
-  pod 'ContentfulPersistence', '>= 0.3.2'
+  pod 'ContentfulPersistenceSwift', '>= 0.2.0'
   pod 'ContentfulStyle'
   pod 'KVOController'
 #pod 'LatoFont'
@@ -35,5 +35,4 @@ end
 target 'GalleryTests' do
   pod 'FBSnapshotTestCase', '~> 1.5'
 end
-
 
