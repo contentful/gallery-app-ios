@@ -10,8 +10,8 @@ import UIKit
 
 extension UIViewController {
     func addInfoButton() {
-        let infoButton = UIButton(type: .InfoLight) as UIButton
-        infoButton.addTarget(self, action: #selector(infoTapped), forControlEvents: .TouchUpInside)
+        let infoButton = UIButton(type: .infoLight) as UIButton
+        infoButton.addTarget(self, action: #selector(infoTapped), for: .touchUpInside)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: infoButton)
     }
 
@@ -21,11 +21,11 @@ extension UIViewController {
         let navigationController = UINavigationController(rootViewController: aboutUsViewController)
 
         // TODO: this should be moved inside view controller
-        navigationController.topViewController?.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop, target:navigationController, action: #selector(dismissAnimated))
-        presentViewController(navigationController, animated: true, completion: nil)
+        navigationController.topViewController?.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target:navigationController, action: #selector(dismissAnimated))
+        present(navigationController, animated: true, completion: nil)
     }
 
     func dismissAnimated() {
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
 }

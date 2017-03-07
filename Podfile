@@ -1,3 +1,5 @@
+#!/usr/bin/ruby
+
 =begin
 Use cocoapod-keys to load application keys (variables).
 See https://github.com/orta/cocoapods-keys.
@@ -11,7 +13,7 @@ plugin 'cocoapods-keys', {
   ]}
 
 source 'https://github.com/CocoaPods/Specs'
-source 'https://github.com/contentful/CocoaPodsSpecs'
+#source 'https://github.com/contentful/CocoaPodsSpecs'
 
 platform :ios, '8.0'
 
@@ -20,13 +22,7 @@ inhibit_all_warnings!
 use_frameworks!
 
 target 'Gallery' do
-  pod 'Bypass', '~> 1.0.1'
-  pod 'Contentful'
-  pod 'ContentfulDialogs', :git => 'git@github.com:contentful/contentful-ios-dialogs.git'
-  pod 'ContentfulPersistenceSwift', '>= 0.2.0'
-  pod 'ContentfulStyle'
-  pod 'KVOController'
-#pod 'LatoFont'
+  pod 'ContentfulPersistenceSwift', :path => '~/Contentful/swift/SDK/contentful-persistence.swift', :branch => 'feature/wrapper'
   pod 'SOZOChromoplast'
   pod 'ZoomInteractiveTransition', :git => 'https://github.com/neonichu/ZoomInteractiveTransition.git',
     :branch => 'reset-alpha-after-animation'

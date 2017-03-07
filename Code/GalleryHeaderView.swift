@@ -15,7 +15,7 @@ class GalleryHeaderView: UICollectionReusableView {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        let effect = UIBlurEffect(style: .Dark)
+        let effect = UIBlurEffect(style: .dark)
         let backgroundView = UIVisualEffectView(effect: effect)
         backgroundView.frame.size = frame.size
         backgroundView.contentView.addSubview(backgroundImageView)
@@ -23,15 +23,15 @@ class GalleryHeaderView: UICollectionReusableView {
         addSubview(backgroundView)
 
         backgroundImageView.alpha = 0.5
-        backgroundImageView.contentMode = .ScaleAspectFill
+        backgroundImageView.contentMode = .scaleAspectFill
 
-        textLabel.backgroundColor = UIColor.clearColor()
+        textLabel.backgroundColor = .clear
 //        textLabel.font = UIFont.boldTitleFont()
         textLabel.numberOfLines = 0
-        textLabel.shadowColor = UIColor.blackColor()
+        textLabel.shadowColor = .black
         textLabel.shadowOffset = CGSize(width: 1.0, height: 1.0)
-        textLabel.textAlignment = .Center
-        textLabel.textColor = UIColor.whiteColor()
+        textLabel.textAlignment = .center
+        textLabel.textColor = .white
     }
 
     required init?(coder aDecoder: NSCoder) {

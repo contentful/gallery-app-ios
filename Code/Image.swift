@@ -8,16 +8,30 @@
 
 import Foundation
 import CoreData
-import ContentfulDeliveryAPI
+import Contentful
+import ContentfulPersistence
 
-class Image: NSManagedObject, CDAPersistedEntry {
+class Image: NSManagedObject, EntryPersistable {
 
-    @NSManaged var identifier: String
+    static let contentTypeId = "1xYw5JsIecuGE68mmGMg20"
+
+    @NSManaged var id: String
+    @NSManaged var createdAt: Date?
+    @NSManaged var updatedAt: Date?
+    @NSManaged var title: String
     @NSManaged var imageCaption: String?
     @NSManaged var imageCredits: String?
-    @NSManaged var title: String
+    @NSManaged var photo: Asset?
+    
     @NSManaged var createdEntriesInverse: NSSet
     @NSManaged var imagesInverse: NSSet
-    @NSManaged var photo: Asset?
 
+    static func mapping() -> [FieldName: String] {
+        return [
+            "title": "title",
+            "photo": "photo",
+            "imageCaption": "imageCaption",
+            "imageCredits": "imageCredits"
+        ]
+    }
 }

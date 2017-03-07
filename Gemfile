@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'cocoapods'
+gem 'cocoapods', '~> 1.2'
 gem 'cocoapods-keys'
 gem 'sbconstants'
 gem 'xcpretty'

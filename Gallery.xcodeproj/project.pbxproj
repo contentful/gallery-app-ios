@@ -90,10 +90,7 @@
 		B5BFB09393D916D3519C7DED /* Pods_Gallery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Gallery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE962FB6C65EDFD12AE22245 /* Pods-Gallery.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gallery.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Gallery/Pods-Gallery.debug.xcconfig"; sourceTree = "<group>"; };
 		D820C927635C6B3BCA1ADC61 /* Pods-GalleryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GalleryTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GalleryTests/Pods-GalleryTests.debug.xcconfig"; sourceTree = "<group>"; };
-		ED3490AC1DFADB74003F14BD /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "../../../Library/Developer/Xcode/DerivedData/Gallery-ebvgqrevriotpldadrrxrzdnohef/Build/Products/Debug-iphonesimulator/AFNetworking/AFNetworking.framework"; sourceTree = "<group>"; };
-		ED3490AD1DFADB74003F14BD /* CGLMail.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CGLMail.framework; path = "../../../Library/Developer/Xcode/DerivedData/Gallery-ebvgqrevriotpldadrrxrzdnohef/Build/Products/Debug-iphonesimulator/CGLMail/CGLMail.framework"; sourceTree = "<group>"; };
-		ED3490BB1DFADB74003F14BD /* Ono.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Ono.framework; path = "../../../Library/Developer/Xcode/DerivedData/Gallery-ebvgqrevriotpldadrrxrzdnohef/Build/Products/Debug-iphonesimulator/Ono/Ono.framework"; sourceTree = "<group>"; };
-		EDA685081DFAD990004BA685 /* Bypass.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bypass.framework; path = "../../../Library/Developer/Xcode/DerivedData/Gallery-ebvgqrevriotpldadrrxrzdnohef/Build/Products/Debug-iphonesimulator/Bypass/Bypass.framework"; sourceTree = "<group>"; };
+		ED4D63441EEFDE3D0012E0A7 /* Gallery2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Gallery2.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,7 +175,6 @@
 			isa = PBXGroup;
 			children = (
 				A18A5BC91AA9E8DE00486BF0 /* gallery-app-icon.png */,
-				A13B63DC1A822E8F00EF5EED /* Gallery.xcdatamodeld */,
 				A12757531A81091400A0CA79 /* Images.xcassets */,
 				A12757551A81091400A0CA79 /* LaunchScreen.xib */,
 				A12757501A81091400A0CA79 /* Main.storyboard */,
@@ -197,6 +193,7 @@
 		A1D156DC1A822BF000250215 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A13B63DC1A822E8F00EF5EED /* Gallery.xcdatamodeld */,
 				A13B63DF1A822EB700EF5EED /* Asset.swift */,
 				A13B63E71A822EB700EF5EED /* Author.swift */,
 				A13B63E31A822EB700EF5EED /* Image.swift */,
@@ -209,10 +206,6 @@
 		D43175E62FD2DDF0678C3E67 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				ED3490AC1DFADB74003F14BD /* AFNetworking.framework */,
-				ED3490AD1DFADB74003F14BD /* CGLMail.framework */,
-				ED3490BB1DFADB74003F14BD /* Ono.framework */,
-				EDA685081DFAD990004BA685 /* Bypass.framework */,
 				B5BFB09393D916D3519C7DED /* Pods_Gallery.framework */,
 				8861DA15081F74C545CC4502 /* Pods_GalleryTests.framework */,
 			);
@@ -588,24 +581,18 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BE962FB6C65EDFD12AE22245 /* Pods-Gallery.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = RWJ5E97L7R;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/cmark",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/CocoaMarkdown",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/ContentfulDeliveryAPI",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/ContentfulDialogs",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/ContentfulPersistence",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/ContentfulStyle",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/DDPageControl",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/EDColor",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/FBSnapshotTestCase",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/ISO8601DateFormatter",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/Keys",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/KVOController",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/LatoFont",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/SOZOChromoplast",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/TSMiniWebBrowser@dblock",
@@ -624,24 +611,18 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 447D66C220B40F185A73CFC6 /* Pods-Gallery.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = RWJ5E97L7R;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/cmark",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/CocoaMarkdown",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/ContentfulDeliveryAPI",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/ContentfulDialogs",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/ContentfulPersistence",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/ContentfulStyle",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/DDPageControl",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/EDColor",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/FBSnapshotTestCase",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/ISO8601DateFormatter",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/Keys",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/KVOController",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/LatoFont",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/SOZOChromoplast",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/TSMiniWebBrowser@dblock",
@@ -724,9 +705,10 @@
 		A13B63DC1A822E8F00EF5EED /* Gallery.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				ED4D63441EEFDE3D0012E0A7 /* Gallery2.xcdatamodel */,
 				A13B63DD1A822E8F00EF5EED /* Gallery.xcdatamodel */,
 			);
-			currentVersion = A13B63DD1A822E8F00EF5EED /* Gallery.xcdatamodel */;
+			currentVersion = ED4D63441EEFDE3D0012E0A7 /* Gallery2.xcdatamodel */;
 			name = Gallery.xcdatamodeld;
 			path = ../Gallery.xcdatamodeld;
 			sourceTree = "<group>";

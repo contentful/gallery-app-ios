@@ -8,14 +8,28 @@
 
 import UIKit
 import ZoomInteractiveTransition
-import ContentfulDeliveryAPI
+import Contentful
 
 protocol SingleImageViewControllerDelegate: class {
     func updateCurrentIndex(index: Int)
 }
 
 class SingleImageViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate, ZoomTransitionProtocol {
-    var client: CDAClient?
+    /**
+     UIView, that will be used for zoom transition. Both source and destination view controllers need to implement this method, otherwise ZoomInteractiveTransition will not be performed.
+     
+     @param isSource Boolean, that is true if the view controller implementing this method is the source view controller of a transition.
+     
+     @return UIView, that will participate in transition.
+     */
+    @available(iOS 2.0, *)
+    public func view(forZoomTransition isSource: Bool) -> UIView! {
+        return UIView(frame: .zero)
+    }
+
+
+
+    var client: Client?
     var gallery: Photo_Gallery?
     var images: [Image] {
         if let gallery = gallery {
@@ -39,7 +53,7 @@ class SingleImageViewController: UIPageViewController, UIPageViewControllerDataS
         }
 
         if let delegate = singleImageDelegate {
-            delegate.updateCurrentIndex(index - 1)
+            delegate.updateCurrentIndex(index: index - 1)
         }
     }
 
@@ -64,15 +78,16 @@ class SingleImageViewController: UIPageViewController, UIPageViewControllerDataS
             description = images[index - 1].imageCredits ?? description
         }
 
-        vc.updateText(String(format: "# %@\n\n%@", title, description))
+        vc.updateText(text: String(format: "# %@\n\n%@", title, description))
 
-        if let asset = asset, client = client {
+        if let asset = asset, let _ = client {
             vc.imageView.image = nil
-            vc.imageView.offlineCaching_cda = true
-            vc.imageView.cda_setImageWithPersistedAsset(asset, client: client, size: UIScreen.mainScreen().bounds.size.screenSize(), placeholderImage: nil)
+            // FIXME:
+//            vc.imageView.offlineCaching_cda = true
+//            vc.imageView.cda_setImageWithPersistedAsset(asset, client: client, size: UIScreen.mainScreen().bounds.size.screenSize(), placeholderImage: nil)
         }
 
-        let _ = view.subviews.first?.gestureRecognizers?.map { (recognizer) -> Void in vc.scrollView.panGestureRecognizer.requireGestureRecognizerToFail(recognizer as UIGestureRecognizer) }
+        let _ = view.subviews.first?.gestureRecognizers?.map { (recognizer) -> Void in vc.scrollView.panGestureRecognizer.require(toFail: recognizer as UIGestureRecognizer) }
 
         return vc
     }
@@ -84,13 +99,13 @@ class SingleImageViewController: UIPageViewController, UIPageViewControllerDataS
         dataSource = self
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        if let imageVC = viewControllerWithIndex(initialIndex + 1) {
-            setViewControllers([imageVC], direction: .Forward, animated: false) { (finished) in
+        if let imageVC = viewControllerWithIndex(index: initialIndex + 1) {
+            setViewControllers([imageVC], direction: .forward, animated: false) { (finished) in
                     if finished {
-                        self.updateCurrentIndex(self.initialIndex + 1)
+                        self.updateCurrentIndex(index: self.initialIndex + 1)
                     }
             }
         }
@@ -98,33 +113,33 @@ class SingleImageViewController: UIPageViewController, UIPageViewControllerDataS
 
     // MARK: UIPageViewControllerDataSource
     
-    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         let currentIndex = viewController.view.tag
-        return viewControllerWithIndex(currentIndex + 1)
+        return viewControllerWithIndex(index: currentIndex + 1)
     }
 
-    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         let currentIndex = viewController.view.tag
-        return viewControllerWithIndex(currentIndex - 1)
+        return viewControllerWithIndex(index: currentIndex - 1)
     }
 
     // MARK: UIPageViewControllerDelegate
 
-    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        if let firstVC = viewControllers?.first where completed {
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        if let firstVC = viewControllers?.first, completed {
             let currentIndex = firstVC.view.tag
-            updateCurrentIndex(currentIndex)
+            updateCurrentIndex(index: currentIndex)
         }
     }
 
     // MARK: ZoomTransitionProtocol
 
     func viewForZoomTransition(isSource: Bool) -> UIView! {
-        if let viewControllers = viewControllers where viewControllers.count > 0 {
+        if let viewControllers = viewControllers, viewControllers.count > 0 {
             let imageView = (viewControllers[0] as! ImageDetailsViewController).imageView
 
             if (isSource) {
-                imageView.backgroundColor = UIColor.clearColor()
+                imageView.backgroundColor = .clear
             }
 
             return imageView

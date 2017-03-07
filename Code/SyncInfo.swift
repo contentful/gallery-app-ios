@@ -8,11 +8,9 @@
 
 import Foundation
 import CoreData
-import ContentfulDeliveryAPI
+import ContentfulPersistence
 
-class SyncInfo: NSManagedObject, CDAPersistedSpace {
+class SyncInfo: NSManagedObject, SyncSpacePersistable {
 
-    @NSManaged var lastSyncTimestamp: NSDate
-    @NSManaged var syncToken: String
-
+    @NSManaged var syncToken: String?
 }

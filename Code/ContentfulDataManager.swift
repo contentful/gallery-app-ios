@@ -7,76 +7,98 @@
 //
 
 import CoreData
-import ContentfulDeliveryAPI
+import Contentful
 import ContentfulPersistence
 
 class ContentfulDataManager: NSObject {
-    class var AuthorContentTypeId: String { return "38nK0gXXIccQ2IEosyAg6C" }
-    class var GalleryContentTypeId: String { return "7leLzv8hW06amGmke86y8G" }
-    class var ImageContentTypeId: String { return "1xYw5JsIecuGE68mmGMg20" }
 
-    var client: CDAClient { return manager.client }
-    var manager: CoreDataManager
+    let coreDataStore: CoreDataStore
+    var client: Client?
+    let managedObjectContext: NSManagedObjectContext
+    let contentfulSynchronizer: SynchronizationManager
+
     var notificationToken: NSObjectProtocol? = nil
+
+    static let storeURL = FileManager.default.urls(for: .documentDirectory,
+                                            in: .userDomainMask).last?.appendingPathComponent("Gallery.sqlite")
+
+    static func setupManagedObjectContext() -> NSManagedObjectContext {
+        let managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+
+        let modelURL = Bundle(for: ContentfulDataManager.self).url(forResource: "Gallery", withExtension: "momd")!
+
+        let managedObjectModel = NSManagedObjectModel(contentsOf: modelURL)!
+        let persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
+        do {
+            try persistentStoreCoordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: ContentfulDataManager.storeURL!, options: nil)
+        } catch {
+            fatalError()
+        }
+
+        managedObjectContext.persistentStoreCoordinator = persistentStoreCoordinator
+        return managedObjectContext
+    }
 
     deinit {
         if let token = notificationToken {
-            NSNotificationCenter.defaultCenter().removeObserver(token)
+            NotificationCenter.default.removeObserver(token)
         }
     }
 
     func fetchGalleries(predicate: String? = nil) -> [Photo_Gallery] {
-        return manager.fetchEntriesOfContentTypeWithIdentifier(ContentfulDataManager.GalleryContentTypeId, matchingPredicate: predicate) as! [Photo_Gallery]
+        let fetchPredicate = predicate != nil ? NSPredicate(format: predicate!) : NSPredicate(value: true)
+        // FIXME:
+        return try! coreDataStore.fetchAll(type: Photo_Gallery.self, predicate: fetchPredicate)
     }
 
     func fetchImages(predicate: String? = nil) -> [Image] {
-        return manager.fetchEntriesOfContentTypeWithIdentifier(ContentfulDataManager.ImageContentTypeId, matchingPredicate: nil) as! [Image]
+
+        let fetchPredicate = predicate != nil ? NSPredicate(format: predicate!) : NSPredicate(value: true)
+        return try! coreDataStore.fetchAll(type: Image.self, predicate: fetchPredicate)
     }
 
-    func fetchedResultsControllerForContentType(identifier: String, predicate: String?, sortDescriptors: [NSSortDescriptor]) -> NSFetchedResultsController {
-        let fetchRequest = manager.fetchRequestForEntriesOfContentTypeWithIdentifier(identifier, matchingPredicate: predicate)
-        fetchRequest.sortDescriptors = sortDescriptors
-
-        return NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: manager.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
-    }
+//    func fetchedResultsControllerForContentType(identifier: String, predicate: String?, sortDescriptors: [NSSortDescriptor]) -> NSFetchedResultsController<NSFetchRequestResult> {
+//
+//        let fetchRequest = coreDataStore.fetchRequest(for: <#T##Any.Type#>, predicate: <#T##NSPredicate#>)
+////        let fetchRequest = manager.fetchRequestForEntriesOfContentTypeWithIdentifier(identifier, matchingPredicate: predicate)
+//        fetchRequest.sortDescriptors = sortDescriptors
+//
+//        return NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: contentfulSynchronizer.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+//    }
 
     override init() {
-        let configuration = CDAConfiguration.defaultConfiguration()
-        configuration.userAgent = "Contentful Gallery App/1.0";
+        let model = PersistenceModel(spaceType: SyncInfo.self,
+                                     assetType: Asset.self,
+                                     entryTypes: [Image.self, Photo_Gallery.self, Author.self])
 
-        let client = CDAClient(spaceKey: NSUserDefaults.standardUserDefaults().stringForKey(AppDelegate.SpaceKey)!, accessToken: NSUserDefaults.standardUserDefaults().stringForKey(AppDelegate.AccessToken)!, configuration:configuration)
-        manager = CoreDataManager(client: client, dataModelName: "Gallery")
+        let managedObjectContext = ContentfulDataManager.setupManagedObjectContext()
+        let coreDataStore  = CoreDataStore(context: managedObjectContext)
+        self.managedObjectContext = managedObjectContext
+        self.coreDataStore = coreDataStore
+        let contentfulSynchronizer = SynchronizationManager(spaceId: UserDefaults.standard.string(forKey: AppDelegate.SpaceKey)!,
+                                                             accessToken: UserDefaults.standard.string(forKey: AppDelegate.AccessToken)!,
+                                                             persistenceStore: coreDataStore,
+                                                             persistenceModel: model)
+        self.client = contentfulSynchronizer.client
+        self.contentfulSynchronizer = contentfulSynchronizer
 
-        manager.classForAssets = Asset.self
-        manager.classForSpaces = SyncInfo.self
-
-        manager.setClass(Author.self, forEntriesOfContentTypeWithIdentifier: ContentfulDataManager.AuthorContentTypeId)
-        manager.setClass(Photo_Gallery.self, forEntriesOfContentTypeWithIdentifier: ContentfulDataManager.GalleryContentTypeId)
-        manager.setClass(Image.self, forEntriesOfContentTypeWithIdentifier: ContentfulDataManager.ImageContentTypeId)
-
-        manager.setMapping([ "fields.author": "author", "fields.coverImage": "coverImage", "fields.date": "date", "fields.images": "images", "fields.slug": "slug", "fields.tags": "tags", "fields.title": "title", "fields.description": "galleryDescription" ], forEntriesOfContentTypeWithIdentifier: ContentfulDataManager.GalleryContentTypeId)
 
         super.init()
-
-        notificationToken = NSNotificationCenter.defaultCenter().addObserverForName(AppDelegate.SpaceChangedNotification, object: nil, queue: NSOperationQueue.mainQueue()) { [unowned self] (note: NSNotification?) -> Void in
-            if let note = note {
-                self.manager.deleteAll()
-
-                let defaults = NSUserDefaults.standardUserDefaults()
-                defaults.setValue(note.userInfo![AppDelegate.SpaceKey], forKey: AppDelegate.SpaceKey)
-                defaults.setValue(note.userInfo![AppDelegate.AccessToken], forKey: AppDelegate.AccessToken)
-
-                let keyWindow = UIApplication.sharedApplication().keyWindow!
-                keyWindow.rootViewController = keyWindow.rootViewController?.storyboard?.instantiateInitialViewController()
-            }
-        }
     }
 
-    func performSynchronization(completion: (Bool, NSError!) -> Void) {
-        manager.performSynchronizationWithSuccess({ () -> Void in
-            completion(self.manager.hasChanged(), nil)
-        }) { (response, error) -> Void in
-            completion(false, error)
-        }
+    func performSynchronization(completion: @escaping ResultsHandler<SyncSpace>) {
+
+        contentfulSynchronizer.sync(then: completion)
+
+//        client.initialSync() { result in
+//            self.managedObjectContext.perform {
+//                completion()
+//            }
+//        }
+
+//        contentfulSynchronizer.sync { success in
+//            // FIXME: Error handling?
+//            completion(success, nil)
+//        }
     }
 }
