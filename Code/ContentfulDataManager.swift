@@ -20,7 +20,7 @@ class ContentfulDataManager: NSObject {
     var notificationToken: NSObjectProtocol? = nil
 
     static let storeURL = FileManager.default.urls(for: .documentDirectory,
-                                            in: .userDomainMask).last?.appendingPathComponent("Gallery.sqlite")
+                                                   in: .userDomainMask).last?.appendingPathComponent("Gallery.sqlite")
 
     static func setupManagedObjectContext() -> NSManagedObjectContext {
         let managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
@@ -57,15 +57,6 @@ class ContentfulDataManager: NSObject {
         return try! coreDataStore.fetchAll(type: Image.self, predicate: fetchPredicate)
     }
 
-//    func fetchedResultsControllerForContentType(identifier: String, predicate: String?, sortDescriptors: [NSSortDescriptor]) -> NSFetchedResultsController<NSFetchRequestResult> {
-//
-//        let fetchRequest = coreDataStore.fetchRequest(for: <#T##Any.Type#>, predicate: <#T##NSPredicate#>)
-////        let fetchRequest = manager.fetchRequestForEntriesOfContentTypeWithIdentifier(identifier, matchingPredicate: predicate)
-//        fetchRequest.sortDescriptors = sortDescriptors
-//
-//        return NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: contentfulSynchronizer.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
-//    }
-
     override init() {
         let model = PersistenceModel(spaceType: SyncInfo.self,
                                      assetType: Asset.self,
@@ -76,9 +67,9 @@ class ContentfulDataManager: NSObject {
         self.managedObjectContext = managedObjectContext
         self.coreDataStore = coreDataStore
         let contentfulSynchronizer = SynchronizationManager(spaceId: UserDefaults.standard.string(forKey: AppDelegate.SpaceKey)!,
-                                                             accessToken: UserDefaults.standard.string(forKey: AppDelegate.AccessToken)!,
-                                                             persistenceStore: coreDataStore,
-                                                             persistenceModel: model)
+                                                            accessToken: UserDefaults.standard.string(forKey: AppDelegate.AccessToken)!,
+                                                            persistenceStore: coreDataStore,
+                                                            persistenceModel: model)
         self.client = contentfulSynchronizer.client
         self.contentfulSynchronizer = contentfulSynchronizer
 
@@ -87,18 +78,6 @@ class ContentfulDataManager: NSObject {
     }
 
     func performSynchronization(completion: @escaping ResultsHandler<SyncSpace>) {
-
         contentfulSynchronizer.sync(then: completion)
-
-//        client.initialSync() { result in
-//            self.managedObjectContext.perform {
-//                completion()
-//            }
-//        }
-
-//        contentfulSynchronizer.sync { success in
-//            // FIXME: Error handling?
-//            completion(success, nil)
-//        }
     }
 }

@@ -7,30 +7,15 @@
 //
 
 import UIKit
-import ZoomInteractiveTransition
 import AlamofireImage
 
-class ImagesByGalleryViewController: UICollectionViewController, ZoomTransitionProtocol, SingleImageViewControllerDelegate {
-    /**
-     UIView, that will be used for zoom transition. Both source and destination view controllers need to implement this method, otherwise ZoomInteractiveTransition will not be performed.
-     
-     @param isSource Boolean, that is true if the view controller implementing this method is the source view controller of a transition.
-     
-     @return UIView, that will participate in transition.
-     */
-    @available(iOS 2.0, *)
-    public func view(forZoomTransition isSource: Bool) -> UIView! {
-        // FIXME:
-        return UIView(frame: .zero)
-    }
-
-
+class ImagesByGalleryViewController: UICollectionViewController, SingleImageViewControllerDelegate {
 
     lazy var dataManager = ContentfulDataManager()
     var selectedIndexPath: IndexPath?
     var transition: ZoomInteractiveTransition?
 
-    var images: [(Photo_Gallery, [Image])] = [(Photo_Gallery, [Image])]() {
+    var galleries: [Photo_Gallery] = [Photo_Gallery]() {
         didSet {
             if let layout = collectionView?.collectionViewLayout as? AnimatedFlowLayout {
                 layout.showsHeader = true
@@ -80,8 +65,6 @@ class ImagesByGalleryViewController: UICollectionViewController, ZoomTransitionP
 
         collectionView?.register(ImageCell.self, forCellWithReuseIdentifier: String(describing: ImageCell.self))
         collectionView?.register(GalleryHeaderView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: String(describing: GalleryHeaderView.self))
-        
-        transition = ZoomInteractiveTransition(navigationController: navigationController)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -127,7 +110,7 @@ class ImagesByGalleryViewController: UICollectionViewController, ZoomTransitionP
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images[section].0.images.count
+        return galleries.images.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -150,7 +133,7 @@ class ImagesByGalleryViewController: UICollectionViewController, ZoomTransitionP
     }
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return images.count
+        return galleries.count
     }
 
     // MARK: UICollectionViewDelegate
@@ -158,32 +141,5 @@ class ImagesByGalleryViewController: UICollectionViewController, ZoomTransitionP
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedIndexPath = indexPath
         performSegue(withIdentifier: SegueIdentifier.SingleImageSegue.rawValue, sender: indexPath)
-    }
-
-    // MARK: ZoomTransitionProtocol
-
-    func initialZoomViewSnapshot(fromProposedSnapshot snapshot: UIImageView!) -> UIImageView! {
-        return UIImageView(image: viewForZoomTransition(isSource: true).dt_takeSnapshot())
-    }
-
-    func viewForZoomTransition(isSource: Bool) -> UIView! {
-        guard let selectedIndexPath = selectedIndexPath else { return nil }
-        guard let collectionView = collectionView else { return nil }
-
-        if selectedIndexPath.item == -1 {
-            return collectionView
-        }
-
-        if let cell = collectionView.cellForItem(at: selectedIndexPath as IndexPath) as? ImageCell {
-            collectionView.scrollToItem(at: selectedIndexPath as IndexPath, at: .centeredVertically, animated: false)
-            return isSource ? cell.imageView : cell
-        }
-
-        if let cell = collectionView.dataSource?.collectionView(collectionView, cellForItemAt: selectedIndexPath as IndexPath) as? ImageCell {
-            collectionView.scrollToItem(at: selectedIndexPath as IndexPath, at: .centeredVertically, animated: false)
-            return isSource ? cell.imageView : cell
-        }
-
-        return nil
     }
 }

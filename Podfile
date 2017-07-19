@@ -24,8 +24,6 @@ use_frameworks!
 target 'Gallery' do
   pod 'ContentfulPersistenceSwift', :path => '~/Contentful/swift/SDK/contentful-persistence.swift', :branch => 'feature/wrapper'
   pod 'SOZOChromoplast'
-  pod 'ZoomInteractiveTransition', :git => 'https://github.com/neonichu/ZoomInteractiveTransition.git',
-    :branch => 'reset-alpha-after-animation'
   pod 'AlamofireImage', '~> 3.2'
 end
 

@@ -17,7 +17,6 @@ PODS:
   - Keys (1.0.0)
   - ObjectMapper (2.2.8)
   - SOZOChromoplast (0.0.3)
-  - ZoomInteractiveTransition (0.2.1)
 
 DEPENDENCIES:
   - AlamofireImage (~> 3.2)
@@ -25,7 +24,6 @@ DEPENDENCIES:
   - FBSnapshotTestCase (~> 1.5)
   - Keys (from `Pods/CocoaPodsKeys`)
   - SOZOChromoplast
-  - ZoomInteractiveTransition (from `https://github.com/neonichu/ZoomInteractiveTransition.git`, branch `reset-alpha-after-animation`)
 
 EXTERNAL SOURCES:
   ContentfulPersistenceSwift:
@@ -33,14 +31,6 @@ EXTERNAL SOURCES:
     :path: "~/Contentful/swift/SDK/contentful-persistence.swift"
   Keys:
     :path: Pods/CocoaPodsKeys
-  ZoomInteractiveTransition:
-    :branch: reset-alpha-after-animation
-    :git: https://github.com/neonichu/ZoomInteractiveTransition.git
-
-CHECKOUT OPTIONS:
-  ZoomInteractiveTransition:
-    :commit: cfed4930781c9632aa44970f712ee63157460f7b
-    :git: https://github.com/neonichu/ZoomInteractiveTransition.git
 
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
@@ -52,8 +42,7 @@ SPEC CHECKSUMS:
   Keys: 9c35bf00f612ee1d48556f4a4b9b4551e224e90f
   ObjectMapper: 3d571bb5af471c779e1160828cd9ad5c4ef90958
   SOZOChromoplast: 8902f554d852844c2025b26558d3322f8fae668d
-  ZoomInteractiveTransition: 14f2676693852e40edbb6767a13795aea49f115f
 
-PODFILE CHECKSUM: '08312a4b5d3ce8e56d0542121d74843598778678'
+PODFILE CHECKSUM: ebc400a1c94a9f024f2f6ad7d1f6f4bdddef1b94
 
 COCOAPODS: 1.2.0
