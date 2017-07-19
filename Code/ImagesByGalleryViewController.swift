@@ -13,7 +13,6 @@ class ImagesByGalleryViewController: UICollectionViewController, SingleImageView
 
     lazy var dataManager = ContentfulDataManager()
     var selectedIndexPath: IndexPath?
-    var transition: ZoomInteractiveTransition?
 
     var galleries: [Photo_Gallery] = [Photo_Gallery]() {
         didSet {
@@ -32,7 +31,7 @@ class ImagesByGalleryViewController: UICollectionViewController, SingleImageView
             let indexPath = sender as! NSIndexPath
             let vc = segue.destination as! SingleImageViewController
             vc.client = dataManager.client
-            vc.gallery = images[indexPath.section].0
+            vc.gallery = galleries[indexPath.section]
             vc.initialIndex = indexPath.item
             vc.singleImageDelegate = self
         }
@@ -42,16 +41,15 @@ class ImagesByGalleryViewController: UICollectionViewController, SingleImageView
         dataManager.performSynchronization() { result in
             switch result {
             case .success:
-                self.images = self.dataManager.fetchGalleries().map { (gallery) in
-                    return (gallery, gallery.images.array as! [Image])
-                    }.sorted() { $0.0.title! < $1.0.title! }
+                self.galleries = self.dataManager.fetchGalleries().sorted() { $0.title! < $1.title! }
                 self.collectionView?.reloadData()
 
             case .error(let error as NSError) where error.code != NSURLErrorNotConnectedToInternet:
                 let alert = UIAlertView(title: NSLocalizedString("Error", comment: ""), message: error.localizedDescription, delegate: nil, cancelButtonTitle: NSLocalizedString("OK", comment: ""))
                 alert.show()
             case .error(let error):
-                break // TODO:
+                let alert = UIAlertView(title: NSLocalizedString("Error", comment: ""), message: error.localizedDescription, delegate: nil, cancelButtonTitle: NSLocalizedString("OK", comment: ""))
+                alert.show()
             }
         }
     }
@@ -96,9 +94,9 @@ class ImagesByGalleryViewController: UICollectionViewController, SingleImageView
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ImageCell.self), for: indexPath as IndexPath) as! ImageCell
 
-        let image = images[indexPath.section].1[indexPath.item]
+        let image = galleries[indexPath.section].images[indexPath.item] as? Image
 
-        if let asset = image.photo, let urlString = asset.urlString, let url = URL(string: urlString) {
+        if let asset = image?.photo, let urlString = asset.urlString, let url = URL(string: urlString) {
             cell.imageView.image = nil
 
             cell.imageView.af_setImage(withURL: url,
@@ -110,12 +108,12 @@ class ImagesByGalleryViewController: UICollectionViewController, SingleImageView
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return galleries.images.count
+        return galleries[section].images.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionElementKindSectionHeader {
-            let gallery = images[indexPath.section].0
+            let gallery = galleries[indexPath.section]
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: String(describing: GalleryHeaderView.self), for: indexPath) as! GalleryHeaderView
 
             if let asset = gallery.coverImage, let urlString = asset.urlString, let url = URL(string: urlString) {

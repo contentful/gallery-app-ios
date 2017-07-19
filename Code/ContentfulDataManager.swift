@@ -9,6 +9,7 @@
 import CoreData
 import Contentful
 import ContentfulPersistence
+import Keys
 
 class ContentfulDataManager: NSObject {
 
@@ -47,7 +48,6 @@ class ContentfulDataManager: NSObject {
 
     func fetchGalleries(predicate: String? = nil) -> [Photo_Gallery] {
         let fetchPredicate = predicate != nil ? NSPredicate(format: predicate!) : NSPredicate(value: true)
-        // FIXME:
         return try! coreDataStore.fetchAll(type: Photo_Gallery.self, predicate: fetchPredicate)
     }
 
@@ -66,8 +66,9 @@ class ContentfulDataManager: NSObject {
         let coreDataStore  = CoreDataStore(context: managedObjectContext)
         self.managedObjectContext = managedObjectContext
         self.coreDataStore = coreDataStore
-        let contentfulSynchronizer = SynchronizationManager(spaceId: UserDefaults.standard.string(forKey: AppDelegate.SpaceKey)!,
-                                                            accessToken: UserDefaults.standard.string(forKey: AppDelegate.AccessToken)!,
+        let keys = GalleryKeys()
+        let contentfulSynchronizer = SynchronizationManager(spaceId: keys.gallerySpaceId(),
+                                                            accessToken: keys.galleryAccessToken(),
                                                             persistenceStore: coreDataStore,
                                                             persistenceModel: model)
         self.client = contentfulSynchronizer.client

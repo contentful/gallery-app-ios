@@ -35,8 +35,8 @@ class Photo_Gallery: NSManagedObject, EntryPersistable {
             "description": "galleryDescription",
             "coverImage": "coverImage",
             "slug": "slug",
-            "author": "author"
+            "author": "author",
+            "images": "images"
         ]
     }
-
 }

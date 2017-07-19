@@ -30,7 +30,6 @@
 		A1E3C56D1AA48E1E0069C998 /* GalleryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E3C56C1AA48E1E0069C998 /* GalleryHeaderView.swift */; };
 		C6B95DC4C5BB0880CAE70290 /* Pods_GalleryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8861DA15081F74C545CC4502 /* Pods_GalleryTests.framework */; };
 		ED8CCE9F1DFAE1CC00FFC5F4 /* Pods_Gallery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5BFB09393D916D3519C7DED /* Pods_Gallery.framework */; };
-		ED8CCEA01DFAE1CC00FFC5F4 /* Pods_Gallery.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B5BFB09393D916D3519C7DED /* Pods_Gallery.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,7 +49,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				ED8CCEA01DFAE1CC00FFC5F4 /* Pods_Gallery.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -531,7 +529,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				USER_HEADER_SEARCH_PATHS = "Pods/**";
 			};
 			name = Debug;
@@ -571,7 +569,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				USER_HEADER_SEARCH_PATHS = "Pods/**";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -584,20 +582,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = RWJ5E97L7R;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/cmark",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/ContentfulPersistence",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/DDPageControl",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/EDColor",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/FBSnapshotTestCase",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/ISO8601DateFormatter",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/Keys",
-					"$(PROJECT_DIR)/build/Debug-iphoneos",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/SOZOChromoplast",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/TSMiniWebBrowser@dblock",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/ZoomInteractiveTransition",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.contentful.$(PRODUCT_NAME:rfc1034identifier)";
@@ -614,20 +599,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = RWJ5E97L7R;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/cmark",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/ContentfulPersistence",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/DDPageControl",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/EDColor",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/FBSnapshotTestCase",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/ISO8601DateFormatter",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/Keys",
-					"$(PROJECT_DIR)/build/Debug-iphoneos",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/SOZOChromoplast",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/TSMiniWebBrowser@dblock",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/ZoomInteractiveTransition",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.contentful.$(PRODUCT_NAME:rfc1034identifier)";

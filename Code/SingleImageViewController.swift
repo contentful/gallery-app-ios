@@ -7,27 +7,13 @@
 //
 
 import UIKit
-import ZoomInteractiveTransition
 import Contentful
 
 protocol SingleImageViewControllerDelegate: class {
     func updateCurrentIndex(index: Int)
 }
 
-class SingleImageViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate, ZoomTransitionProtocol {
-    /**
-     UIView, that will be used for zoom transition. Both source and destination view controllers need to implement this method, otherwise ZoomInteractiveTransition will not be performed.
-     
-     @param isSource Boolean, that is true if the view controller implementing this method is the source view controller of a transition.
-     
-     @return UIView, that will participate in transition.
-     */
-    @available(iOS 2.0, *)
-    public func view(forZoomTransition isSource: Bool) -> UIView! {
-        return UIView(frame: .zero)
-    }
-
-
+class SingleImageViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
 
     var client: Client?
     var gallery: Photo_Gallery?
@@ -80,11 +66,12 @@ class SingleImageViewController: UIPageViewController, UIPageViewControllerDataS
 
         vc.updateText(text: String(format: "# %@\n\n%@", title, description))
 
-        if let asset = asset, let _ = client {
-            vc.imageView.image = nil
-            // FIXME:
-//            vc.imageView.offlineCaching_cda = true
-//            vc.imageView.cda_setImageWithPersistedAsset(asset, client: client, size: UIScreen.mainScreen().bounds.size.screenSize(), placeholderImage: nil)
+        if let asset = asset, let urlString = asset.urlString, let url = URL(string: urlString) {
+            vc.imageView.image = nil // TODO: See if this is necessary.
+
+            vc.imageView.af_setImage(withURL: url,
+                                     imageTransition: .crossDissolve(0.5),
+                                     runImageTransitionIfCached: true)
         }
 
         let _ = view.subviews.first?.gestureRecognizers?.map { (recognizer) -> Void in vc.scrollView.panGestureRecognizer.require(toFail: recognizer as UIGestureRecognizer) }
@@ -130,21 +117,5 @@ class SingleImageViewController: UIPageViewController, UIPageViewControllerDataS
             let currentIndex = firstVC.view.tag
             updateCurrentIndex(index: currentIndex)
         }
-    }
-
-    // MARK: ZoomTransitionProtocol
-
-    func viewForZoomTransition(isSource: Bool) -> UIView! {
-        if let viewControllers = viewControllers, viewControllers.count > 0 {
-            let imageView = (viewControllers[0] as! ImageDetailsViewController).imageView
-
-            if (isSource) {
-                imageView.backgroundColor = .clear
-            }
-
-            return imageView
-        }
-
-        return view
     }
 }

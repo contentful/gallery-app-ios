@@ -9,19 +9,15 @@
 import UIKit
 import SOZOChromoplast
 
-let metaInformationHeight = CGFloat(100.0)
+let metaInformationHeight: CGFloat = 100.0
 
 class ImageDetailsViewController: UIViewController, UIScrollViewDelegate {
+
     var chromoplast: SOZOChromoplast?
     let imageView = UIImageView(frame: .zero)
     let metaInformationView = UITextView(frame: .zero)
     weak var pageViewController: UIPageViewController?
     let scrollView = UIScrollView(frame: .zero)
-    // FIXME:
-//
-//    deinit {
-//        kvoController?.unobserve(imageView)
-//    }
 
     convenience init() {
         self.init(nibName: nil, bundle: nil)
@@ -30,25 +26,31 @@ class ImageDetailsViewController: UIViewController, UIScrollViewDelegate {
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nil, bundle: nil)
 
-        // FIXME:
-//        kvoController = FBKVOController(observer: self)
-//        kvoController?.observe(imageView, keyPath: "image", options: .New, context: nil)
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func viewWillTransition(to size: CGSize,
+                            with coordinator: UIViewControllerTransitionCoordinator) {
+        computeFrames()
+    }
+
     func computeFrames() {
-        if UIInterfaceOrientationIsPortrait(self.interfaceOrientation) {
+        // FIXME:
+
+        switch UIDevice.current.orientation {
+        case .portrait, .portraitUpsideDown:
+            // TODO: leave room for metaInformationHeight
             scrollView.frame.size.height = view.frame.size.height - metaInformationHeight
             metaInformationView.frame.size.height = metaInformationHeight
-        } else {
+        default:
             scrollView.frame.size.height = view.frame.size.height
             metaInformationView.frame.origin.y = view.frame.maxY
-            metaInformationView.frame.size.height = metaInformationHeight
-        }
 
+        }
+        metaInformationView.frame.size.height = metaInformationHeight
         metaInformationView.frame.origin.y = scrollView.frame.maxY
     }
 
@@ -61,22 +63,8 @@ class ImageDetailsViewController: UIViewController, UIScrollViewDelegate {
         }
     }
 
-    // FIXME:
-//    override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
-//        super.didRotate(from: fromInterfaceOrientation)
-//
-//        UIView.animate(withDuration: 0.1) {
-//            self.computeFrames()
-//        }
-//    }
-
-    // FIXME:
-//    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutableRawPointer) {
-//        updateImage(image: imageView.image)
-//    }
-
-    func statusBarStyleForBackgroundColor(color: UIColor) -> UIBarStyle {
-        let componentColors = color.cgColor.components!
+    func statusBarStyleForBackgroundColor(color: UIColor?) -> UIBarStyle {
+        guard let componentColors = color?.cgColor.components else { return .black }
 
         var darknessScore = componentColors[0] * 255 * 299
         darknessScore += componentColors[1] * 255 * 587
@@ -133,7 +121,7 @@ class ImageDetailsViewController: UIViewController, UIScrollViewDelegate {
             }
 
             if let navBar = viewController.navigationController?.navigationBar {
-                navBar.barStyle = statusBarStyleForBackgroundColor(color: view.backgroundColor!)
+                navBar.barStyle = statusBarStyleForBackgroundColor(color: view.backgroundColor)
                 navBar.barTintColor = view.backgroundColor
 
                 if let chromoplast = chromoplast {
