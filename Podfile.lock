@@ -1,4 +1,7 @@
 PODS:
+  - Alamofire (4.5.0)
+  - AlamofireImage (3.2.0):
+    - Alamofire (~> 4.1)
   - Contentful (0.7.5):
     - Interstellar (~> 2.0.0)
     - ObjectMapper (~> 2.2)
@@ -17,6 +20,7 @@ PODS:
   - ZoomInteractiveTransition (0.2.1)
 
 DEPENDENCIES:
+  - AlamofireImage (~> 3.2)
   - ContentfulPersistenceSwift (from `~/Contentful/swift/SDK/contentful-persistence.swift`)
   - FBSnapshotTestCase (~> 1.5)
   - Keys (from `Pods/CocoaPodsKeys`)
@@ -39,6 +43,8 @@ CHECKOUT OPTIONS:
     :git: https://github.com/neonichu/ZoomInteractiveTransition.git
 
 SPEC CHECKSUMS:
+  Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
+  AlamofireImage: 157ed682cc81d3b9db4fb90c1f12180ac552d93b
   Contentful: ca00a53744e402a33c5616e7e31085a21500f4bb
   ContentfulPersistenceSwift: 7965e3ec10ddea0d6d654c291445733ce7626076
   FBSnapshotTestCase: 3dc3899168747a0319c5278f5b3445c13a6532dd
@@ -48,6 +54,6 @@ SPEC CHECKSUMS:
   SOZOChromoplast: 8902f554d852844c2025b26558d3322f8fae668d
   ZoomInteractiveTransition: 14f2676693852e40edbb6767a13795aea49f115f
 
-PODFILE CHECKSUM: 9ae7a14ad2ae56f17409d6cc36f49ed5d72dca7b
+PODFILE CHECKSUM: '08312a4b5d3ce8e56d0542121d74843598778678'
 
 COCOAPODS: 1.2.0

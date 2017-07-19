@@ -26,6 +26,7 @@ target 'Gallery' do
   pod 'SOZOChromoplast'
   pod 'ZoomInteractiveTransition', :git => 'https://github.com/neonichu/ZoomInteractiveTransition.git',
     :branch => 'reset-alpha-after-animation'
+  pod 'AlamofireImage', '~> 3.2'
 end
 
 target 'GalleryTests' do

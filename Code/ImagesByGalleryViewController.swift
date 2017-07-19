@@ -8,6 +8,7 @@
 
 import UIKit
 import ZoomInteractiveTransition
+import AlamofireImage
 
 class ImagesByGalleryViewController: UICollectionViewController, ZoomTransitionProtocol, SingleImageViewControllerDelegate {
     /**
@@ -59,6 +60,7 @@ class ImagesByGalleryViewController: UICollectionViewController, ZoomTransitionP
                 self.images = self.dataManager.fetchGalleries().map { (gallery) in
                     return (gallery, gallery.images.array as! [Image])
                     }.sorted() { $0.0.title! < $1.0.title! }
+                self.collectionView?.reloadData()
 
             case .error(let error as NSError) where error.code != NSURLErrorNotConnectedToInternet:
                 let alert = UIAlertView(title: NSLocalizedString("Error", comment: ""), message: error.localizedDescription, delegate: nil, cancelButtonTitle: NSLocalizedString("OK", comment: ""))
@@ -85,6 +87,7 @@ class ImagesByGalleryViewController: UICollectionViewController, ZoomTransitionP
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        print("ImagesByGalleryViewController appearing")
         if let navBar = navigationController?.navigationBar {
             navBar.barStyle = .default
             navBar.barTintColor = nil
@@ -112,19 +115,19 @@ class ImagesByGalleryViewController: UICollectionViewController, ZoomTransitionP
 
         let image = images[indexPath.section].1[indexPath.item]
 
-        if let asset = image.photo {
+        if let asset = image.photo, let urlString = asset.urlString, let url = URL(string: urlString) {
             cell.imageView.image = nil
 
-            // TODO:
-//            cell.imageView.offlineCaching_cda = true
-//            cell.imageView.cda_setImageWithPersistedAsset(asset, client: dataManager.client, size: UIScreen.mainScreen().bounds.size.screenSize(), placeholderImage: nil)
+            cell.imageView.af_setImage(withURL: url,
+                                       imageTransition: .crossDissolve(0.5),
+                                       runImageTransitionIfCached: true)
         }
 
         return cell
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images[section].1.count
+        return images[section].0.images.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -132,10 +135,10 @@ class ImagesByGalleryViewController: UICollectionViewController, ZoomTransitionP
             let gallery = images[indexPath.section].0
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: String(describing: GalleryHeaderView.self), for: indexPath) as! GalleryHeaderView
 
-            if let asset = gallery.coverImage {
-                // TODO:
-//                view.backgroundImageView.offlineCaching_cda = true
-//                view.backgroundImageView.cda_setImageWithPersistedAsset(asset, client: dataManager.client, size: view.backgroundImageView.frame.size.screenSize(), placeholderImage: nil)
+            if let asset = gallery.coverImage, let urlString = asset.urlString, let url = URL(string: urlString) {
+                view.backgroundImageView.af_setImage(withURL: url,
+                                                     imageTransition: .crossDissolve(0.5),
+                                                     runImageTransitionIfCached: true)
             }
 
             view.textLabel.text = gallery.title
@@ -164,22 +167,21 @@ class ImagesByGalleryViewController: UICollectionViewController, ZoomTransitionP
     }
 
     func viewForZoomTransition(isSource: Bool) -> UIView! {
-        if let selectedIndexPath = selectedIndexPath {
-            if let collectionView = collectionView {
-                if selectedIndexPath.item == -1 {
-                    return collectionView
-                }
+        guard let selectedIndexPath = selectedIndexPath else { return nil }
+        guard let collectionView = collectionView else { return nil }
 
-                if let cell = collectionView.cellForItem(at: selectedIndexPath as IndexPath) as? ImageCell {
-                    collectionView.scrollToItem(at: selectedIndexPath as IndexPath, at: .centeredVertically, animated: false)
-                    return isSource ? cell.imageView : cell
-                }
+        if selectedIndexPath.item == -1 {
+            return collectionView
+        }
 
-                if let cell = collectionView.dataSource?.collectionView(collectionView, cellForItemAt: selectedIndexPath as IndexPath) as? ImageCell {
-                    collectionView.scrollToItem(at: selectedIndexPath as IndexPath, at: .centeredVertically, animated: false)
-                    return isSource ? cell.imageView : cell
-                }
-            }
+        if let cell = collectionView.cellForItem(at: selectedIndexPath as IndexPath) as? ImageCell {
+            collectionView.scrollToItem(at: selectedIndexPath as IndexPath, at: .centeredVertically, animated: false)
+            return isSource ? cell.imageView : cell
+        }
+
+        if let cell = collectionView.dataSource?.collectionView(collectionView, cellForItemAt: selectedIndexPath as IndexPath) as? ImageCell {
+            collectionView.scrollToItem(at: selectedIndexPath as IndexPath, at: .centeredVertically, animated: false)
+            return isSource ? cell.imageView : cell
         }
 
         return nil
