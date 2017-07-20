@@ -26,7 +26,7 @@ class Image: NSManagedObject, EntryPersistable {
     @NSManaged var createdEntriesInverse: NSSet
     @NSManaged var imagesInverse: NSSet
 
-    static func mapping() -> [FieldName: String] {
+    static func fieldMapping() -> [FieldName: String] {
         return [
             "title": "title",
             "photo": "photo",

@@ -1,5 +1,5 @@
 //
-//  SingleImageViewController.swift
+//  ImagesPageViewController.swift
 //  Gallery
 //
 //  Created by Boris Bügling on 17/02/15.
@@ -13,10 +13,11 @@ protocol SingleImageViewControllerDelegate: class {
     func updateCurrentIndex(index: Int)
 }
 
-class SingleImageViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+class ImagesPageViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
 
     var client: Client?
     var gallery: Photo_Gallery?
+    
     var images: [Image] {
         if let gallery = gallery {
             return gallery.images.array as! [Image]
@@ -43,7 +44,7 @@ class SingleImageViewController: UIPageViewController, UIPageViewControllerDataS
         }
     }
 
-    func viewControllerWithIndex(index: Int) -> UIViewController? {
+    func viewControllerWithIndex(index: Int) -> ImageDetailsViewController? {
         if index < 0 || index > images.count {
             return nil
         }
@@ -66,12 +67,13 @@ class SingleImageViewController: UIPageViewController, UIPageViewControllerDataS
 
         vc.updateText(text: String(format: "# %@\n\n%@", title, description))
 
-        if let asset = asset, let urlString = asset.urlString, let url = URL(string: urlString) {
-            vc.imageView.image = nil // TODO: See if this is necessary.
+        if let asset = asset, let urlString = asset.urlString {
+            let size = UIScreen.main.bounds.size
+            let imageOptions = [ImageOption.width(UInt(size.width)), ImageOption.height(UInt(size.height))]
+            let url = try! urlString.url(with: imageOptions)
 
-            vc.imageView.af_setImage(withURL: url,
-                                     imageTransition: .crossDissolve(0.5),
-                                     runImageTransitionIfCached: true)
+            vc.imageView.image = nil
+            vc.imageView.af_setImage(withURL: url)
         }
 
         let _ = view.subviews.first?.gestureRecognizers?.map { (recognizer) -> Void in vc.scrollView.panGestureRecognizer.require(toFail: recognizer as UIGestureRecognizer) }
@@ -88,12 +90,13 @@ class SingleImageViewController: UIPageViewController, UIPageViewControllerDataS
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        view.backgroundColor = .black
+        
         if let imageVC = viewControllerWithIndex(index: initialIndex + 1) {
             setViewControllers([imageVC], direction: .forward, animated: false) { (finished) in
-                    if finished {
-                        self.updateCurrentIndex(index: self.initialIndex + 1)
-                    }
+                if finished {
+                    self.updateCurrentIndex(index: self.initialIndex + 1)
+                }
             }
         }
     }

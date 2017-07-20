@@ -28,7 +28,7 @@ class Photo_Gallery: NSManagedObject, EntryPersistable {
     @NSManaged var coverImage: Asset?
     @NSManaged var images: NSOrderedSet
 
-    static func mapping() -> [FieldName: String] {
+    static func fieldMapping() -> [FieldName: String] {
         return [
             "title": "title",
             "date": "date",

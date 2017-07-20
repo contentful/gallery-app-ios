@@ -8,10 +8,14 @@
 
 import UIKit
 import AlamofireImage
+import Contentful
 
-class ImagesByGalleryViewController: UICollectionViewController, SingleImageViewControllerDelegate {
+class ImagesByGalleryViewController: UICollectionViewController,
+//                                     UINavigationControllerDelegate,
+                                     SingleImageViewControllerDelegate {
 
     lazy var dataManager = ContentfulDataManager()
+
     var selectedIndexPath: IndexPath?
 
     var galleries: [Photo_Gallery] = [Photo_Gallery]() {
@@ -24,30 +28,24 @@ class ImagesByGalleryViewController: UICollectionViewController, SingleImageView
         }
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
-
-        if segue.identifier == SegueIdentifier.SingleImageSegue.rawValue {
-            let indexPath = sender as! NSIndexPath
-            let vc = segue.destination as! SingleImageViewController
-            vc.client = dataManager.client
-            vc.gallery = galleries[indexPath.section]
-            vc.initialIndex = indexPath.item
-            vc.singleImageDelegate = self
-        }
-    }
 
     func refresh() {
-        dataManager.performSynchronization() { result in
+        dataManager.performSynchronization() { [weak self] result in
+            guard let strongSelf = self else { return }
+
             switch result {
             case .success:
-                self.galleries = self.dataManager.fetchGalleries().sorted() { $0.title! < $1.title! }
-                self.collectionView?.reloadData()
+                strongSelf.galleries = strongSelf.dataManager.fetchGalleries().sorted() { $0.title! < $1.title! }
+                strongSelf.collectionView?.reloadData()
 
             case .error(let error as NSError) where error.code != NSURLErrorNotConnectedToInternet:
+                strongSelf.galleries = strongSelf.dataManager.fetchGalleries().sorted() { $0.title! < $1.title! }
+                strongSelf.collectionView?.reloadData()
                 let alert = UIAlertView(title: NSLocalizedString("Error", comment: ""), message: error.localizedDescription, delegate: nil, cancelButtonTitle: NSLocalizedString("OK", comment: ""))
                 alert.show()
             case .error(let error):
+                strongSelf.galleries = strongSelf.dataManager.fetchGalleries().sorted() { $0.title! < $1.title! }
+                strongSelf.collectionView?.reloadData()
                 let alert = UIAlertView(title: NSLocalizedString("Error", comment: ""), message: error.localizedDescription, delegate: nil, cancelButtonTitle: NSLocalizedString("OK", comment: ""))
                 alert.show()
             }
@@ -63,18 +61,6 @@ class ImagesByGalleryViewController: UICollectionViewController, SingleImageView
 
         collectionView?.register(ImageCell.self, forCellWithReuseIdentifier: String(describing: ImageCell.self))
         collectionView?.register(GalleryHeaderView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: String(describing: GalleryHeaderView.self))
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        print("ImagesByGalleryViewController appearing")
-        if let navBar = navigationController?.navigationBar {
-            navBar.barStyle = .default
-            navBar.barTintColor = nil
-            navBar.tintColor = UIView().tintColor
-            navBar.titleTextAttributes = [ NSForegroundColorAttributeName: UIColor.black ]
-        }
 
         refresh()
     }
@@ -96,12 +82,14 @@ class ImagesByGalleryViewController: UICollectionViewController, SingleImageView
 
         let image = galleries[indexPath.section].images[indexPath.item] as? Image
 
-        if let asset = image?.photo, let urlString = asset.urlString, let url = URL(string: urlString) {
-            cell.imageView.image = nil
+        if let asset = image?.photo, let urlString = asset.urlString {
+            let size = UIScreen.main.bounds.size
+            let imageOptions = [ImageOption.width(UInt(size.width)), ImageOption.height(UInt(size.height))]
+            let url = try! urlString.url(with: imageOptions)
 
+            cell.imageView.image = nil
             cell.imageView.af_setImage(withURL: url,
-                                       imageTransition: .crossDissolve(0.5),
-                                       runImageTransitionIfCached: true)
+                                       imageTransition: .crossDissolve(0.2))
         }
 
         return cell
@@ -118,8 +106,7 @@ class ImagesByGalleryViewController: UICollectionViewController, SingleImageView
 
             if let asset = gallery.coverImage, let urlString = asset.urlString, let url = URL(string: urlString) {
                 view.backgroundImageView.af_setImage(withURL: url,
-                                                     imageTransition: .crossDissolve(0.5),
-                                                     runImageTransitionIfCached: true)
+                                                     imageTransition: .crossDissolve(0.2))
             }
 
             view.textLabel.text = gallery.title
@@ -138,6 +125,21 @@ class ImagesByGalleryViewController: UICollectionViewController, SingleImageView
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedIndexPath = indexPath
-        performSegue(withIdentifier: SegueIdentifier.SingleImageSegue.rawValue, sender: indexPath)
+
+        let imagesPageViewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ImagesPageViewController") as! ImagesPageViewController
+        imagesPageViewController.gallery = galleries[indexPath.section]
+        imagesPageViewController.initialIndex = indexPath.row
+        navigationController?.pushViewController(imagesPageViewController, animated: true)
+    }
+
+    // MARK: UINavigationControllerDelegate 
+
+    public func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        guard viewController == self else { return }
+        let navBar = navigationController.navigationBar
+        navBar.barStyle = .default
+        navBar.barTintColor = nil
+        navBar.tintColor = UIView().tintColor
+        navBar.titleTextAttributes = [ NSForegroundColorAttributeName: UIColor.black ]
     }
 }

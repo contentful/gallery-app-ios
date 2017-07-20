@@ -23,7 +23,7 @@
 		A1C332381A924F40008EC0B7 /* StoryboardIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C332371A924F40008EC0B7 /* StoryboardIdentifiers.swift */; };
 		A1C3323A1A925A3F008EC0B7 /* AnimatedFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C332391A925A3F008EC0B7 /* AnimatedFlowLayout.swift */; };
 		A1C3323C1A937096008EC0B7 /* UIViewController-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C3323B1A937096008EC0B7 /* UIViewController-Extensions.swift */; };
-		A1C3323E1A937B59008EC0B7 /* SingleImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C3323D1A937B59008EC0B7 /* SingleImageViewController.swift */; };
+		A1C3323E1A937B59008EC0B7 /* ImagesPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C3323D1A937B59008EC0B7 /* ImagesPageViewController.swift */; };
 		A1C6E2FD1A9F692D009845B7 /* ImagesByGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C6E2FC1A9F692D009845B7 /* ImagesByGalleryViewController.swift */; };
 		A1CEEE421AA608B3000AA8E6 /* ImageDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CEEE411AA608B3000AA8E6 /* ImageDetailsViewController.swift */; };
 		A1D156DB1A822BC200250215 /* ContentfulDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D156DA1A822BC200250215 /* ContentfulDataManager.swift */; };
@@ -80,7 +80,7 @@
 		A1C332371A924F40008EC0B7 /* StoryboardIdentifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardIdentifiers.swift; sourceTree = "<group>"; };
 		A1C332391A925A3F008EC0B7 /* AnimatedFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedFlowLayout.swift; sourceTree = "<group>"; };
 		A1C3323B1A937096008EC0B7 /* UIViewController-Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController-Extensions.swift"; sourceTree = "<group>"; };
-		A1C3323D1A937B59008EC0B7 /* SingleImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleImageViewController.swift; sourceTree = "<group>"; };
+		A1C3323D1A937B59008EC0B7 /* ImagesPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagesPageViewController.swift; sourceTree = "<group>"; };
 		A1C6E2FC1A9F692D009845B7 /* ImagesByGalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagesByGalleryViewController.swift; sourceTree = "<group>"; };
 		A1CEEE411AA608B3000AA8E6 /* ImageDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDetailsViewController.swift; sourceTree = "<group>"; };
 		A1D156DA1A822BC200250215 /* ContentfulDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentfulDataManager.swift; sourceTree = "<group>"; };
@@ -145,7 +145,7 @@
 				A1C332341A924553008EC0B7 /* ImageCell.swift */,
 				A1CEEE411AA608B3000AA8E6 /* ImageDetailsViewController.swift */,
 				A1C6E2FC1A9F692D009845B7 /* ImagesByGalleryViewController.swift */,
-				A1C3323D1A937B59008EC0B7 /* SingleImageViewController.swift */,
+				A1C3323D1A937B59008EC0B7 /* ImagesPageViewController.swift */,
 				A1C3323B1A937096008EC0B7 /* UIViewController-Extensions.swift */,
 			);
 			path = Code;
@@ -433,7 +433,7 @@
 				A1C332381A924F40008EC0B7 /* StoryboardIdentifiers.swift in Sources */,
 				A13B63E41A822EB700EF5EED /* Image.swift in Sources */,
 				A13B63E61A822EB700EF5EED /* SyncInfo.swift in Sources */,
-				A1C3323E1A937B59008EC0B7 /* SingleImageViewController.swift in Sources */,
+				A1C3323E1A937B59008EC0B7 /* ImagesPageViewController.swift in Sources */,
 				A13B63E81A822EB700EF5EED /* Author.swift in Sources */,
 				A1C6E2FD1A9F692D009845B7 /* ImagesByGalleryViewController.swift in Sources */,
 				A1D156DB1A822BC200250215 /* ContentfulDataManager.swift in Sources */,
@@ -584,6 +584,7 @@
 				DEVELOPMENT_TEAM = RWJ5E97L7R;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.contentful.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -601,6 +602,7 @@
 				DEVELOPMENT_TEAM = RWJ5E97L7R;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.contentful.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";

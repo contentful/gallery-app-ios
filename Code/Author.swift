@@ -26,7 +26,7 @@ class Author: NSManagedObject, EntryPersistable {
     @NSManaged var createdEntries: NSOrderedSet
     @NSManaged var profilePhoto: Asset?
 
-    static func mapping() -> [FieldName: String] {
+    static func fieldMapping() -> [FieldName: String] {
         return [
             "name": "name",
             "biography": "biography",

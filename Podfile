@@ -22,6 +22,8 @@ inhibit_all_warnings!
 use_frameworks!
 
 target 'Gallery' do
+
+  pod 'Contentful', :path => '~/Contentful/swift/SDK/contentful.swift', :branch => 'improvement/url-access+clean' 
   pod 'ContentfulPersistenceSwift', :path => '~/Contentful/swift/SDK/contentful-persistence.swift', :branch => 'feature/wrapper'
   pod 'SOZOChromoplast'
   pod 'AlamofireImage', '~> 3.2'

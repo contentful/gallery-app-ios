@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="TbK-qo-aXW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="TbK-qo-aXW">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -30,18 +30,15 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Galleries" id="UC4-ZF-0V0"/>
-                    <connections>
-                        <segue destination="SbB-zR-ZeC" kind="show" identifier="SingleImageSegue" id="V2C-uc-DWM"/>
-                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uu1-vF-TT8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1132" y="488"/>
         </scene>
-        <!--Single Image View Controller-->
+        <!--Images Page View Controller-->
         <scene sceneID="4al-ls-dgU">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="SbB-zR-ZeC" customClass="SingleImageViewController" customModule="Gallery" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController storyboardIdentifier="ImagesPageViewController" autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="SbB-zR-ZeC" customClass="ImagesPageViewController" customModule="Gallery" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d7R-Wf-t5w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1896" y="488"/>
@@ -63,24 +60,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NXa-7U-7Pe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="364" y="488"/>
-        </scene>
-        <!--Gallery List View Controller-->
-        <scene sceneID="IX6-fy-Tot">
-            <objects>
-                <tableViewController storyboardIdentifier="GalleryListViewControllerId" id="ztE-Hh-bFI" customClass="GalleryListViewController" customModule="Gallery" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ngA-BX-8Y6">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <connections>
-                            <outlet property="dataSource" destination="ztE-Hh-bFI" id="2lz-hF-0HE"/>
-                            <outlet property="delegate" destination="ztE-Hh-bFI" id="Zjv-KA-q1G"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wcj-0A-biz" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="364" y="1221"/>
         </scene>
     </scenes>
 </document>
