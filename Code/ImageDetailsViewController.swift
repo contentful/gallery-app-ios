@@ -7,13 +7,11 @@
 //
 
 import UIKit
-import SOZOChromoplast
 
 let metaInformationHeight: CGFloat = 100.0
 
 class ImageDetailsViewController: UIViewController, UIScrollViewDelegate {
 
-    var chromoplast: SOZOChromoplast?
     let imageView = UIImageView(frame: .zero)
     let metaInformationView = UITextView(frame: .zero)
     weak var pageViewController: UIPageViewController?
@@ -88,27 +86,8 @@ class ImageDetailsViewController: UIViewController, UIScrollViewDelegate {
 
             UIGraphicsBeginImageContextWithOptions(size, true, 0.0)
             self.imageView.image?.draw(in: CGRect(origin: .zero, size: size))
-            let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
-            UIGraphicsEndImageContext()
-
-            self.chromoplast = SOZOChromoplast(image: scaledImage)
 
             DispatchQueue.main.async {
-                self.view.backgroundColor = self.chromoplast!.dominantColor
-                self.imageView.backgroundColor = self.chromoplast!.dominantColor
-
-                let mutableText = self.metaInformationView.attributedText.mutableCopy() as! NSMutableAttributedString
-
-                guard let firstLine = mutableText.string.range(of: "\n") else { return }
-
-
-                let range = NSMakeRange(0, mutableText.string.distance(from: mutableText.string.startIndex, to: firstLine.lowerBound))
-
-                mutableText.addAttribute(NSForegroundColorAttributeName, value: self.chromoplast!.firstHighlight!, range: range)
-                mutableText.addAttribute(NSForegroundColorAttributeName, value: self.chromoplast!.secondHighlight!, range: NSMakeRange(range.length, mutableText.string.distance(from: firstLine.upperBound, to: mutableText.string.endIndex)))
-
-                self.metaInformationView.attributedText = mutableText
-
                 self.updateNavigationBar(force: false)
             }
         }
@@ -123,11 +102,6 @@ class ImageDetailsViewController: UIViewController, UIScrollViewDelegate {
             if let navBar = viewController.navigationController?.navigationBar {
                 navBar.barStyle = statusBarStyleForBackgroundColor(color: view.backgroundColor)
                 navBar.barTintColor = view.backgroundColor
-
-                if let chromoplast = chromoplast {
-                    navBar.tintColor = chromoplast.firstHighlight
-                    navBar.titleTextAttributes = [ NSForegroundColorAttributeName: chromoplast.firstHighlight ]
-                }
             }
         }
     }
@@ -189,7 +163,7 @@ class ImageDetailsViewController: UIViewController, UIScrollViewDelegate {
 
     // MARK: Actions
 
-    func doubleTapped() {
+    @objc func doubleTapped() {
         UIView.animate(withDuration: 0.1) {
             self.defaultZoom()
         }

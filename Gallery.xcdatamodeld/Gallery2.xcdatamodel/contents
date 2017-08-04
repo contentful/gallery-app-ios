@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16F73" minimumToolsVersion="Xcode 7.3" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17F77" minimumToolsVersion="Xcode 7.3" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="Asset" representedClassName="Gallery.Asset" syncable="YES">
         <attribute name="assetDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="fileName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fileType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="height" optional="YES" attributeType="Float" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="id" attributeType="String" syncable="YES"/>
         <attribute name="internetMediaType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="localeCode" attributeType="String" syncable="YES"/>
+        <attribute name="size" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="urlString" optional="YES" attributeType="String" syncable="YES"/>
@@ -18,6 +22,7 @@
         <attribute name="biography" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="localeCode" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="twitterHandle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
@@ -30,6 +35,7 @@
         <attribute name="id" attributeType="String" syncable="YES"/>
         <attribute name="imageCaption" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="imageCredits" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="localeCode" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="createdEntriesInverse" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Author" inverseName="createdEntries" inverseEntity="Author" syncable="YES"/>
@@ -41,6 +47,7 @@
         <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="galleryDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="localeCode" attributeType="String" syncable="YES"/>
         <attribute name="slug" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="tags" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -53,10 +60,10 @@
         <attribute name="syncToken" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Asset" positionX="0" positionY="0" width="128" height="225"/>
-        <element name="Author" positionX="0" positionY="0" width="128" height="180"/>
-        <element name="Image" positionX="0" positionY="0" width="128" height="180"/>
-        <element name="Photo_Gallery" positionX="0" positionY="0" width="128" height="210"/>
+        <element name="Asset" positionX="0" positionY="0" width="128" height="285"/>
+        <element name="Author" positionX="0" positionY="0" width="128" height="195"/>
+        <element name="Image" positionX="0" positionY="0" width="128" height="195"/>
+        <element name="Photo_Gallery" positionX="0" positionY="0" width="128" height="225"/>
         <element name="SyncInfo" positionX="0" positionY="0" width="128" height="60"/>
     </elements>
 </model>

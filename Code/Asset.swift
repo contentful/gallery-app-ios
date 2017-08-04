@@ -12,16 +12,20 @@ import ContentfulPersistence
 
 class Asset: NSManagedObject, AssetPersistable {
 
-    @NSManaged var height: NSNumber
     @NSManaged var id: String
+    @NSManaged var localeCode: String
     @NSManaged var title: String?
     @NSManaged var assetDescription: String?
     @NSManaged var urlString: String?
     @NSManaged var createdAt: Date?
     @NSManaged var updatedAt: Date?
-    
-    @NSManaged var internetMediaType: String
-    @NSManaged var width: NSNumber
+
+    @NSManaged var size: NSNumber?
+    @NSManaged var width: NSNumber?
+    @NSManaged var height: NSNumber?
+    @NSManaged var fileType: String?
+    @NSManaged var fileName: String?
+
     @NSManaged var coverImage_79h5TZwqOWy0ygOKGs2Wky_Inverse: NSSet
     @NSManaged var images_79h5TZwqOWy0ygOKGs2Wky_Inverse: NSSet
     @NSManaged var photo_1xYw5JsIecuGE68mmGMg20_Inverse: NSSet

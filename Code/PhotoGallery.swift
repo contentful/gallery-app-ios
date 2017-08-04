@@ -16,7 +16,7 @@ class Photo_Gallery: NSManagedObject, EntryPersistable {
     static let contentTypeId = "7leLzv8hW06amGmke86y8G"
 
     @NSManaged var id: String
-
+    @NSManaged var localeCode: String
     @NSManaged var createdAt: Date?
     @NSManaged var updatedAt: Date?
 

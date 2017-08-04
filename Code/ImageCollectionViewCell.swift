@@ -1,5 +1,5 @@
 //
-//  ImageCell.swift
+//  ImageCollectionViewCell.swift
 //  Gallery
 //
 //  Created by Boris Bügling on 16/02/15.
@@ -15,7 +15,8 @@ extension CGSize {
     }
 }
 
-class ImageCell : UICollectionViewCell {
+class ImageCollectionViewCell: UICollectionViewCell {
+
     let imageView: UIImageView
     let shadowView: UIView
 

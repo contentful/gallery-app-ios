@@ -11,7 +11,7 @@ import AlamofireImage
 import Contentful
 
 class ImagesByGalleryViewController: UICollectionViewController,
-//                                     UINavigationControllerDelegate,
+                                     UINavigationControllerDelegate,
                                      SingleImageViewControllerDelegate {
 
     lazy var dataManager = ContentfulDataManager()
@@ -41,13 +41,13 @@ class ImagesByGalleryViewController: UICollectionViewController,
             case .error(let error as NSError) where error.code != NSURLErrorNotConnectedToInternet:
                 strongSelf.galleries = strongSelf.dataManager.fetchGalleries().sorted() { $0.title! < $1.title! }
                 strongSelf.collectionView?.reloadData()
-                let alert = UIAlertView(title: NSLocalizedString("Error", comment: ""), message: error.localizedDescription, delegate: nil, cancelButtonTitle: NSLocalizedString("OK", comment: ""))
-                alert.show()
+
+                strongSelf.showAlertController(for: error)
             case .error(let error):
                 strongSelf.galleries = strongSelf.dataManager.fetchGalleries().sorted() { $0.title! < $1.title! }
                 strongSelf.collectionView?.reloadData()
-                let alert = UIAlertView(title: NSLocalizedString("Error", comment: ""), message: error.localizedDescription, delegate: nil, cancelButtonTitle: NSLocalizedString("OK", comment: ""))
-                alert.show()
+
+                strongSelf.showAlertController(for: error)
             }
         }
     }
@@ -59,10 +59,21 @@ class ImagesByGalleryViewController: UICollectionViewController,
 
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
 
-        collectionView?.register(ImageCell.self, forCellWithReuseIdentifier: String(describing: ImageCell.self))
+        collectionView?.register(ImageCollectionViewCell.self, forCellWithReuseIdentifier: String(describing: ImageCollectionViewCell.self))
         collectionView?.register(GalleryHeaderView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: String(describing: GalleryHeaderView.self))
 
         refresh()
+    }
+
+    // MARK: Private
+
+    func showAlertController(for error: Error) {
+        let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
+        let cancelAction = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .cancel) { _ in
+            alertController.dismiss(animated: true, completion: nil)
+        }
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
     }
 
     // MARK: SingleImageViewControllerDelegate
@@ -78,7 +89,7 @@ class ImagesByGalleryViewController: UICollectionViewController,
     // MARK: UICollectionViewDataSource
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ImageCell.self), for: indexPath as IndexPath) as! ImageCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ImageCollectionViewCell.self), for: indexPath as IndexPath) as! ImageCollectionViewCell
 
         let image = galleries[indexPath.section].images[indexPath.item] as? Image
 
@@ -140,6 +151,6 @@ class ImagesByGalleryViewController: UICollectionViewController,
         navBar.barStyle = .default
         navBar.barTintColor = nil
         navBar.tintColor = UIView().tintColor
-        navBar.titleTextAttributes = [ NSForegroundColorAttributeName: UIColor.black ]
+        navBar.titleTextAttributes = [.foregroundColor: UIColor.black]
     }
 }

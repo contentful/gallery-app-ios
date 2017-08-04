@@ -14,7 +14,7 @@ import ContentfulPersistence
 class Image: NSManagedObject, EntryPersistable {
 
     static let contentTypeId = "1xYw5JsIecuGE68mmGMg20"
-
+    @NSManaged var localeCode: String
     @NSManaged var id: String
     @NSManaged var createdAt: Date?
     @NSManaged var updatedAt: Date?

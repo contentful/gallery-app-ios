@@ -16,6 +16,7 @@ class Author: NSManagedObject, EntryPersistable {
     static let contentTypeId = "38nK0gXXIccQ2IEosyAg6C"
 
     @NSManaged var id: String
+    @NSManaged var localeCode: String
     @NSManaged var createdAt: Date?
     @NSManaged var updatedAt: Date?
 

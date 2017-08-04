@@ -11,14 +11,11 @@ import Contentful
 import ContentfulPersistence
 import Keys
 
-class ContentfulDataManager: NSObject {
+class ContentfulDataManager {
 
     let coreDataStore: CoreDataStore
-    var client: Client?
     let managedObjectContext: NSManagedObjectContext
     let contentfulSynchronizer: SynchronizationManager
-
-    var notificationToken: NSObjectProtocol? = nil
 
     static let storeURL = FileManager.default.urls(for: .documentDirectory,
                                                    in: .userDomainMask).last?.appendingPathComponent("Gallery.sqlite")
@@ -40,12 +37,6 @@ class ContentfulDataManager: NSObject {
         return managedObjectContext
     }
 
-    deinit {
-        if let token = notificationToken {
-            NotificationCenter.default.removeObserver(token)
-        }
-    }
-
     func fetchGalleries(predicate: String? = nil) -> [Photo_Gallery] {
         let fetchPredicate = predicate != nil ? NSPredicate(format: predicate!) : NSPredicate(value: true)
         return try! coreDataStore.fetchAll(type: Photo_Gallery.self, predicate: fetchPredicate)
@@ -57,7 +48,7 @@ class ContentfulDataManager: NSObject {
         return try! coreDataStore.fetchAll(type: Image.self, predicate: fetchPredicate)
     }
 
-    override init() {
+    init() {
         let model = PersistenceModel(spaceType: SyncInfo.self,
                                      assetType: Asset.self,
                                      entryTypes: [Image.self, Photo_Gallery.self, Author.self])
@@ -67,15 +58,13 @@ class ContentfulDataManager: NSObject {
         self.managedObjectContext = managedObjectContext
         self.coreDataStore = coreDataStore
         let keys = GalleryKeys()
-        let contentfulSynchronizer = SynchronizationManager(spaceId: keys.gallerySpaceId(),
-                                                            accessToken: keys.galleryAccessToken(),
+        let client = Client(spaceId: keys.gallerySpaceId,
+                            accessToken: keys.galleryAccessToken)
+        let contentfulSynchronizer = SynchronizationManager(client: client,
+                                                            localizationScheme: .default,
                                                             persistenceStore: coreDataStore,
                                                             persistenceModel: model)
-        self.client = contentfulSynchronizer.client
         self.contentfulSynchronizer = contentfulSynchronizer
-
-
-        super.init()
     }
 
     func performSynchronization(completion: @escaping ResultsHandler<SyncSpace>) {

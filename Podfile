@@ -15,21 +15,19 @@ plugin 'cocoapods-keys', {
 source 'https://github.com/CocoaPods/Specs'
 #source 'https://github.com/contentful/CocoaPodsSpecs'
 
-platform :ios, '8.0'
-
-inhibit_all_warnings!
-
 use_frameworks!
+platform :ios, '10.0'
+inhibit_all_warnings!
 
 target 'Gallery' do
 
-  pod 'Contentful', :path => '~/Contentful/swift/SDK/contentful.swift', :branch => 'improvement/url-access+clean' 
-  pod 'ContentfulPersistenceSwift', :path => '~/Contentful/swift/SDK/contentful-persistence.swift', :branch => 'feature/wrapper'
-  pod 'SOZOChromoplast'
-  pod 'AlamofireImage', '~> 3.2'
+  pod 'ContentfulPersistenceSwift', '~> 0.12.0'
+  pod 'AlamofireImage', '~> 3.3'
+  
+  target 'GalleryTests' do
+    inherit! :search_paths
+    pod 'FBSnapshotTestCase', '~> 1.5'
+  end
 end
 
-target 'GalleryTests' do
-  pod 'FBSnapshotTestCase', '~> 1.5'
-end
 

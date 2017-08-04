@@ -1,52 +1,48 @@
 PODS:
-  - Alamofire (4.5.0)
-  - AlamofireImage (3.2.0):
-    - Alamofire (~> 4.1)
-  - Contentful (0.7.7):
-    - Interstellar (~> 2.0.0)
-    - ObjectMapper (~> 2.2)
-  - ContentfulPersistenceSwift (0.5.0):
-    - Contentful (~> 0.7.6)
+  - Alamofire (4.7.2)
+  - AlamofireImage (3.3.1):
+    - Alamofire (~> 4.5)
+  - Contentful (2.2.0):
+    - Interstellar (~> 2.2.0)
+  - ContentfulPersistenceSwift (0.12.0):
+    - Contentful (~> 2.2.0)
   - FBSnapshotTestCase (1.8.1)
-  - Interstellar (2.0.0):
-    - Interstellar/Core (= 2.0.0)
-    - Interstellar/Warpdrive (= 2.0.0)
-  - Interstellar/Core (2.0.0)
-  - Interstellar/Warpdrive (2.0.0):
+  - Interstellar (2.2.0):
+    - Interstellar/Core (= 2.2.0)
+    - Interstellar/Warpdrive (= 2.2.0)
+  - Interstellar/Core (2.2.0)
+  - Interstellar/Warpdrive (2.2.0):
     - Interstellar/Core
-  - Keys (1.0.0)
-  - ObjectMapper (2.2.8)
-  - SOZOChromoplast (0.0.3)
+  - Keys (1.0.1)
 
 DEPENDENCIES:
-  - AlamofireImage (~> 3.2)
-  - Contentful (from `~/Contentful/swift/SDK/contentful.swift`)
-  - ContentfulPersistenceSwift (from `~/Contentful/swift/SDK/contentful-persistence.swift`)
+  - AlamofireImage (~> 3.3)
+  - ContentfulPersistenceSwift (~> 0.12.0)
   - FBSnapshotTestCase (~> 1.5)
   - Keys (from `Pods/CocoaPodsKeys`)
-  - SOZOChromoplast
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - AlamofireImage
+    - Contentful
+    - ContentfulPersistenceSwift
+    - FBSnapshotTestCase
+    - Interstellar
 
 EXTERNAL SOURCES:
-  Contentful:
-    :branch: improvement/url-access+clean
-    :path: "~/Contentful/swift/SDK/contentful.swift"
-  ContentfulPersistenceSwift:
-    :branch: feature/wrapper
-    :path: "~/Contentful/swift/SDK/contentful-persistence.swift"
   Keys:
     :path: Pods/CocoaPodsKeys
 
 SPEC CHECKSUMS:
-  Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
-  AlamofireImage: 157ed682cc81d3b9db4fb90c1f12180ac552d93b
-  Contentful: 133e9d4d9b6c73fdad3f05fc2eade2fbf888c3dc
-  ContentfulPersistenceSwift: b932f4a7cf01152aec2cdc80bc6b02d2ddc51b37
+  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
+  AlamofireImage: 3b35b586853abaf94ca1250f4e94cff3c21a4c0d
+  Contentful: a4df42dc21a88f0c17821792fc87b2a8cb0b7c4b
+  ContentfulPersistenceSwift: 2a5d78c28c2ff0f372a8aa19b3277c2fad07d698
   FBSnapshotTestCase: 3dc3899168747a0319c5278f5b3445c13a6532dd
-  Interstellar: 63a760ff3a3657f791a4523de4b89727c51edec3
-  Keys: 9c35bf00f612ee1d48556f4a4b9b4551e224e90f
-  ObjectMapper: 3d571bb5af471c779e1160828cd9ad5c4ef90958
-  SOZOChromoplast: 8902f554d852844c2025b26558d3322f8fae668d
+  Interstellar: 4f67703a837df47cdbf15c2281ed45b31ecb6193
+  Keys: a576f4c9c1c641ca913a959a9c62ed3f215a8de9
 
-PODFILE CHECKSUM: 7de6c879118acbf37df5d4478c88e4b3aa244e09
+PODFILE CHECKSUM: a8ba882e6a7de48c24312ae3e53206e86445d256
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.5.3

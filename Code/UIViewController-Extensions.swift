@@ -15,7 +15,7 @@ extension UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: infoButton)
     }
 
-    func infoTapped() {
+    @objc func infoTapped() {
         // TODO:
         let aboutUsViewController = UIViewController()
         let navigationController = UINavigationController(rootViewController: aboutUsViewController)
@@ -25,7 +25,7 @@ extension UIViewController {
         present(navigationController, animated: true, completion: nil)
     }
 
-    func dismissAnimated() {
+    @objc func dismissAnimated() {
         dismiss(animated: true, completion: nil)
     }
 }
