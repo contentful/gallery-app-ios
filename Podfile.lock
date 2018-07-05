@@ -4,6 +4,8 @@ PODS:
     - Alamofire (~> 4.5)
   - Contentful (2.2.0):
     - Interstellar (~> 2.2.0)
+  - ContentfulDialogs (2.0.0):
+    - markymark
   - ContentfulPersistenceSwift (0.12.0):
     - Contentful (~> 2.2.0)
   - FBSnapshotTestCase (1.8.1)
@@ -18,6 +20,7 @@ PODS:
 
 DEPENDENCIES:
   - AlamofireImage (~> 3.3)
+  - ContentfulDialogs (from `/Users/jpwright/Contentful/swift/Example/contentful-ios-dialogs`)
   - ContentfulPersistenceSwift (~> 0.12.0)
   - FBSnapshotTestCase (~> 1.5)
   - Keys (from `Pods/CocoaPodsKeys`)
@@ -34,6 +37,8 @@ SPEC REPOS:
     - markymark
 
 EXTERNAL SOURCES:
+  ContentfulDialogs:
+    :path: "/Users/jpwright/Contentful/swift/Example/contentful-ios-dialogs"
   Keys:
     :path: Pods/CocoaPodsKeys
 
@@ -41,12 +46,13 @@ SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
   AlamofireImage: 3b35b586853abaf94ca1250f4e94cff3c21a4c0d
   Contentful: a4df42dc21a88f0c17821792fc87b2a8cb0b7c4b
+  ContentfulDialogs: 9adf5015ced1acc17a8d448a5d731db9b1c0ba29
   ContentfulPersistenceSwift: 2a5d78c28c2ff0f372a8aa19b3277c2fad07d698
   FBSnapshotTestCase: 3dc3899168747a0319c5278f5b3445c13a6532dd
   Interstellar: 4f67703a837df47cdbf15c2281ed45b31ecb6193
   Keys: a576f4c9c1c641ca913a959a9c62ed3f215a8de9
   markymark: 74f98d43f4d655178f80df6efa7023b4a9e9f0f5
 
-PODFILE CHECKSUM: 40e3936d11c62b0388500924f9e8522a8757253d
+PODFILE CHECKSUM: 640cae5f42de5fc09f4085f98b925d21d28f85ae
 
 COCOAPODS: 1.5.3

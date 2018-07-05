@@ -24,6 +24,7 @@ target 'Gallery' do
   pod 'ContentfulPersistenceSwift', '~> 0.12.0'
   pod 'AlamofireImage', '~> 3.3'
   pod 'markymark'
+  pod 'ContentfulDialogs', :path => '/Users/jpwright/Contentful/swift/Example/contentful-ios-dialogs'
 
   target 'GalleryTests' do
     inherit! :search_paths
