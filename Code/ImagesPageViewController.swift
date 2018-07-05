@@ -13,18 +13,21 @@ protocol SingleImageViewControllerDelegate: class {
     func updateCurrentIndex(_ index: Int)
 }
 
-class ImagesPageViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+class ImagesPageViewController: UIPageViewController,
+                                UIPageViewControllerDataSource,
+                                UIPageViewControllerDelegate {
 
-    var client: Client?
     var gallery: Photo_Gallery?
     
-    var images: [Image] {
+    lazy var images: [Image] = {
         if let gallery = gallery {
             return gallery.images.array as! [Image]
         }
         return [Image]()
-    }
+    }()
+
     var initialIndex = 0
+
     weak var singleImageDelegate: SingleImageViewControllerDelegate?
 
     func updateCurrentIndex(_ index: Int) {
@@ -105,12 +108,12 @@ class ImagesPageViewController: UIPageViewController, UIPageViewControllerDataSo
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         let currentIndex = viewController.view.tag
-        return viewControllerWithIndex(index: currentIndex + 1)
+        return viewControllerWithIndex(index: currentIndex - 1)
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         let currentIndex = viewController.view.tag
-        return viewControllerWithIndex(index: currentIndex - 1)
+        return viewControllerWithIndex(index: currentIndex + 1)
     }
 
     // MARK: UIPageViewControllerDelegate

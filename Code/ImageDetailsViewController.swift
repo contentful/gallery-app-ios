@@ -105,6 +105,7 @@ class ImageDetailsViewController: UIViewController, UIScrollViewDelegate {
         }
     }
 
+    // TODO: Move.
     static func attributedMarkdownText(text: String, font: UIFont) -> NSAttributedString {
         let markyMark = MarkyMark() { $0.setFlavor(ContentfulFlavor()) }
         let markdownItems = markyMark.parseMarkDown(text)
