@@ -8,15 +8,32 @@
 
 import Foundation
 import CoreData
+import Contentful
+import ContentfulPersistence
 
-class Author: NSManagedObject, CDAPersistedEntry {
+class Author: NSManagedObject, EntryPersistable {
+
+    static let contentTypeId = "38nK0gXXIccQ2IEosyAg6C"
+
+    @NSManaged var id: String
+    @NSManaged var localeCode: String
+    @NSManaged var createdAt: Date?
+    @NSManaged var updatedAt: Date?
 
     @NSManaged var biography: String?
-    @NSManaged var identifier: String
     @NSManaged var name: String
     @NSManaged var twitterHandle: String?
     @NSManaged var authorInverse: NSSet
     @NSManaged var createdEntries: NSOrderedSet
     @NSManaged var profilePhoto: Asset?
 
+    static func fieldMapping() -> [FieldName: String] {
+        return [
+            "name": "name",
+            "biography": "biography",
+            "twitterHandle": "twitterHandle",
+            "createdEntries": "createdEntries",
+            "profilePhoto": "profilePhoto"
+        ]
+    }
 }

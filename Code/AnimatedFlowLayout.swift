@@ -9,8 +9,7 @@
 import UIKit
 
 class AnimatedFlowLayout: UICollectionViewFlowLayout {
-    let π = CGFloat(M_PI)
-    var indexPathsToAnimate = [NSIndexPath]()
+    var indexPathsToAnimate = [IndexPath]()
     var showsHeader: Bool = false {
         didSet {
             if showsHeader {
@@ -20,7 +19,7 @@ class AnimatedFlowLayout: UICollectionViewFlowLayout {
                 }
             }
 
-            headerReferenceSize = CGSizeZero
+            headerReferenceSize = .zero
         }
     }
 
@@ -35,44 +34,44 @@ class AnimatedFlowLayout: UICollectionViewFlowLayout {
         indexPathsToAnimate.removeAll()
     }
 
-    override func initialLayoutAttributesForAppearingItemAtIndexPath(itemIndexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
-        let attr = layoutAttributesForItemAtIndexPath(itemIndexPath)
+    override func initialLayoutAttributesForAppearingItem(at itemIndexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        let attr = layoutAttributesForItem(at: itemIndexPath)
 
-        if let attr = attr where indexPathsToAnimate.contains(itemIndexPath) {
-            attr.transform = CGAffineTransformRotate(CGAffineTransformMakeScale(0.2, 0.2), π)
+        if let attr = attr, indexPathsToAnimate.contains(itemIndexPath) {
+            attr.transform = CGAffineTransform(scaleX: 0.2, y: 0.2).rotated(by: CGFloat(Double.pi))
             attr.center = CGPoint(x: collectionView!.bounds.midX, y: collectionView!.bounds.maxY)
 
-            indexPathsToAnimate.removeAtIndex(indexPathsToAnimate.indexOf(itemIndexPath)!)
+            indexPathsToAnimate.remove(at: indexPathsToAnimate.index(of: itemIndexPath)!)
         }
 
         return attr
     }
 
-    override func shouldInvalidateLayoutForBoundsChange(newBounds: CGRect) -> Bool {
+    override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
         if (newBounds != collectionView?.bounds) {
-            calculateItemSizeForBounds(newBounds)
+            calculateItemSizeForBounds(bounds: newBounds)
             return true
         }
 
         return false
     }
 
-    override func prepareForCollectionViewUpdates(updateItems: [UICollectionViewUpdateItem]) {
-        super.prepareForCollectionViewUpdates(updateItems)
+    override func prepare(forCollectionViewUpdates updateItems: [UICollectionViewUpdateItem]) {
+        super.prepare(forCollectionViewUpdates: updateItems)
 
-        indexPathsToAnimate += updateItems.map { (element) -> NSIndexPath? in
+        indexPathsToAnimate += updateItems.map { (element) -> IndexPath? in
             return (element as UICollectionViewUpdateItem).indexPathAfterUpdate
-        }.flatMap { $0 }
+        }.compactMap { $0 }
     }
 
-    override func prepareLayout() {
+    override func prepare() {
         if let collectionView = collectionView {
-            calculateItemSizeForBounds(collectionView.bounds)
+            calculateItemSizeForBounds(bounds: collectionView.bounds)
 
             minimumInteritemSpacing = 1.0
             minimumLineSpacing = 1.0
         }
 
-        super.prepareLayout()
+        super.prepare()
     }
 }

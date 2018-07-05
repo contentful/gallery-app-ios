@@ -1,5 +1,5 @@
 //
-//  ImageCell.swift
+//  ImageCollectionViewCell.swift
 //  Gallery
 //
 //  Created by Boris Bügling on 16/02/15.
@@ -10,26 +10,27 @@ import UIKit
 
 extension CGSize {
     func screenSize() -> CGSize {
-        let scale = UIScreen.mainScreen().nativeScale
+        let scale = UIScreen.main.nativeScale
         return CGSize(width: width * scale, height: height * scale)
     }
 }
 
-class ImageCell : UICollectionViewCell {
+class ImageCollectionViewCell: UICollectionViewCell {
+
     let imageView: UIImageView
     let shadowView: UIView
 
     override init(frame: CGRect) {
         imageView = UIImageView(frame: frame)
         imageView.alpha = 0.9
-        imageView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        imageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         imageView.clipsToBounds = true
-        imageView.contentMode = .ScaleAspectFill
+        imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 2.0
 
         shadowView = UIView(frame: frame)
-        shadowView.backgroundColor = UIColor.whiteColor()
-        shadowView.layer.shadowColor = UIColor.blackColor().CGColor
+        shadowView.backgroundColor = .white
+        shadowView.layer.shadowColor = UIColor.black.cgColor
         shadowView.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
         shadowView.layer.shadowOpacity = 0.5
 
@@ -44,8 +45,8 @@ class ImageCell : UICollectionViewCell {
     }
 
     override func layoutSubviews() {
-        imageView.frame = CGRectInset(bounds, 5.0, 5.0)
-        shadowView.frame = CGRectInset(bounds, 5.0, 5.0)
+        imageView.frame = bounds.insetBy(dx: 5.0, dy: 5.0)
+        shadowView.frame = bounds.insetBy(dx: 5.0, dy: 5.0)
 
         super.layoutSubviews()
     }

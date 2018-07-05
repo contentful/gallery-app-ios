@@ -7,13 +7,18 @@
 //
 
 import UIKit
+import AlamofireImage
+import Contentful
 
-class ImagesByGalleryViewController: UICollectionViewController, ZoomTransitionProtocol, SingleImageViewControllerDelegate {
+class ImagesByGalleryViewController: UICollectionViewController,
+                                     UINavigationControllerDelegate,
+                                     SingleImageViewControllerDelegate {
+
     lazy var dataManager = ContentfulDataManager()
-    var selectedIndexPath: NSIndexPath?
-    var transition: ZoomInteractiveTransition?
 
-    var images: [(Photo_Gallery, [Image])] = [(Photo_Gallery, [Image])]() {
+    var selectedIndexPath: IndexPath?
+
+    var galleries: [Photo_Gallery] = [Photo_Gallery]() {
         didSet {
             if let layout = collectionView?.collectionViewLayout as? AnimatedFlowLayout {
                 layout.showsHeader = true
@@ -23,33 +28,27 @@ class ImagesByGalleryViewController: UICollectionViewController, ZoomTransitionP
         }
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        super.prepareForSegue(segue, sender: sender)
-
-        if segue.identifier == SegueIdentifier.SingleImageSegue.rawValue {
-            let indexPath = sender as! NSIndexPath
-            let vc = segue.destinationViewController as! SingleImageViewController
-            vc.client = dataManager.client
-            vc.gallery = images[indexPath.section].0
-            vc.initialIndex = indexPath.item
-            vc.singleImageDelegate = self
-        }
-    }
 
     func refresh() {
-        dataManager.performSynchronization() { (hasChanged, error) -> Void in
-            if error != nil && error.code != NSURLErrorNotConnectedToInternet {
-                let alert = UIAlertView(title: NSLocalizedString("Error", comment: ""), message: error.localizedDescription, delegate: nil, cancelButtonTitle: NSLocalizedString("OK", comment: ""))
-                alert.show()
-            }
+        dataManager.performSynchronization() { [weak self] result in
+            guard let strongSelf = self else { return }
 
-            if self.images.count > 0 && !hasChanged {
-                return
-            }
+            switch result {
+            case .success:
+                strongSelf.galleries = strongSelf.dataManager.fetchGalleries().sorted() { $0.title! < $1.title! }
+                strongSelf.collectionView?.reloadData()
 
-            self.images = self.dataManager.fetchGalleries().map { (gallery) in
-                return (gallery, gallery.images.array as! [Image])
-            }.sort() { $0.0.title < $1.0.title }
+            case .error(let error as NSError) where error.code != NSURLErrorNotConnectedToInternet:
+                strongSelf.galleries = strongSelf.dataManager.fetchGalleries().sorted() { $0.title! < $1.title! }
+                strongSelf.collectionView?.reloadData()
+
+                strongSelf.showAlertController(for: error)
+            case .error(let error):
+                strongSelf.galleries = strongSelf.dataManager.fetchGalleries().sorted() { $0.title! < $1.title! }
+                strongSelf.collectionView?.reloadData()
+
+                strongSelf.showAlertController(for: error)
+            }
         }
     }
 
@@ -58,65 +57,67 @@ class ImagesByGalleryViewController: UICollectionViewController, ZoomTransitionP
 
         addInfoButton()
 
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
 
-        collectionView?.registerClass(ImageCell.self, forCellWithReuseIdentifier: NSStringFromClass(self.dynamicType))
-        collectionView?.registerClass(GalleryHeaderView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: NSStringFromClass(self.dynamicType))
-        
-        transition = ZoomInteractiveTransition(navigationController: navigationController)
-    }
-
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-
-        if let navBar = navigationController?.navigationBar {
-            navBar.barStyle = .Default
-            navBar.barTintColor = nil
-            navBar.tintColor = UIView().tintColor
-            navBar.titleTextAttributes = [ NSForegroundColorAttributeName: UIColor.blackColor() ]
-        }
+        collectionView?.register(ImageCollectionViewCell.self, forCellWithReuseIdentifier: String(describing: ImageCollectionViewCell.self))
+        collectionView?.register(GalleryHeaderView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: String(describing: GalleryHeaderView.self))
 
         refresh()
     }
 
+    // MARK: Private
+
+    func showAlertController(for error: Error) {
+        let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
+        let cancelAction = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .cancel) { _ in
+            alertController.dismiss(animated: true, completion: nil)
+        }
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
+    }
+
     // MARK: SingleImageViewControllerDelegate
 
-    func updateCurrentIndex(index: Int) {
+    func updateCurrentIndex(_ index: Int) {
         if let selectedIndexPath = selectedIndexPath {
-            self.selectedIndexPath = NSIndexPath(forItem: index, inSection: selectedIndexPath.section)
+            self.selectedIndexPath = IndexPath(item: index, section: selectedIndexPath.section)
         } else {
-            self.selectedIndexPath = NSIndexPath(forItem: index, inSection: 0)
+            self.selectedIndexPath = IndexPath(item: index, section: 0)
         }
     }
 
     // MARK: UICollectionViewDataSource
 
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(NSStringFromClass(self.dynamicType), forIndexPath: indexPath) as! ImageCell
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ImageCollectionViewCell.self), for: indexPath as IndexPath) as! ImageCollectionViewCell
 
-        let image = images[indexPath.section].1[indexPath.item]
+        let image = galleries[indexPath.section].images[indexPath.item] as? Image
 
-        if let asset = image.photo {
+        if let asset = image?.photo, let urlString = asset.urlString {
+            let size = UIScreen.main.bounds.size
+            let imageOptions = [ImageOption.width(UInt(size.width)), ImageOption.height(UInt(size.height))]
+            let url = try! urlString.url(with: imageOptions)
+
             cell.imageView.image = nil
-            cell.imageView.offlineCaching_cda = true
-            cell.imageView.cda_setImageWithPersistedAsset(asset, client: dataManager.client, size: UIScreen.mainScreen().bounds.size.screenSize(), placeholderImage: nil)
+            cell.imageView.af_setImage(withURL: url,
+                                       imageTransition: .crossDissolve(0.2))
         }
 
         return cell
     }
 
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images[section].1.count
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return galleries[section].images.count
     }
 
-    override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionElementKindSectionHeader {
-            let gallery = images[indexPath.section].0
-            let view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: NSStringFromClass(self.dynamicType), forIndexPath: indexPath) as! GalleryHeaderView
+            let gallery = galleries[indexPath.section]
+            let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: String(describing: GalleryHeaderView.self), for: indexPath) as! GalleryHeaderView
 
-            if let asset = gallery.coverImage {
-                view.backgroundImageView.offlineCaching_cda = true
-                view.backgroundImageView.cda_setImageWithPersistedAsset(asset, client: dataManager.client, size: view.backgroundImageView.frame.size.screenSize(), placeholderImage: nil)
+            if let asset = gallery.coverImage, let urlString = asset.urlString, let url = URL(string: urlString) {
+                view.backgroundImageView.af_setImage(withURL: url,
+                                                     imageTransition: .crossDissolve(0.2))
             }
 
             view.textLabel.text = gallery.title
@@ -127,42 +128,29 @@ class ImagesByGalleryViewController: UICollectionViewController, ZoomTransitionP
         return UICollectionReusableView()
     }
 
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return images.count
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return galleries.count
     }
 
     // MARK: UICollectionViewDelegate
 
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedIndexPath = indexPath
-        performSegueWithIdentifier(SegueIdentifier.SingleImageSegue.rawValue, sender: indexPath)
+
+        let imagesPageViewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ImagesPageViewController") as! ImagesPageViewController
+        imagesPageViewController.gallery = galleries[indexPath.section]
+        imagesPageViewController.initialIndex = indexPath.row
+        navigationController?.pushViewController(imagesPageViewController, animated: true)
     }
 
-    // MARK: ZoomTransitionProtocol
+    // MARK: UINavigationControllerDelegate 
 
-    func initialZoomViewSnapshotFromProposedSnapshot(snapshot: UIImageView!) -> UIImageView! {
-        return UIImageView(image: viewForZoomTransition(true).dt_takeSnapshot())
-    }
-
-    func viewForZoomTransition(isSource: Bool) -> UIView! {
-        if let selectedIndexPath = selectedIndexPath {
-            if let collectionView = collectionView {
-                if selectedIndexPath.item == -1 {
-                    return collectionView
-                }
-
-                if let cell = collectionView.cellForItemAtIndexPath(selectedIndexPath) as? ImageCell {
-                    collectionView.scrollToItemAtIndexPath(selectedIndexPath, atScrollPosition: .CenteredVertically, animated: false)
-                    return isSource ? cell.imageView : cell
-                }
-
-                if let cell = collectionView.dataSource?.collectionView(collectionView, cellForItemAtIndexPath: selectedIndexPath) as? ImageCell {
-                    collectionView.scrollToItemAtIndexPath(selectedIndexPath, atScrollPosition: .CenteredVertically, animated: false)
-                    return isSource ? cell.imageView : cell
-                }
-            }
-        }
-
-        return nil
+    public func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        guard viewController == self else { return }
+        let navBar = navigationController.navigationBar
+        navBar.barStyle = .default
+        navBar.barTintColor = nil
+        navBar.tintColor = UIView().tintColor
+        navBar.titleTextAttributes = [.foregroundColor: UIColor.black]
     }
 }

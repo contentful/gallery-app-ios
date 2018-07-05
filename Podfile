@@ -1,3 +1,10 @@
+#!/usr/bin/ruby
+
+=begin
+Use cocoapod-keys to load application keys (variables).
+See https://github.com/orta/cocoapods-keys.
+=end
+
 plugin 'cocoapods-keys', {
   :project => 'Gallery',
   :keys => [
@@ -6,27 +13,23 @@ plugin 'cocoapods-keys', {
   ]}
 
 source 'https://github.com/CocoaPods/Specs'
-source 'https://github.com/contentful/CocoaPodsSpecs'
+#source 'https://github.com/contentful/CocoaPodsSpecs'
 
-platform :ios, '8.0'
-
+use_frameworks!
+platform :ios, '10.0'
 inhibit_all_warnings!
 
-#use_frameworks!
+target 'Gallery' do
 
-pod 'Bypass', '~> 1.0.0'
-pod 'ContentfulDeliveryAPI', '~> 1.9.0'
-pod 'ContentfulDialogs', '~> 0.4.0'
-pod 'ContentfulPersistence', '>= 0.3.2'
-pod 'ContentfulStyle', :head
-pod 'KVOController', '~> 1.0.0'
-pod 'SOZOChromoplast', '~> 0.0.2'
-pod 'ZoomInteractiveTransition', :git => 'https://github.com/neonichu/ZoomInteractiveTransition.git',
-	:branch => 'reset-alpha-after-animation'
+  pod 'ContentfulPersistenceSwift', '~> 0.12.0'
+  pod 'AlamofireImage', '~> 3.3'
+  pod 'markymark'
+  pod 'ContentfulDialogs', :path => '/Users/jpwright/Contentful/swift/Example/contentful-ios-dialogs'
 
-target 'GalleryTests', :exclusive => true do
-
-pod 'FBSnapshotTestCase', '~> 1.5'
-
+  target 'GalleryTests' do
+    inherit! :search_paths
+    pod 'FBSnapshotTestCase', '~> 1.5'
+  end
 end
+
 
