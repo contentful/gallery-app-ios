@@ -78,7 +78,7 @@ class ImagesByGalleryViewController: UICollectionViewController,
 
     // MARK: SingleImageViewControllerDelegate
 
-    func updateCurrentIndex(index: Int) {
+    func updateCurrentIndex(_ index: Int) {
         if let selectedIndexPath = selectedIndexPath {
             self.selectedIndexPath = IndexPath(item: index, section: selectedIndexPath.section)
         } else {

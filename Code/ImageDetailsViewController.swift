@@ -7,23 +7,22 @@
 //
 
 import UIKit
+import markymark
 
 let metaInformationHeight: CGFloat = 100.0
 
 class ImageDetailsViewController: UIViewController, UIScrollViewDelegate {
 
     let imageView = UIImageView(frame: .zero)
+
     let metaInformationView = UITextView(frame: .zero)
+
     weak var pageViewController: UIPageViewController?
+
     let scrollView = UIScrollView(frame: .zero)
 
-    convenience init() {
-        self.init(nibName: nil, bundle: nil)
-    }
-
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+    init() {
         super.init(nibName: nil, bundle: nil)
-
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -53,12 +52,12 @@ class ImageDetailsViewController: UIViewController, UIScrollViewDelegate {
     }
 
     func defaultZoom() {
-        if let image = imageView.image {
-            let xZoom = image.size.width / scrollView.frame.size.width
-            let yZoom = image.size.height / scrollView.frame.size.height
-            scrollView.zoomScale = max(xZoom, yZoom)
-            scrollViewDidZoom(scrollView)
-        }
+        guard let image = imageView.image else { return }
+
+        let xZoom = image.size.width / scrollView.frame.size.width
+        let yZoom = image.size.height / scrollView.frame.size.height
+        scrollView.zoomScale = max(xZoom, yZoom)
+        scrollViewDidZoom(scrollView)
     }
 
     func statusBarStyleForBackgroundColor(color: UIColor?) -> UIBarStyle {
@@ -73,7 +72,7 @@ class ImageDetailsViewController: UIViewController, UIScrollViewDelegate {
     }
 
     func updateImage(image: UIImage?) {
-        if image == nil {
+        guard image != nil else {
             view.backgroundColor = .white
             imageView.backgroundColor = .white
             return
@@ -94,7 +93,7 @@ class ImageDetailsViewController: UIViewController, UIScrollViewDelegate {
     }
 
     func updateNavigationBar(force: Bool) {
-        if let viewController = self.pageViewController, let firstVC = viewController.viewControllers?.first {
+        if let viewController = pageViewController, let firstVC = viewController.viewControllers?.first {
             if !force && firstVC !== self {
                 return
             }
@@ -106,28 +105,30 @@ class ImageDetailsViewController: UIViewController, UIScrollViewDelegate {
         }
     }
 
-    func updateText(text: String) {
-        // TODO:
-//        let document = BPParser().parse(text)
-//        let converter = BPAttributedStringConverter()
-//
-//        let defaultFontSize = UIFont.bodyTextFont().pointSize
-//        let headerFontSize = UIFont.boldTitleFont().pointSize
-//
-//        converter.displaySettings.defaultFont = UIFont.bodyTextFont()
-//        converter.displaySettings.boldFont = UIFont.latoBoldFontOfSize(defaultFontSize)
-//        converter.displaySettings.italicFont = UIFont.latoItalicFontOfSize(defaultFontSize)
-//        converter.displaySettings.h1Font = UIFont.boldTitleFont().fontWithSize(headerFontSize * 1.4)
-//        converter.displaySettings.h2Font = UIFont.boldTitleFont().fontWithSize(headerFontSize * 1.2)
-//        converter.displaySettings.h3Font = UIFont.boldTitleFont()
-//
-//        metaInformationView.attributedText = converter.convertDocument(document)
+    static func attributedMarkdownText(text: String, font: UIFont) -> NSAttributedString {
+        let markyMark = MarkyMark() { $0.setFlavor(ContentfulFlavor()) }
+        let markdownItems = markyMark.parseMarkDown(text)
+        let styling = DefaultStyling()
+        let config = MarkDownToAttributedStringConverterConfiguration(styling: styling)
+        // Configure markymark to leverage the Contentful images API when encountering inline SVGs.
+
+        let converter = MarkDownConverter(configuration: config)
+        let attributedText = converter.convert(markdownItems)
+
+        let range = NSRange(location: 0, length: attributedText.length)
+        attributedText.addAttributes([.font: font], range: range)
+        return attributedText
+    }
+
+    func updateText(_ text: String) {
+        metaInformationView.attributedText = ImageDetailsViewController.attributedMarkdownText(text: text, font: UIFont.systemFont(ofSize: 14.0, weight: .regular))
+        metaInformationView.textColor = .white
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let _ = [metaInformationView, imageView, scrollView].map { (view) -> () in
+        for view in [metaInformationView, imageView, scrollView] {
             view.autoresizingMask = .flexibleWidth
             view.frame.size.width = self.view.frame.size.width
         }

@@ -10,7 +10,7 @@ import UIKit
 import Contentful
 
 protocol SingleImageViewControllerDelegate: class {
-    func updateCurrentIndex(index: Int)
+    func updateCurrentIndex(_ index: Int)
 }
 
 class ImagesPageViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
@@ -27,7 +27,7 @@ class ImagesPageViewController: UIPageViewController, UIPageViewControllerDataSo
     var initialIndex = 0
     weak var singleImageDelegate: SingleImageViewControllerDelegate?
 
-    func updateCurrentIndex(index: Int) {
+    func updateCurrentIndex(_ index: Int) {
         if index < 0 || index > images.count {
             return
         }
@@ -40,7 +40,7 @@ class ImagesPageViewController: UIPageViewController, UIPageViewControllerDataSo
         }
 
         if let delegate = singleImageDelegate {
-            delegate.updateCurrentIndex(index: index - 1)
+            delegate.updateCurrentIndex(index - 1)
         }
     }
 
@@ -65,7 +65,7 @@ class ImagesPageViewController: UIPageViewController, UIPageViewControllerDataSo
             description = images[index - 1].imageCredits ?? description
         }
 
-        vc.updateText(text: String(format: "# %@\n\n%@", title, description))
+        vc.updateText("# \(title)\n\n\(description)")
 
         if let asset = asset, let urlString = asset.urlString {
             let size = UIScreen.main.bounds.size
@@ -95,7 +95,7 @@ class ImagesPageViewController: UIPageViewController, UIPageViewControllerDataSo
         if let imageVC = viewControllerWithIndex(index: initialIndex + 1) {
             setViewControllers([imageVC], direction: .forward, animated: false) { (finished) in
                 if finished {
-                    self.updateCurrentIndex(index: self.initialIndex + 1)
+                    self.updateCurrentIndex(self.initialIndex + 1)
                 }
             }
         }
@@ -118,7 +118,7 @@ class ImagesPageViewController: UIPageViewController, UIPageViewControllerDataSo
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if let firstVC = viewControllers?.first, completed {
             let currentIndex = firstVC.view.tag
-            updateCurrentIndex(index: currentIndex)
+            updateCurrentIndex(currentIndex)
         }
     }
 }

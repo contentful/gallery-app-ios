@@ -23,7 +23,8 @@ target 'Gallery' do
 
   pod 'ContentfulPersistenceSwift', '~> 0.12.0'
   pod 'AlamofireImage', '~> 3.3'
-  
+  pod 'markymark'
+
   target 'GalleryTests' do
     inherit! :search_paths
     pod 'FBSnapshotTestCase', '~> 1.5'
