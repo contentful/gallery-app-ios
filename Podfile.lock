@@ -1,12 +1,12 @@
 PODS:
-  - Alamofire (4.7.2)
+  - Alamofire (4.7.3)
   - AlamofireImage (3.3.1):
     - Alamofire (~> 4.5)
-  - Contentful (2.2.0):
+  - Contentful (2.2.1):
     - Interstellar (~> 2.2.0)
   - ContentfulDialogs (2.0.0):
     - markymark
-  - ContentfulPersistenceSwift (0.12.0):
+  - ContentfulPersistenceSwift (0.12.1):
     - Contentful (~> 2.2.0)
   - FBSnapshotTestCase (1.8.1)
   - Interstellar (2.2.0):
@@ -48,11 +48,11 @@ CHECKOUT OPTIONS:
     :git: https://github.com/contentful/contentful-ios-dialogs.git
 
 SPEC CHECKSUMS:
-  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
+  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   AlamofireImage: 3b35b586853abaf94ca1250f4e94cff3c21a4c0d
-  Contentful: a4df42dc21a88f0c17821792fc87b2a8cb0b7c4b
+  Contentful: 91e2c16f3d434c49a83b16ab123d8b46e7b7d59a
   ContentfulDialogs: 677a8406352443f0671205f6f2b18624b05115af
-  ContentfulPersistenceSwift: 2a5d78c28c2ff0f372a8aa19b3277c2fad07d698
+  ContentfulPersistenceSwift: 848c4e22d5b5369268e241ac0bea16c93b67cf35
   FBSnapshotTestCase: 3dc3899168747a0319c5278f5b3445c13a6532dd
   Interstellar: 4f67703a837df47cdbf15c2281ed45b31ecb6193
   Keys: a576f4c9c1c641ca913a959a9c62ed3f215a8de9
