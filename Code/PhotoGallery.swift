@@ -13,7 +13,7 @@ import ContentfulPersistence
 
 class Photo_Gallery: NSManagedObject, EntryPersistable {
 
-    static let contentTypeId = "7leLzv8hW06amGmke86y8G"
+    static let contentTypeId = "photoGallery"
 
     @NSManaged var id: String
     @NSManaged var localeCode: String

@@ -12,7 +12,7 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
-    atomos (0.1.2)
+    atomos (0.1.3)
     claide (1.0.2)
     cocoapods (1.5.3)
       activesupport (>= 4.0.2, < 5)
@@ -40,14 +40,14 @@ GEM
       nap (~> 1.0)
     cocoapods-deintegrate (1.0.2)
     cocoapods-downloader (1.2.1)
-    cocoapods-keys (2.0.4)
+    cocoapods-keys (2.0.5)
       dotenv
       osx_keychain
     cocoapods-plugins (1.0.0)
       nap
     cocoapods-search (1.0.0)
     cocoapods-stats (1.0.0)
-    cocoapods-trunk (1.3.0)
+    cocoapods-trunk (1.3.1)
       nap (>= 0.8, < 2.0)
       netrc (~> 0.11)
     cocoapods-try (1.1.0)
@@ -57,7 +57,7 @@ GEM
       http (~> 1.0)
       json (~> 1.8)
       multi_json (~> 1)
-    contentful-management (2.2.1)
+    contentful-management (2.3.0)
       http (> 1.0, < 3.0)
       json (~> 1.8)
       multi_json (~> 1)
@@ -89,14 +89,14 @@ GEM
     launchy (2.4.3)
       addressable (~> 2.3)
     minitest (5.11.3)
-    molinillo (0.6.5)
+    molinillo (0.6.6)
     multi_json (1.13.1)
     nanaimo (0.2.6)
     nap (1.1.0)
     netrc (0.11.0)
     osx_keychain (1.0.2)
       RubyInline (~> 3)
-    public_suffix (3.0.2)
+    public_suffix (3.0.3)
     rouge (2.0.7)
     ruby-macho (1.2.0)
     sbconstants (1.2.0)
@@ -106,13 +106,13 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.5)
-    xcodeproj (1.5.9)
+    xcodeproj (1.6.0)
       CFPropertyList (>= 2.3.3, < 4.0)
-      atomos (~> 0.1.2)
+      atomos (~> 0.1.3)
       claide (>= 1.0.2, < 2.0)
       colored2 (~> 3.1)
-      nanaimo (~> 0.2.5)
-    xcpretty (0.2.8)
+      nanaimo (~> 0.2.6)
+    xcpretty (0.3.0)
       rouge (~> 2.0.7)
 
 PLATFORMS
@@ -128,4 +128,4 @@ DEPENDENCIES
   xcpretty
 
 BUNDLED WITH
-   1.16.1
+   1.16.3

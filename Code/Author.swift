@@ -13,7 +13,7 @@ import ContentfulPersistence
 
 class Author: NSManagedObject, EntryPersistable {
 
-    static let contentTypeId = "38nK0gXXIccQ2IEosyAg6C"
+    static let contentTypeId = "author"
 
     @NSManaged var id: String
     @NSManaged var localeCode: String
