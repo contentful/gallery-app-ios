@@ -68,6 +68,8 @@ class ContentfulDataManager {
     }
 
     func performSynchronization(completion: @escaping ResultsHandler<SyncSpace>) {
-        contentfulSynchronizer.sync(then: completion)
+        contentfulSynchronizer.sync { result in
+            completion(result)
+        }
     }
 }
