@@ -15,7 +15,7 @@ class Image: NSManagedObject, EntryPersistable {
 
     static let contentTypeId = "image"
     
-    @NSManaged var localeCode: String
+    @NSManaged var localeCode: String?
     @NSManaged var id: String
     @NSManaged var createdAt: Date?
     @NSManaged var updatedAt: Date?

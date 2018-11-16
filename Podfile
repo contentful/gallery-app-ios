@@ -21,15 +21,10 @@ inhibit_all_warnings!
 
 target 'Gallery' do
 
-  pod 'ContentfulPersistenceSwift', '~> 0.12.0'
-  pod 'AlamofireImage', '~> 3.3'
+  pod 'ContentfulPersistenceSwift', '~> 0.13.0'
+  pod 'AlamofireImage', '~> 3'
   pod 'markymark'
   pod 'ContentfulDialogs', :git => 'https://github.com/contentful/contentful-ios-dialogs.git'
-
-  target 'GalleryTests' do
-    inherit! :search_paths
-    pod 'FBSnapshotTestCase', '~> 1.5'
-  end
 end
 
 

@@ -57,10 +57,10 @@ class ImagesByGalleryViewController: UICollectionViewController,
 
         addInfoButton()
 
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
 
         collectionView?.register(ImageCollectionViewCell.self, forCellWithReuseIdentifier: String(describing: ImageCollectionViewCell.self))
-        collectionView?.register(GalleryHeaderView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: String(describing: GalleryHeaderView.self))
+        collectionView?.register(GalleryHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: String(describing: GalleryHeaderView.self))
 
         refresh()
     }
@@ -68,7 +68,7 @@ class ImagesByGalleryViewController: UICollectionViewController,
     // MARK: Private
 
     func showAlertController(for error: Error) {
-        let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
+        let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: error.localizedDescription, preferredStyle: UIAlertController.Style.alert)
         let cancelAction = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .cancel) { _ in
             alertController.dismiss(animated: true, completion: nil)
         }
@@ -111,7 +111,7 @@ class ImagesByGalleryViewController: UICollectionViewController,
     }
 
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if kind == UICollectionElementKindSectionHeader {
+        if kind == UICollectionView.elementKindSectionHeader {
             let gallery = galleries[indexPath.section]
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: String(describing: GalleryHeaderView.self), for: indexPath) as! GalleryHeaderView
 

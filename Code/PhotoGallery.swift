@@ -16,7 +16,7 @@ class Photo_Gallery: NSManagedObject, EntryPersistable {
     static let contentTypeId = "photoGallery"
 
     @NSManaged var id: String
-    @NSManaged var localeCode: String
+    @NSManaged var localeCode: String?
     @NSManaged var createdAt: Date?
     @NSManaged var updatedAt: Date?
 
@@ -27,6 +27,7 @@ class Photo_Gallery: NSManagedObject, EntryPersistable {
     @NSManaged var author: Author?
     @NSManaged var coverImage: Asset?
     @NSManaged var images: NSOrderedSet
+    @NSManaged var authors: NSOrderedSet?
 
     static func fieldMapping() -> [FieldName: String] {
         return [
@@ -36,7 +37,8 @@ class Photo_Gallery: NSManagedObject, EntryPersistable {
             "coverImage": "coverImage",
             "slug": "slug",
             "author": "author",
-            "images": "images"
+            "images": "images",
+            "authors": "authors"
         ]
     }
 }
